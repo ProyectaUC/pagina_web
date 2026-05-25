@@ -1,0 +1,229 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   🎨 CSS CUSTOM PROPERTIES — PROYECTA BRAND
+   Centraliza colores y variables del tema.
+   Para actualizar el branding, modifica SOLO este bloque.
+   ============================================================ */
+:root {
+  /* Paleta principal */
+  --color-navy:       #1B3A4B;
+  --color-dark-teal:  #1B5E7A;
+  --color-teal:       #1B9AB5;
+  --color-sky:        #29B6D8;
+  --color-cyan:       #40D0F0;
+  --color-yellow:     #FFBB00;
+  --color-orange:     #F57C00;
+  --color-white:      #FFFFFF;
+  --color-light-bg:   #F0FAFF;
+
+  /* Tipografía */
+  --font-display: 'Permanent Marker', cursive;
+  --font-sans:    'Nunito', sans-serif;
+  --font-mono:    'JetBrains Mono', monospace;
+
+  /* Spacing */
+  --section-px: clamp(1.5rem, 5vw, 6rem);
+  --section-py: clamp(4rem, 8vw, 7rem);
+
+  /* Border radius */
+  --radius-card: 1.25rem;
+  --radius-btn:  0.75rem;
+}
+
+/* Dark mode variables */
+.dark {
+  --color-bg:     #0D1F2A;
+  --color-bg-2:   #122530;
+  --color-text:   #E8F4F8;
+  --color-muted:  #7BBDD4;
+}
+
+/* ============================================================
+   🏗 BASE STYLES
+   ============================================================ */
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-white text-proyecta-navy overflow-x-hidden;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  .dark body {
+    @apply bg-[#0D1F2A] text-proyecta-cyan;
+  }
+
+  h1, h2, h3 {
+    font-family: var(--font-display);
+    line-height: 1.1;
+  }
+
+  h4, h5, h6 {
+    font-family: var(--font-sans);
+    font-weight: 700;
+  }
+
+  ::selection {
+    background-color: var(--color-cyan);
+    color: var(--color-navy);
+  }
+}
+
+/* ============================================================
+   🧩 COMPONENT CLASSES (reusables via @apply)
+   ============================================================ */
+@layer components {
+  /* Botón primario */
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-6 py-3 rounded-xl
+           bg-proyecta-cyan text-proyecta-navy font-bold text-sm
+           shadow-proyecta hover:shadow-proyecta-lg
+           hover:bg-white hover:text-proyecta-teal
+           transition-all duration-300 transform hover:-translate-y-0.5
+           focus:outline-none focus:ring-2 focus:ring-proyecta-cyan focus:ring-offset-2;
+  }
+
+  /* Botón secundario (outline) */
+  .btn-secondary {
+    @apply inline-flex items-center gap-2 px-6 py-3 rounded-xl
+           border-2 border-proyecta-cyan text-proyecta-cyan font-bold text-sm
+           hover:bg-proyecta-cyan hover:text-proyecta-navy
+           transition-all duration-300 transform hover:-translate-y-0.5
+           focus:outline-none focus:ring-2 focus:ring-proyecta-cyan focus:ring-offset-2;
+  }
+
+  /* Card base */
+  .card {
+    @apply bg-white rounded-2xl shadow-card hover:shadow-card-hover
+           transition-all duration-300 transform hover:-translate-y-1
+           border border-gray-100;
+  }
+
+  .card-dark {
+    @apply bg-proyecta-navy/80 rounded-2xl
+           border border-proyecta-teal/20
+           hover:border-proyecta-cyan/40
+           transition-all duration-300 transform hover:-translate-y-1;
+  }
+
+  /* Sección container */
+  .section-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Etiqueta de sección */
+  .section-tag {
+    @apply inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold
+           bg-proyecta-cyan/15 text-proyecta-teal border border-proyecta-cyan/30
+           uppercase tracking-widest;
+  }
+
+  /* Título de sección */
+  .section-title {
+    @apply text-4xl sm:text-5xl text-proyecta-navy dark:text-white;
+    font-family: var(--font-display);
+  }
+
+  /* Stat número */
+  .stat-number {
+    @apply text-4xl sm:text-5xl font-black;
+    font-family: var(--font-display);
+    background: linear-gradient(135deg, #40D0F0, #29B6D8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Glassmorphism */
+  .glass {
+    @apply backdrop-blur-md bg-white/10 border border-white/20;
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    background: linear-gradient(135deg, #40D0F0 0%, #29B6D8 50%, #FFBB00 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Línea decorativa */
+  .decorative-line {
+    @apply block w-16 h-1.5 rounded-full bg-gradient-to-r from-proyecta-cyan to-proyecta-yellow mt-3 mb-6;
+  }
+}
+
+/* ============================================================
+   ✨ UTILITY CLASSES
+   ============================================================ */
+@layer utilities {
+  /* Animación delay helpers */
+  .delay-100 { animation-delay: 100ms; }
+  .delay-200 { animation-delay: 200ms; }
+  .delay-300 { animation-delay: 300ms; }
+  .delay-400 { animation-delay: 400ms; }
+  .delay-500 { animation-delay: 500ms; }
+  .delay-600 { animation-delay: 600ms; }
+
+  /* Opacity inicial para animaciones */
+  .animate-on-scroll {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .animate-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================================
+   🎠 SCROLLBAR CUSTOM
+   ============================================================ */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F0FAFF;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-teal);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-cyan);
+}
+
+/* ============================================================
+   📱 SMOOTH TRANSITIONS GLOBALES
+   ============================================================ */
+* {
+  transition-property: color, background-color, border-color, box-shadow;
+  transition-duration: 200ms;
+  transition-timing-function: ease;
+}
+
+/* Excepciones para evitar flashes */
+*, *::before, *::after {
+  transition: none;
+}
+
+.btn-primary, .btn-secondary, .card, .card-dark, a, button {
+  transition: all 0.3s ease;
+}
