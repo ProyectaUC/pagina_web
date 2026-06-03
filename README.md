@@ -4,13 +4,13 @@ Portafolio institucional del voluntariado **Proyecta**, desplegado en [proyecta.
 
 ## 🛠 Stack tecnológico
 
-| Herramienta | Versión | Rol |
-|---|---|---|
-| **Vite** | 5.x | Bundler / dev server |
-| **React** | 18.x | UI framework |
-| **TailwindCSS** | 3.x | Utilidades CSS |
-| **Lucide React** | 0.383 | Iconografía |
-| **gh-pages** | 6.x | Deploy automatizado |
+| Herramienta      | Versión | Rol                  |
+| ---------------- | ------- | -------------------- |
+| **Vite**         | 5.x     | Bundler / dev server |
+| **React**        | 18.x    | UI framework         |
+| **TailwindCSS**  | 3.x     | Utilidades CSS       |
+| **Lucide React** | 0.383   | Iconografía          |
+| **gh-pages**     | 6.x     | Deploy automatizado  |
 
 **¿Por qué este stack?** Vite + React ofrece el mejor balance entre DX, performance y build size para una web estática moderna. TailwindCSS permite mantener el design system centralizado. Compatible 100% con GitHub Pages sin servidor.
 
@@ -19,9 +19,11 @@ Portafolio institucional del voluntariado **Proyecta**, desplegado en [proyecta.
 ## 🚀 Primeros pasos
 
 ### Requisitos
+
 - Node.js 18+ y npm 9+
 
 ### Instalación
+
 ```bash
 git clone https://github.com/TU_ORG/proyecta-web.git
 cd proyecta-web
@@ -29,18 +31,21 @@ npm install
 ```
 
 ### Desarrollo local
+
 ```bash
 npm run dev
 # Abre http://localhost:5173
 ```
 
 ### Build de producción
+
 ```bash
 npm run build
 # Genera /dist con los archivos estáticos
 ```
 
 ### Preview del build
+
 ```bash
 npm run preview
 ```
@@ -52,11 +57,13 @@ npm run preview
 ### Opción A: Automático (recomendado)
 
 1. En `package.json`, el script `deploy` ya está configurado:
+
    ```json
    "deploy": "npm run build && gh-pages -d dist"
    ```
 
 2. Asegúrate de que el repositorio está en GitHub y ejecuta:
+
    ```bash
    npm run deploy
    ```
@@ -99,13 +106,17 @@ jobs:
 ## 🌐 Dominio personalizado (`proyecta.cai.cl`)
 
 ### 1. CNAME en el repo
+
 El archivo `public/CNAME` ya contiene:
+
 ```
 proyecta.cai.cl
 ```
+
 Este archivo se copia automáticamente al build.
 
 ### 2. DNS con tu proveedor
+
 Configura en el panel DNS de `cai.cl`:
 
 ```
@@ -116,6 +127,7 @@ proyecta  CNAME  TU_ORG.github.io.
 ```
 
 ### 3. HTTPS
+
 GitHub Pages activa SSL automáticamente para dominios personalizados. Puede tardar hasta 24h después de la propagación DNS.
 
 ---
@@ -123,19 +135,22 @@ GitHub Pages activa SSL automáticamente para dominios personalizados. Puede tar
 ## 🎨 Actualizar branding desde Figma
 
 ### Colores
+
 Edita **UN solo archivo**: `src/styles/theme/brand.js`
+
 ```js
 export const colors = {
-  navy:     '#1B3A4B',  // ← Reemplaza con HEX de Figma
-  cyan:     '#40D0F0',  // ← Color signature
-  yellow:   '#FFBB00',  // ← Acento
+  navy: "#1B3A4B", // ← Reemplaza con HEX de Figma
+  cyan: "#40D0F0", // ← Color signature
+  yellow: "#FFBB00", // ← Acento
   // ...
-}
+};
 ```
 
 Y también `tailwind.config.js` sección `theme.extend.colors.proyecta`.
 
 ### Logo y assets SVG
+
 1. Exporta SVG desde Figma
 2. Colócalos en:
    ```
@@ -148,13 +163,15 @@ Y también `tailwind.config.js` sección `theme.extend.colors.proyecta`.
 3. Actualiza las rutas en `src/styles/theme/brand.js`:
    ```js
    export const assets = {
-     logo: '/assets/logos/logo.svg',  // ← Cambia la extensión
+     logo: "/assets/logos/logo.svg", // ← Cambia la extensión
      // ...
-   }
+   };
    ```
 
 ### Tipografías
+
 Si Figma usa fuentes distintas:
+
 1. Añade el link en `index.html`
 2. Actualiza `tailwind.config.js` → `fontFamily`
 3. Actualiza las variables en `src/index.css` → `:root`
@@ -164,27 +181,35 @@ Si Figma usa fuentes distintas:
 ## 💳 Integrar pagos (sin backend propio)
 
 ### Mercado Pago — Payment Links
+
 ```html
 <!-- El link de pago se genera en el panel de Mercado Pago -->
 <a href="https://mpago.la/TU_LINK">Donar con Mercado Pago</a>
 ```
+
 O con el SDK JS para personalización avanzada:
+
 ```
 npm install @mercadopago/sdk-react
 ```
+
 Docs: https://www.mercadopago.cl/developers
 
 ### Stripe — Payment Links
+
 1. Crea un Payment Link en el dashboard de Stripe
 2. Reemplaza el botón placeholder en `src/components/Apoyanos.jsx`:
+
 ```jsx
 <a href="https://buy.stripe.com/TU_LINK" className="btn-primary">
   Donar con Stripe
 </a>
 ```
+
 Docs: https://stripe.com/docs/payment-links
 
 ### Recomendación
+
 Para donaciones sin backend, usa **Payment Links** de ambas plataformas.
 Son URLs estáticas que no requieren servidor. Para más control (montos dinámicos),
 integra una función serverless con **Netlify Functions** o **Vercel Edge Functions**.
@@ -207,7 +232,6 @@ proyecta-web/
 │   │   ├── Hero.jsx        ← Landing principal
 │   │   ├── QuienesSomos.jsx← Misión/Visión/Valores
 │   │   ├── Impacto.jsx     ← Dashboard con stats
-│   │   ├── Programas.jsx   ← Cards de proyectos
 │   │   ├── Apoyanos.jsx    ← Voluntarios/Sponsors/Donaciones
 │   │   └── Contacto.jsx    ← Formulario + Footer
 │   ├── hooks/
