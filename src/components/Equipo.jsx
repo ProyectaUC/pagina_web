@@ -107,11 +107,47 @@ const equiposData = [
     icon: Package,
     color: "text-proyecta-yellow",
     bgIcon: "bg-proyecta-yellow/10",
-    groupImage:
-      "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1200&q=80",
+    groupImage: "/assets/photos/recursos.jpeg",
     groupDescription:
-      "Los magos de la logística. Consiguen, almacenan y distribuyen todos los materiales necesarios para que los operativos sean un éxito.",
-    members: [],
+      "Los adictos al fideo y al excel. Les mantenemos las watas llenas a los voluntarios en terreno. La comision mas importante de todas. Sin nosotros se mueren de hambre.",
+    members: [
+      {
+        name: "Pancito",
+        carrera: "LICD",
+        year: "3er Año",
+        funFact: "El que programo esta pagina jeje.",
+        image: "/assets/photos/pancito.jpeg",
+      },
+      {
+        name: "Momo",
+        carrera: "Pedagogia basica",
+        year: "3er Año",
+        funFact: "Las siglas de su nombre son 'M.E.A.R'.",
+        image: "/assets/photos/momo.jpeg",
+      },
+      {
+        name: "Conyshi",
+        carrera: "Ingenieria Ambiental",
+        year: "4to Año",
+        funFact: "No me acuerdo :(.",
+        image: "/assets/photos/conyshi.jpeg",
+      },
+      {
+        name: "Carozzi",
+        carrera: "Ingenieria Civil",
+        year: "2do Año",
+        funFact: "Tampoco me acuerdo",
+        image: "/assets/photos/carozzi.jpeg",
+      },
+      {
+        name: "Naxo",
+        carrera: "Ingenieria Civil",
+        year: "5to Año",
+        funFact: "Tampoco me acuerdo",
+        image: "/assets/photos/naxo.jpeg",
+        isMentor: true,
+      },
+    ],
   },
   {
     id: "diseno",
@@ -283,17 +319,32 @@ export default function Equipo() {
                           {equipo.members.map((member, idx) => (
                             <div
                               key={idx}
-                              className="glass rounded-[2rem] overflow-hidden flex flex-col group hover:-translate-y-2 transition-transform duration-500 border border-black/5 dark:border-white/10"
+                              className={`glass rounded-[2rem] overflow-hidden flex flex-col group hover:-translate-y-2 transition-all duration-500 border relative ${
+                                member.isMentor
+                                  ? "border-proyecta-yellow/80 shadow-[0_0_20px_rgba(255,183,3,0.2)] dark:shadow-[0_0_20px_rgba(255,183,3,0.15)]"
+                                  : "border-black/5 dark:border-white/10"
+                              }`}
                             >
+                              {/* ETIQUETA DE MENTOR */}
+                              {member.isMentor && (
+                                <div className="absolute top-0 left-0 bg-proyecta-yellow text-proyecta-navy font-black px-6 py-2 rounded-br-[2rem] z-20 text-xs uppercase tracking-widest shadow-lg">
+                                  Mentor
+                                </div>
+                              )}
+
                               {/* Imagen Individual Gigante */}
                               <div className="relative h-80 sm:h-96 w-full overflow-hidden">
                                 <img
                                   src={member.image}
                                   alt={member.name}
-                                  className="w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 transform scale-100 group-hover:scale-105 transition-all duration-700"
+                                  className={`w-full h-full object-cover transform scale-100 group-hover:scale-105 transition-all duration-700 ${
+                                    member.isMentor
+                                      ? "grayscale-0"
+                                      : "grayscale-[20%] group-hover:grayscale-0"
+                                  }`}
                                 />
                                 {/* Insignia Año/Carrera Flotante */}
-                                <div className="absolute top-4 right-4 flex flex-col gap-2 items-end">
+                                <div className="absolute top-4 right-4 flex flex-col gap-2 items-end z-10">
                                   <span className="px-3 py-1 bg-white/90 dark:bg-[#0D1F2A]/90 backdrop-blur-sm text-proyecta-navy dark:text-white text-xs font-bold uppercase tracking-wider rounded-full shadow-md">
                                     {member.year}
                                   </span>
@@ -310,8 +361,20 @@ export default function Equipo() {
                                 </h4>
 
                                 {/* Dato Curioso - Destacado en caja */}
-                                <div className="mt-auto bg-proyecta-yellow/10 dark:bg-proyecta-yellow/5 border-l-4 border-proyecta-yellow p-4 rounded-r-xl">
-                                  <p className="text-xs font-bold text-proyecta-yellow uppercase tracking-widest mb-1">
+                                <div
+                                  className={`mt-auto p-4 rounded-r-xl border-l-4 ${
+                                    member.isMentor
+                                      ? "bg-proyecta-yellow/20 dark:bg-proyecta-yellow/10 border-proyecta-yellow"
+                                      : "bg-proyecta-cyan/10 dark:bg-proyecta-cyan/5 border-proyecta-cyan"
+                                  }`}
+                                >
+                                  <p
+                                    className={`text-xs font-bold uppercase tracking-widest mb-1 ${
+                                      member.isMentor
+                                        ? "text-proyecta-yellow"
+                                        : "text-proyecta-cyan"
+                                    }`}
+                                  >
                                     Dato Curioso
                                   </p>
                                   <p className="text-proyecta-navy/80 dark:text-white/70 text-sm italic">

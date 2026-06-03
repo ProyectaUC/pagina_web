@@ -7,7 +7,7 @@ import { useDarkMode } from "../hooks/useAnimations";
 const navLinks = [
   { label: "Inicio", to: "/" },
   { label: "Quiénes Somos", to: "/quienes-somos" },
-  { label: "Impacto", to: "/trabajos" },
+  { label: "Trabajos", to: "/trabajos" },
   { label: "Historia", to: "/historia" },
   { label: "Equipo", to: "/equipo" },
   { label: "Apóyanos", to: "/apoyanos" },
