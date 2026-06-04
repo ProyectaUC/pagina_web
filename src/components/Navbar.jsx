@@ -1,47 +1,44 @@
-import { useState, useEffect } from 'react'
-import { Menu, X, Sun, Moon, ChevronDown } from 'lucide-react'
-import { assets, content } from '../styles/theme/brand'
-import { useDarkMode } from '../hooks/useAnimations'
+import { useState, useEffect } from "react";
+import { Link, NavLink } from "react-router-dom";
+import { Menu, X, Sun, Moon, Map } from "lucide-react";
+import { assets, content } from "../styles/theme/brand";
+import { useDarkMode } from "../hooks/useAnimations";
 
 const navLinks = [
-  { label: 'Quiénes Somos', href: '#quienes-somos' },
-  { label: 'Impacto',       href: '#impacto' },
-  { label: 'Programas',     href: '#programas' },
-  { label: 'Apóyanos',      href: '#apoyanos' },
-  { label: 'Contacto',      href: '#contacto' },
-]
+  { label: "Inicio", to: "/" },
+  { label: "Quiénes Somos", to: "/quienes-somos" },
+  { label: "Trabajos", to: "/trabajos" },
+  { label: "Historia", to: "/historia" },
+  { label: "Equipo", to: "/equipo" },
+  { label: "Apóyanos", to: "/apoyanos" },
+  { label: "Contacto", to: "/contacto" },
+];
 
 export default function Navbar() {
-  const [isOpen, setIsOpen]         = useState(false)
-  const [scrolled, setScrolled]     = useState(false)
-  const [isDark, setIsDark]         = useDarkMode()
+  const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [isDark, setIsDark] = useDarkMode();
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20)
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
-
-  const handleNavClick = (href) => {
-    setIsOpen(false)
-    const el = document.querySelector(href)
-    if (el) el.scrollIntoView({ behavior: 'smooth' })
-  }
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <>
       <nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           scrolled
-            ? 'bg-proyecta-navy/95 backdrop-blur-md shadow-lg py-3'
-            : 'bg-transparent py-5'
+            ? "bg-proyecta-navy/95 backdrop-blur-md shadow-lg py-3"
+            : "bg-transparent py-5"
         }`}
       >
         <div className="section-container flex items-center justify-between">
           {/* Logo */}
-          <a
-            href="#inicio"
-            onClick={(e) => { e.preventDefault(); handleNavClick('#inicio') }}
+          <Link
+            to="/"
+            onClick={() => setIsOpen(false)}
             className="flex items-center gap-3 group"
           >
             {/* ================================================
@@ -52,30 +49,35 @@ export default function Navbar() {
               alt={content.org.name}
               className="h-10 w-auto object-contain group-hover:scale-105 transition-transform duration-300"
               onError={(e) => {
-                e.target.style.display = 'none'
-                e.target.nextSibling.style.display = 'flex'
+                e.target.style.display = "none";
+                e.target.nextSibling.style.display = "flex";
               }}
             />
             {/* Fallback text logo */}
             <span
               className="hidden items-center gap-2 text-proyecta-cyan font-display text-2xl"
-              style={{ fontFamily: 'var(--font-display)' }}
+              style={{ fontFamily: "var(--font-display)" }}
             >
               {content.org.name}
             </span>
-          </a>
+          </Link>
 
           {/* Desktop links */}
           <ul className="hidden lg:flex items-center gap-1">
             {navLinks.map((link) => (
-              <li key={link.href}>
-                <button
-                  onClick={() => handleNavClick(link.href)}
-                  className="px-4 py-2 text-white/90 hover:text-proyecta-cyan text-sm font-semibold
-                             transition-colors duration-200 rounded-lg hover:bg-white/5"
+              <li key={link.to}>
+                <NavLink
+                  to={link.to}
+                  className={({ isActive }) =>
+                    `px-4 py-2 text-sm font-semibold transition-colors duration-200 rounded-lg hover:bg-white/5 ${
+                      isActive
+                        ? "text-proyecta-cyan"
+                        : "text-white/90 hover:text-proyecta-cyan"
+                    }`
+                  }
                 >
                   {link.label}
-                </button>
+                </NavLink>
               </li>
             ))}
           </ul>
@@ -93,12 +95,9 @@ export default function Navbar() {
             </button>
 
             {/* CTA button */}
-            <button
-              onClick={() => handleNavClick('#apoyanos')}
-              className="btn-primary text-sm px-5 py-2.5"
-            >
+            <Link to="/apoyanos" className="btn-primary text-sm px-5 py-2.5">
               Apóyanos
-            </button>
+            </Link>
           </div>
 
           {/* Mobile menu button */}
@@ -124,7 +123,9 @@ export default function Navbar() {
       {/* Mobile menu overlay */}
       <div
         className={`fixed inset-0 z-40 lg:hidden transition-all duration-300 ${
-          isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+          isOpen
+            ? "opacity-100 pointer-events-auto"
+            : "opacity-0 pointer-events-none"
         }`}
       >
         {/* Backdrop */}
@@ -135,27 +136,34 @@ export default function Navbar() {
         {/* Menu content */}
         <div
           className={`relative flex flex-col justify-center items-center h-full gap-2
-                      transition-transform duration-300 ${isOpen ? 'translate-y-0' : '-translate-y-8'}`}
+                      transition-transform duration-300 ${isOpen ? "translate-y-0" : "-translate-y-8"}`}
         >
           {navLinks.map((link, i) => (
-            <button
-              key={link.href}
-              onClick={() => handleNavClick(link.href)}
-              className="text-white/90 hover:text-proyecta-cyan text-2xl font-bold py-3 px-8
-                         transition-colors duration-200 font-sans"
+            <NavLink
+              key={link.to}
+              to={link.to}
+              onClick={() => setIsOpen(false)}
+              className={({ isActive }) =>
+                `text-2xl font-bold py-3 px-8 transition-colors duration-200 font-sans ${
+                  isActive
+                    ? "text-proyecta-cyan"
+                    : "text-white/90 hover:text-proyecta-cyan"
+                }`
+              }
               style={{ animationDelay: `${i * 80}ms` }}
             >
               {link.label}
-            </button>
+            </NavLink>
           ))}
-          <button
-            onClick={() => handleNavClick('#apoyanos')}
+          <Link
+            to="/apoyanos"
+            onClick={() => setIsOpen(false)}
             className="btn-primary mt-4 text-base px-8 py-3"
           >
             Apóyanos
-          </button>
+          </Link>
         </div>
       </div>
     </>
-  )
+  );
 }
