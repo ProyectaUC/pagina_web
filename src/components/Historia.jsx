@@ -10,8 +10,7 @@ export default function Historia() {
       description:
         "Un grupo pequeño de estudiantes soñó con un voluntariado diferente. Realizamos nuestro primer operativo de salud comunitaria con apenas 10 personas.",
       alignment: "left",
-      image:
-        "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=600&q=80",
+      image: "/assets/photos/yoshi.jpeg",
     },
     {
       year: "2017",
@@ -19,8 +18,7 @@ export default function Historia() {
       description:
         "Formalizamos Proyecta CAI. Creamos las primeras escuelas de verano y multiplicamos nuestra red de voluntarios, llegando a nuevas comunidades.",
       alignment: "right",
-      image:
-        "https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=600&q=80",
+      image: "/assets/photos/yoshi.jpeg",
     },
     {
       year: "2020",
@@ -28,8 +26,7 @@ export default function Historia() {
       description:
         "Frente al desafío global, lanzamos los Talleres de Habilidades Digitales, demostrando que la comunidad se construye también a través de las pantallas.",
       alignment: "left",
-      image:
-        "https://images.unsplash.com/photo-1593113630400-ea4288922559?w=600&q=80",
+      image: "/assets/photos/yoshi.jpeg",
     },
     {
       year: "2023",
@@ -37,8 +34,7 @@ export default function Historia() {
       description:
         "Alcanzamos hitos históricos en recaudación y operativos. Proyecta se establece como un pilar de acción social estudiantil en Chile.",
       alignment: "right",
-      image:
-        "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600&q=80",
+      image: "/assets/photos/yoshi.jpeg",
     },
     {
       year: "2026",
@@ -46,8 +42,7 @@ export default function Historia() {
       description:
         "Seguimos construyendo comunidad desde la acción, con nuevos programas de infraestructura y apoyo social continuo.",
       alignment: "left",
-      image:
-        "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=600&q=80",
+      image: "/assets/photos/yoshi.jpeg",
     },
   ];
 

@@ -18,40 +18,35 @@ const principios = [
     icon: HeartHandshake,
     label: "Respeto",
     color: "text-proyecta-cyan",
-    image:
-      "https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=600&q=80",
+    image: "/assets/photos/yoshi.jpeg",
     text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent commodo cursus magna, vel scelerisque nisl consectetur.",
   },
   {
     icon: Users,
     label: "Inclusión",
     color: "text-proyecta-yellow",
-    image:
-      "https://images.unsplash.com/photo-1529070538774-1843cb3265df?w=600&q=80",
+    image: "/assets/photos/yoshi.jpeg",
     text: "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.",
   },
   {
     icon: Zap,
     label: "Empoderamiento",
     color: "text-proyecta-orange",
-    image:
-      "https://images.unsplash.com/photo-1573164713988-8665fc963095?w=600&q=80",
+    image: "/assets/photos/yoshi.jpeg",
     text: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat.",
   },
   {
     icon: LinkIcon,
     label: "Asociatividad",
     color: "text-proyecta-teal",
-    image:
-      "https://images.unsplash.com/photo-1608555855762-2b657eb1c348?w=600&q=80",
+    image: "/assets/photos/yoshi.jpeg",
     text: "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui.",
   },
   {
     icon: Sprout,
     label: "Agentes de Cambio",
     color: "text-proyecta-sky",
-    image:
-      "https://images.unsplash.com/photo-1594708767771-a7502209ff51?w=600&q=80",
+    image: "/assets/photos/yoshi.jpeg",
     text: "Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi.",
   },
 ];
@@ -73,7 +68,7 @@ export default function QuienesSomos() {
           <div className="lg:w-1/2 relative">
             <div className="relative w-full h-[400px] lg:h-[500px] rounded-[2.5rem] overflow-hidden shadow-card hover:shadow-card-hover transition-shadow duration-500">
               <img
-                src="https://images.unsplash.com/photo-1593113646773-028c64a8f1b8?w=800&q=80"
+                src="/assets/photos/yoshi.jpeg"
                 alt="Voluntarios de Proyecta trabajando en equipo"
                 className="w-full h-full object-cover"
               />
@@ -142,7 +137,7 @@ export default function QuienesSomos() {
             </div>
             <div className="md:w-7/12 order-1 md:order-2 h-[350px] w-full rounded-[2rem] overflow-hidden shadow-lg">
               <img
-                src="https://images.unsplash.com/photo-1529390079861-591de354faf5?w=800&q=80"
+                src="/assets/photos/yoshi.jpeg"
                 alt="Comunidad unida"
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
               />
@@ -155,7 +150,7 @@ export default function QuienesSomos() {
           >
             <div className="md:w-7/12 h-[350px] w-full rounded-[2rem] overflow-hidden shadow-lg">
               <img
-                src="https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?w=800&q=80"
+                src="/assets/photos/yoshi.jpeg"
                 alt="Mirando al futuro"
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
               />
@@ -270,7 +265,7 @@ export default function QuienesSomos() {
             }}
           >
             {/* Efecto de fondo sutil del contenedor */}
-            <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1528605248644-14dd04022da1?w=1000&q=80')] opacity-[0.03] mix-blend-overlay bg-cover bg-center rounded-[3rem]"></div>
+            <div className="absolute inset-0 bg-[url('/assets/photos/yoshi.jpeg')] opacity-[0.03] mix-blend-overlay bg-cover bg-center rounded-[3rem]"></div>
 
             <div className="relative z-10 text-center mb-16">
               <h3 className="text-3xl sm:text-4xl text-white font-display mb-4">

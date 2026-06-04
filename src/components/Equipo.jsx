@@ -27,25 +27,7 @@ const equiposData = [
       "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&q=80",
     groupDescription:
       "Los encargados de guiar la visión 2026, coordinar a todas las áreas y asegurar que el espíritu de Proyecta se mantenga vivo en cada decisión.",
-    members: [
-      {
-        name: "Valentina Rojas",
-        carrera: "Ingeniería Civil",
-        year: "5to Año",
-        funFact:
-          "Tiene una colección de más de 40 tazones de diferentes lugares.",
-        image:
-          "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&q=80",
-      },
-      {
-        name: "Matías Silva",
-        carrera: "Diseño",
-        year: "4to Año",
-        funFact: "Puede armar un cubo Rubik en menos de 30 segundos.",
-        image:
-          "https://images.unsplash.com/photo-1556157382-97eda2d62296?w=600&q=80",
-      },
-    ],
+    members: [],
   },
   {
     id: "difusion",
@@ -134,7 +116,7 @@ const equiposData = [
       },
       {
         name: "Carozzi",
-        carrera: "Ingenieria Civil",
+        carrera: "Ingenieria Comercial",
         year: "2do Año",
         funFact: "Tampoco me acuerdo",
         image: "/assets/photos/carozzi.jpeg",
@@ -241,166 +223,200 @@ export default function Equipo() {
   };
 
   return (
-    <section className="py-24 bg-white dark:bg-[#0D1F2A] min-h-screen transition-colors duration-300">
-      <div className="section-container">
-        {/* Cabecera de la Página */}
-        <div className="text-center mb-16 animate-on-scroll is-visible">
-          <span className="section-tag mb-4">Nuestro Motor</span>
-          <h1 className="section-title mt-4">
-            Equipo <span className="gradient-text">2026</span>
+    <div className="bg-white dark:bg-[#0D1F2A] min-h-screen transition-colors duration-300">
+      {/* HERO SECTION: Imagen gigante del Equipo 2026 */}
+      <section className="relative w-full h-[80vh] min-h-[600px] flex flex-col items-center justify-center overflow-hidden">
+        {/* Imagen de fondo */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src="assets/photos/equipo.jpeg"
+            alt="Equipo Proyecta 2026 en terreno"
+            className="w-full h-full object-cover object-center"
+          />
+          {/* Overlay oscuro para que se lea el texto sobre cualquier foto */}
+          <div className="absolute inset-0 bg-proyecta-navy/60 dark:bg-[#0D1F2A]/70 mix-blend-multiply"></div>
+
+          {/* Degradado inferior para fusionarse suavemente con la página */}
+          <div className="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-t from-white dark:from-[#0D1F2A] to-transparent"></div>
+        </div>
+
+        {/* Contenido del Hero (Título flotante) */}
+        <div className="relative z-10 text-center px-4 max-w-4xl mx-auto mt-16 animate-on-scroll is-visible">
+          <span className="inline-block py-1.5 px-4 rounded-full bg-white/10 border border-white/20 text-white text-xs sm:text-sm font-bold tracking-widest uppercase mb-6 backdrop-blur-md shadow-lg">
+            Nuestro Motor
+          </span>
+          <h1
+            className="text-6xl sm:text-7xl lg:text-8xl font-black text-white mb-6 drop-shadow-xl"
+            style={{ fontFamily: "var(--font-display)" }}
+          >
+            Equipo{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-proyecta-cyan to-proyecta-yellow drop-shadow-none">
+              2026
+            </span>
           </h1>
-          <span className="decorative-line mx-auto" />
-          <p className="max-w-3xl mx-auto text-lg text-proyecta-navy/70 dark:text-white/70">
+          <p className="text-lg sm:text-xl text-white/90 leading-relaxed font-sans max-w-2xl mx-auto drop-shadow-md">
             Conoce a los rostros detrás de Proyecta. Estudiantes apasionados de
             diversas carreras que dedican su tiempo y energía para transformar
             la realidad territorial de Chile.
           </p>
         </div>
 
-        {/* Lista de Acordeones */}
-        <div className="max-w-5xl mx-auto space-y-6">
-          {equiposData.map((equipo) => {
-            const isOpen = openSection === equipo.id;
-            const Icon = equipo.icon;
+        {/* Indicador de Scroll hacia abajo */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center animate-bounce">
+          <span className="text-proyecta-navy dark:text-white/60 text-[10px] uppercase tracking-[0.2em] mb-2 font-bold">
+            Conócenos
+          </span>
+          <ChevronDown className="text-proyecta-cyan" size={28} />
+        </div>
+      </section>
 
-            return (
-              <div
-                key={equipo.id}
-                className={`card dark:card-dark overflow-hidden transition-all duration-500 border ${isOpen ? "border-proyecta-cyan shadow-proyecta-lg dark:border-proyecta-cyan/50" : "border-transparent"}`}
-              >
-                {/* Botón del Acordeón */}
-                <button
-                  onClick={() => toggleSection(equipo.id)}
-                  className="w-full flex items-center justify-between p-6 sm:p-8 hover:bg-proyecta-lightBg/50 dark:hover:bg-white/5 transition-colors"
-                >
-                  <div className="flex items-center gap-5">
-                    <div
-                      className={`p-4 rounded-2xl ${equipo.bgIcon} ${equipo.color}`}
-                    >
-                      <Icon size={28} strokeWidth={2} />
-                    </div>
-                    <h2 className="text-2xl sm:text-3xl font-black text-proyecta-navy dark:text-white font-sans text-left">
-                      {equipo.title}
-                    </h2>
-                  </div>
-                  <ChevronDown
-                    size={32}
-                    className={`text-proyecta-navy/40 dark:text-white/40 transition-transform duration-500 ${isOpen ? "rotate-180 text-proyecta-cyan dark:text-proyecta-cyan" : ""}`}
-                  />
-                </button>
+      {/* 📋 SECCIÓN DE ACORDEONES */}
+      <section className="py-16 sm:py-24 relative z-10">
+        <div className="section-container">
+          <div className="max-w-5xl mx-auto space-y-6">
+            {equiposData.map((equipo) => {
+              const isOpen = openSection === equipo.id;
+              const Icon = equipo.icon;
 
-                {/* Contenido Desplegable */}
+              return (
                 <div
-                  className={`grid transition-[grid-template-rows,opacity] duration-500 ease-in-out ${isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}
+                  key={equipo.id}
+                  className={`card dark:card-dark overflow-hidden transition-all duration-500 border ${isOpen ? "border-proyecta-cyan shadow-proyecta-lg dark:border-proyecta-cyan/50" : "border-transparent"}`}
                 >
-                  <div className="overflow-hidden">
-                    <div className="p-6 sm:p-8 pt-0 border-t border-gray-100 dark:border-white/10 mt-2">
-                      {/* Imagen Grupal */}
-                      <div className="relative w-full h-[300px] sm:h-[450px] rounded-[2rem] overflow-hidden shadow-lg mb-12 group">
-                        <img
-                          src={equipo.groupImage}
-                          alt={`Equipo de ${equipo.title}`}
-                          className="w-full h-full object-cover transform scale-100 group-hover:scale-105 transition-transform duration-700"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-[#0D1F2A]/90 via-[#0D1F2A]/40 to-transparent"></div>
-                        <div className="absolute bottom-0 left-0 w-full p-8 sm:p-10">
-                          <h3 className="text-3xl font-bold text-white mb-3">
-                            El Equipo de {equipo.title}
-                          </h3>
-                          <p className="text-white/80 max-w-2xl text-lg leading-relaxed shadow-sm">
-                            {equipo.groupDescription}
-                          </p>
-                        </div>
+                  {/* Botón del Acordeón */}
+                  <button
+                    onClick={() => toggleSection(equipo.id)}
+                    className="w-full flex items-center justify-between p-6 sm:p-8 hover:bg-proyecta-lightBg/50 dark:hover:bg-white/5 transition-colors"
+                  >
+                    <div className="flex items-center gap-5">
+                      <div
+                        className={`p-4 rounded-2xl ${equipo.bgIcon} ${equipo.color}`}
+                      >
+                        <Icon size={28} strokeWidth={2} />
                       </div>
+                      <h2 className="text-2xl sm:text-3xl font-black text-proyecta-navy dark:text-white font-sans text-left">
+                        {equipo.title}
+                      </h2>
+                    </div>
+                    <ChevronDown
+                      size={32}
+                      className={`text-proyecta-navy/40 dark:text-white/40 transition-transform duration-500 ${isOpen ? "rotate-180 text-proyecta-cyan dark:text-proyecta-cyan" : ""}`}
+                    />
+                  </button>
 
-                      {/* Grilla de Miembros Individuales */}
-                      {equipo.members.length > 0 ? (
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                          {equipo.members.map((member, idx) => (
-                            <div
-                              key={idx}
-                              className={`glass rounded-[2rem] overflow-hidden flex flex-col group hover:-translate-y-2 transition-all duration-500 border relative ${
-                                member.isMentor
-                                  ? "border-proyecta-yellow/80 shadow-[0_0_20px_rgba(255,183,3,0.2)] dark:shadow-[0_0_20px_rgba(255,183,3,0.15)]"
-                                  : "border-black/5 dark:border-white/10"
-                              }`}
-                            >
-                              {/* ETIQUETA DE MENTOR */}
-                              {member.isMentor && (
-                                <div className="absolute top-0 left-0 bg-proyecta-yellow text-proyecta-navy font-black px-6 py-2 rounded-br-[2rem] z-20 text-xs uppercase tracking-widest shadow-lg">
-                                  Mentor
-                                </div>
-                              )}
+                  {/* Contenido Desplegable */}
+                  <div
+                    className={`grid transition-[grid-template-rows,opacity] duration-500 ease-in-out ${isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}
+                  >
+                    <div className="overflow-hidden">
+                      <div className="p-6 sm:p-8 pt-0 border-t border-gray-100 dark:border-white/10 mt-2">
+                        {/* Imagen Grupal */}
+                        <div className="relative w-full h-[300px] sm:h-[450px] rounded-[2rem] overflow-hidden shadow-lg mb-12 group border border-black/5 dark:border-white/10">
+                          <img
+                            src={equipo.groupImage}
+                            alt={`Equipo de ${equipo.title}`}
+                            className="w-full h-full object-cover transform scale-100 group-hover:scale-105 transition-transform duration-700"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-[#0D1F2A]/90 via-[#0D1F2A]/40 to-transparent"></div>
+                          <div className="absolute bottom-0 left-0 w-full p-8 sm:p-10">
+                            <h3 className="text-3xl font-bold text-white mb-3">
+                              El Equipo de {equipo.title}
+                            </h3>
+                            <p className="text-white/80 max-w-2xl text-lg leading-relaxed shadow-sm">
+                              {equipo.groupDescription}
+                            </p>
+                          </div>
+                        </div>
 
-                              {/* Imagen Individual Gigante */}
-                              <div className="relative h-80 sm:h-96 w-full overflow-hidden">
-                                <img
-                                  src={member.image}
-                                  alt={member.name}
-                                  className={`w-full h-full object-cover transform scale-100 group-hover:scale-105 transition-all duration-700 ${
-                                    member.isMentor
-                                      ? "grayscale-0"
-                                      : "grayscale-[20%] group-hover:grayscale-0"
-                                  }`}
-                                />
-                                {/* Insignia Año/Carrera Flotante */}
-                                <div className="absolute top-4 right-4 flex flex-col gap-2 items-end z-10">
-                                  <span className="px-3 py-1 bg-white/90 dark:bg-[#0D1F2A]/90 backdrop-blur-sm text-proyecta-navy dark:text-white text-xs font-bold uppercase tracking-wider rounded-full shadow-md">
-                                    {member.year}
-                                  </span>
-                                  <span className="px-3 py-1 bg-proyecta-cyan text-proyecta-navy text-xs font-bold uppercase tracking-wider rounded-full shadow-md">
-                                    {member.carrera}
-                                  </span>
-                                </div>
-                              </div>
+                        {/* Grilla de Miembros Individuales */}
+                        {equipo.members.length > 0 ? (
+                          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                            {equipo.members.map((member, idx) => (
+                              <div
+                                key={idx}
+                                className={`glass rounded-[2rem] overflow-hidden flex flex-col group hover:-translate-y-2 transition-all duration-500 border relative ${
+                                  member.isMentor
+                                    ? "border-proyecta-yellow/80 shadow-[0_0_20px_rgba(255,183,3,0.2)] dark:shadow-[0_0_20px_rgba(255,183,3,0.15)]"
+                                    : "border-black/5 dark:border-white/10"
+                                }`}
+                              >
+                                {/* ETIQUETA DE MENTOR */}
+                                {member.isMentor && (
+                                  <div className="absolute top-0 left-0 bg-proyecta-yellow text-proyecta-navy font-black px-6 py-2 rounded-br-[2rem] z-20 text-xs uppercase tracking-widest shadow-lg">
+                                    Mentor
+                                  </div>
+                                )}
 
-                              {/* Información del Miembro */}
-                              <div className="p-6 flex flex-col flex-grow bg-white/50 dark:bg-transparent">
-                                <h4 className="text-2xl font-bold text-proyecta-navy dark:text-white mb-4 font-sans">
-                                  {member.name}
-                                </h4>
-
-                                {/* Dato Curioso - Destacado en caja */}
-                                <div
-                                  className={`mt-auto p-4 rounded-r-xl border-l-4 ${
-                                    member.isMentor
-                                      ? "bg-proyecta-yellow/20 dark:bg-proyecta-yellow/10 border-proyecta-yellow"
-                                      : "bg-proyecta-cyan/10 dark:bg-proyecta-cyan/5 border-proyecta-cyan"
-                                  }`}
-                                >
-                                  <p
-                                    className={`text-xs font-bold uppercase tracking-widest mb-1 ${
+                                {/* Imagen Individual Gigante */}
+                                <div className="relative h-80 sm:h-96 w-full overflow-hidden bg-gray-100 dark:bg-gray-800">
+                                  <img
+                                    src={member.image}
+                                    alt={member.name}
+                                    className={`w-full h-full object-cover transform scale-100 group-hover:scale-105 transition-all duration-700 ${
                                       member.isMentor
-                                        ? "text-proyecta-yellow"
-                                        : "text-proyecta-cyan"
+                                        ? "grayscale-0"
+                                        : "grayscale-[20%] group-hover:grayscale-0"
+                                    }`}
+                                  />
+                                  {/* Insignia Año/Carrera Flotante */}
+                                  <div className="absolute top-4 right-4 flex flex-col gap-2 items-end z-10">
+                                    <span className="px-3 py-1 bg-white/90 dark:bg-[#0D1F2A]/90 backdrop-blur-sm text-proyecta-navy dark:text-white text-xs font-bold uppercase tracking-wider rounded-full shadow-md">
+                                      {member.year}
+                                    </span>
+                                    <span className="px-3 py-1 bg-proyecta-cyan text-proyecta-navy text-xs font-bold uppercase tracking-wider rounded-full shadow-md">
+                                      {member.carrera}
+                                    </span>
+                                  </div>
+                                </div>
+
+                                {/* Información del Miembro */}
+                                <div className="p-6 flex flex-col flex-grow bg-white/50 dark:bg-transparent">
+                                  <h4 className="text-2xl font-bold text-proyecta-navy dark:text-white mb-4 font-sans">
+                                    {member.name}
+                                  </h4>
+
+                                  {/* Dato Curioso - Destacado en caja */}
+                                  <div
+                                    className={`mt-auto p-4 rounded-r-xl border-l-4 ${
+                                      member.isMentor
+                                        ? "bg-proyecta-yellow/20 dark:bg-proyecta-yellow/10 border-proyecta-yellow"
+                                        : "bg-proyecta-cyan/10 dark:bg-proyecta-cyan/5 border-proyecta-cyan"
                                     }`}
                                   >
-                                    Dato Curioso
-                                  </p>
-                                  <p className="text-proyecta-navy/80 dark:text-white/70 text-sm italic">
-                                    "{member.funFact}"
-                                  </p>
+                                    <p
+                                      className={`text-xs font-bold uppercase tracking-widest mb-1 ${
+                                        member.isMentor
+                                          ? "text-proyecta-yellow"
+                                          : "text-proyecta-cyan"
+                                      }`}
+                                    >
+                                      Dato Curioso
+                                    </p>
+                                    <p className="text-proyecta-navy/80 dark:text-white/70 text-sm italic">
+                                      "{member.funFact}"
+                                    </p>
+                                  </div>
                                 </div>
                               </div>
-                            </div>
-                          ))}
-                        </div>
-                      ) : (
-                        // Placeholder si aún no hay miembros cargados en el array
-                        <div className="text-center py-12 glass rounded-[2rem] border border-dashed border-proyecta-cyan/30">
-                          <p className="text-proyecta-navy/50 dark:text-white/40 text-lg">
-                            Miembros de {equipo.title} por anunciar...
-                          </p>
-                        </div>
-                      )}
+                            ))}
+                          </div>
+                        ) : (
+                          // Placeholder si aún no hay miembros cargados en el array
+                          <div className="text-center py-12 glass rounded-[2rem] border border-dashed border-proyecta-cyan/30">
+                            <p className="text-proyecta-navy/50 dark:text-white/40 text-lg">
+                              Miembros de {equipo.title} por anunciar...
+                            </p>
+                          </div>
+                        )}
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
   );
 }
