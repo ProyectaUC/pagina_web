@@ -1,22 +1,28 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
   // For custom domain (proyecta.cai.cl), base should be '/'
   // If deploying to username.github.io/repo-name, change to '/repo-name/'
-  base: '/',
+  base: "/",
   build: {
-    outDir: 'dist',
-    assetsDir: 'assets',
+    outDir: "dist",
+    assetsDir: "assets",
     sourcemap: false,
     rollupOptions: {
       output: {
         manualChunks: {
-          vendor: ['react', 'react-dom'],
+          vendor: ["react", "react-dom", "react-router-dom"],
+          map: ["react-simple-maps"],
+          animation: ["framer-motion"],
         },
       },
     },
   },
-})
+  // SPA fallback for react-router (dev only; GitHub Pages needs 404.html trick)
+  server: {
+    historyApiFallback: true,
+  },
+});
