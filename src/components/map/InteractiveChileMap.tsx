@@ -11,7 +11,7 @@ import type { Community, Category } from "../../data/communities";
 import { categoryColors } from "../../data/communities";
 
 // ── Local GeoJSON for Chile regions (bundled, no CDN dependency) ──
-const CHILE_GEO_URL = "/assets/geo/chile-regions.json";
+const CHILE_GEO_URL = `${import.meta.env.BASE_URL}/assets/geo/chile-regions.json`;
 
 // ── Chile projection config ──────────────────────────────────
 // Chile: lon ≈ -75 to -66, lat ≈ -56 to -17

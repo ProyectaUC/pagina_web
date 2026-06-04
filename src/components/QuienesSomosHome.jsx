@@ -28,7 +28,7 @@ export default function QuienesSomosHome() {
 
             <div className="relative z-10 w-full h-[400px] sm:h-[550px] rounded-[2.5rem] sm:rounded-[3rem] overflow-hidden shadow-2xl border border-black/5 dark:border-white/10 group">
               <img
-                src="/assets/photos/yoshi.jpeg"
+                src={`${import.meta.env.BASE_URL}assets/photos/yoshi.jpeg`}
                 alt="Voluntarios de Proyecta trabajando en equipo"
                 className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-1000 ease-in-out"
               />

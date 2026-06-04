@@ -15,7 +15,7 @@ export default function Hero() {
       {/* ─── FONDO: Imagen Gigante a Pantalla Completa ─── */}
       <div className="absolute inset-0 z-0">
         <img
-          src="/assets/photos/epica.jpeg"
+          src={`${import.meta.env.BASE_URL}assets/photos/epica.jpeg`}
           alt="Voluntarios de Proyecta trabajando en equipo"
           className="w-full h-full object-cover object-center transform scale-105 animate-[kenburns_20s_ease-in-out_infinite_alternate]"
         />

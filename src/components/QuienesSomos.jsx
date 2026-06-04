@@ -18,35 +18,35 @@ const principios = [
     icon: HeartHandshake,
     label: "Respeto",
     color: "text-proyecta-cyan",
-    image: "/assets/photos/yoshi.jpeg",
+    image: `${import.meta.env.BASE_URL}assets/photos/yoshi.jpeg`,
     text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent commodo cursus magna, vel scelerisque nisl consectetur.",
   },
   {
     icon: Users,
     label: "Inclusión",
     color: "text-proyecta-yellow",
-    image: "/assets/photos/yoshi.jpeg",
+    image: `${import.meta.env.BASE_URL}assets/photos/yoshi.jpeg`,
     text: "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.",
   },
   {
     icon: Zap,
     label: "Empoderamiento",
     color: "text-proyecta-orange",
-    image: "/assets/photos/yoshi.jpeg",
+    image: `${import.meta.env.BASE_URL}assets/photos/yoshi.jpeg`,
     text: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat.",
   },
   {
     icon: LinkIcon,
     label: "Asociatividad",
     color: "text-proyecta-teal",
-    image: "/assets/photos/yoshi.jpeg",
+    image: `${import.meta.env.BASE_URL}assets/photos/yoshi.jpeg`,
     text: "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui.",
   },
   {
     icon: Sprout,
     label: "Agentes de Cambio",
     color: "text-proyecta-sky",
-    image: "/assets/photos/yoshi.jpeg",
+    image: `${import.meta.env.BASE_URL}assets/photos/yoshi.jpeg`,
     text: "Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi.",
   },
 ];
@@ -68,7 +68,7 @@ export default function QuienesSomos() {
           <div className="lg:w-1/2 relative">
             <div className="relative w-full h-[400px] lg:h-[500px] rounded-[2.5rem] overflow-hidden shadow-card hover:shadow-card-hover transition-shadow duration-500">
               <img
-                src="/assets/photos/yoshi.jpeg"
+                src={`${import.meta.env.BASE_URL}assets/photos/yoshi.jpeg`}
                 alt="Voluntarios de Proyecta trabajando en equipo"
                 className="w-full h-full object-cover"
               />
@@ -137,7 +137,7 @@ export default function QuienesSomos() {
             </div>
             <div className="md:w-7/12 order-1 md:order-2 h-[350px] w-full rounded-[2rem] overflow-hidden shadow-lg">
               <img
-                src="/assets/photos/yoshi.jpeg"
+                src={`${import.meta.env.BASE_URL}assets/photos/yoshi.jpeg`}
                 alt="Comunidad unida"
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
               />
@@ -150,7 +150,7 @@ export default function QuienesSomos() {
           >
             <div className="md:w-7/12 h-[350px] w-full rounded-[2rem] overflow-hidden shadow-lg">
               <img
-                src="/assets/photos/yoshi.jpeg"
+                src={`${import.meta.env.BASE_URL}assets/photos/yoshi.jpeg`}
                 alt="Mirando al futuro"
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
               />

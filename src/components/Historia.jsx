@@ -10,7 +10,7 @@ export default function Historia() {
       description:
         "Un grupo pequeño de estudiantes soñó con un voluntariado diferente. Realizamos nuestro primer operativo de salud comunitaria con apenas 10 personas.",
       alignment: "left",
-      image: "/assets/photos/yoshi.jpeg",
+      image: `${import.meta.env.BASE_URL}assets/photos/yoshi.jpeg`,
     },
     {
       year: "2020",
@@ -18,7 +18,7 @@ export default function Historia() {
       description:
         "Frente al desafío global, lanzamos los Talleres de Habilidades Digitales, demostrando que la comunidad se construye también a través de las pantallas.",
       alignment: "left",
-      image: "/assets/photos/yoshi.jpeg",
+      image: `${import.meta.env.BASE_URL}assets/photos/yoshi.jpeg`,
     },
     {
       year: "2023",
@@ -26,7 +26,7 @@ export default function Historia() {
       description:
         "Alcanzamos hitos históricos en recaudación y operativos. Proyecta se establece como un pilar de acción social estudiantil en Chile.",
       alignment: "right",
-      image: "/assets/photos/yoshi.jpeg",
+      image: `${import.meta.env.BASE_URL}assets/photos/yoshi.jpeg`,
     },
     {
       year: "2026",
@@ -34,7 +34,7 @@ export default function Historia() {
       description:
         "Seguimos construyendo comunidad desde la acción, con nuevos programas de infraestructura y apoyo social continuo.",
       alignment: "left",
-      image: "/assets/photos/yoshi.jpeg",
+      image: `${import.meta.env.BASE_URL}assets/photos/yoshi.jpeg`,
     },
   ];
 
