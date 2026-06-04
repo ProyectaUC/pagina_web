@@ -2,6 +2,7 @@
   "name": "proyecta-web",
   "version": "1.0.0",
   "description": "Sitio web oficial de Proyecta CAI",
+  "homepage": "https://panchoclo3.github.io/Proyecta/",
   "type": "module",
   "scripts": {
     "dev": "vite",
