@@ -13,14 +13,6 @@ export default function Historia() {
       image: "/assets/photos/yoshi.jpeg",
     },
     {
-      year: "2017",
-      title: "Expansión del impacto",
-      description:
-        "Formalizamos Proyecta CAI. Creamos las primeras escuelas de verano y multiplicamos nuestra red de voluntarios, llegando a nuevas comunidades.",
-      alignment: "right",
-      image: "/assets/photos/yoshi.jpeg",
-    },
-    {
       year: "2020",
       title: "Adaptación digital",
       description:
