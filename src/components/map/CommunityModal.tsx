@@ -7,67 +7,11 @@ import {
   MapPin,
   Calendar,
   Hammer,
-  Heart,
-  Users,
-  BookOpen,
-  Clock,
-  TrendingUp,
-  GraduationCap,
-  Home,
-  Package,
-  Scale,
-  Maximize2,
-  ArrowRight,
-  Monitor,
-  Leaf,
-  Trees,
-  Trash2,
-  Baby,
-  Stethoscope,
+  Quote
 } from "lucide-react";
 import type { Community } from "../../data/communities";
 import { categoryColors, categoryLabels } from "../../data/communities";
 
-// ── Icon resolver ────────────────────────────────────────────
-const ICON_MAP: Record<
-  string,
-  React.ComponentType<{
-    size?: number;
-    strokeWidth?: number;
-    className?: string;
-  }>
-> = {
-  Heart,
-  Users,
-  Calendar,
-  Stethoscope,
-  GraduationCap,
-  BookOpen,
-  Clock,
-  TrendingUp,
-  Home,
-  Package,
-  Scale,
-  Maximize2,
-  ArrowRight,
-  Monitor,
-  Leaf,
-  Trees,
-  Trash2,
-  Baby,
-  Hammer,
-  MapPin,
-};
-
-function MetricIcon({
-  name,
-  ...props
-}: { name: string } & React.SVGProps<SVGSVGElement>) {
-  const Icon = ICON_MAP[name] ?? Hammer;
-  return <Icon size={16} strokeWidth={1.8} {...(props as never)} />;
-}
-
-// ── Props ────────────────────────────────────────────────────
 interface CommunityModalProps {
   community: Community | null;
   onClose: () => void;
@@ -133,7 +77,6 @@ export default function CommunityModal({
   return (
     <AnimatePresence>
       {community && (
-        // ── Backdrop ──
         <motion.div
           key="modal-backdrop"
           variants={backdrop}
@@ -143,11 +86,11 @@ export default function CommunityModal({
           onClick={onClose}
           className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 lg:p-10"
           style={{
-            background: "rgba(15, 25, 35, 0.82)",
-            backdropFilter: "blur(8px)",
+            background: "rgba(10, 15, 20, 0.9)",
+            backdropFilter: "blur(12px)",
           }}
         >
-          {/* ── Panel ── */}
+          {/* ── Galería Panel ── */}
           <motion.div
             key="modal-panel"
             variants={panel}
@@ -155,238 +98,135 @@ export default function CommunityModal({
             animate="visible"
             exit="exit"
             onClick={(e) => e.stopPropagation()}
-            className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-3xl
-                       bg-white dark:bg-[#0F1E2A] shadow-2xl"
-            style={{ scrollbarWidth: "thin" }}
+            className="relative w-full max-w-5xl flex flex-col rounded-3xl bg-black shadow-2xl overflow-hidden"
           >
-            {/* ── Photo gallery hero ── */}
-            <div className="relative h-64 sm:h-80 bg-proyecta-navy overflow-hidden rounded-t-3xl">
+            
+            {/* ── Botón de Cerrar Flotante ── */}
+            <button
+              onClick={onClose}
+              className="absolute top-4 right-4 z-50 p-2 rounded-full bg-black/40 hover:bg-black/60 text-white backdrop-blur-md transition-all duration-200 border border-white/20 group"
+              aria-label="Cerrar"
+            >
+              <X size={20} className="group-hover:rotate-90 transition-transform duration-200" />
+            </button>
+
+            {/* ── Visor de Imagen Principal ── */}
+            <div className="relative h-[60vh] sm:h-[70vh] bg-[#0A0A0A] overflow-hidden flex items-center justify-center">
               <AnimatePresence mode="wait">
                 <motion.img
                   key={photoIndex}
                   src={community.photos[photoIndex]?.url}
-                  alt={community.photos[photoIndex]?.caption}
-                  initial={{ opacity: 0, scale: 1.04 }}
+                  alt={community.photos[photoIndex]?.caption || community.name}
+                  initial={{ opacity: 0, scale: 1.02 }}
                   animate={{
                     opacity: 1,
                     scale: 1,
-                    transition: { duration: 0.45 },
+                    transition: { duration: 0.4 },
                   }}
                   exit={{ opacity: 0, transition: { duration: 0.2 } }}
                   className="absolute inset-0 w-full h-full object-cover"
                 />
               </AnimatePresence>
 
-              {/* Gradient overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0F1E2A]/90 via-transparent to-[#0F1E2A]/30" />
-
-              {/* Photo nav */}
+              {/* Controles de Navegación */}
               {community.photos.length > 1 && (
                 <>
                   <button
                     onClick={prevPhoto}
-                    className="absolute left-4 top-1/2 -translate-y-1/2 p-2 rounded-full
-                               bg-white/15 hover:bg-white/30 text-white backdrop-blur-sm
-                               transition-all duration-200 border border-white/20"
-                    aria-label="Foto anterior"
+                    className="absolute left-4 p-3 rounded-full bg-black/20 hover:bg-black/50 text-white backdrop-blur-md transition-all duration-200"
                   >
-                    <ChevronLeft size={18} />
+                    <ChevronLeft size={24} />
                   </button>
                   <button
                     onClick={nextPhoto}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full
-                               bg-white/15 hover:bg-white/30 text-white backdrop-blur-sm
-                               transition-all duration-200 border border-white/20"
-                    aria-label="Foto siguiente"
+                    className="absolute right-4 p-3 rounded-full bg-black/20 hover:bg-black/50 text-white backdrop-blur-md transition-all duration-200"
                   >
-                    <ChevronRight size={18} />
+                    <ChevronRight size={24} />
                   </button>
-
-                  {/* Dot indicators */}
-                  <div className="absolute bottom-16 left-1/2 -translate-x-1/2 flex gap-1.5">
-                    {community.photos.map((_, i) => (
-                      <button
-                        key={i}
-                        onClick={() => setPhotoIndex(i)}
-                        className={`rounded-full transition-all duration-200 ${
-                          i === photoIndex
-                            ? "w-5 h-1.5 bg-proyecta-cyan"
-                            : "w-1.5 h-1.5 bg-white/40 hover:bg-white/70"
-                        }`}
-                      />
-                    ))}
-                  </div>
                 </>
               )}
 
-              {/* Photo caption */}
-              <div className="absolute bottom-4 left-6 right-14">
-                <span className="text-xs text-white/60 font-medium">
-                  {community.photos[photoIndex]?.caption}
-                </span>
-              </div>
-
-              {/* Close button */}
-              <button
-                onClick={onClose}
-                className="absolute top-4 right-4 p-2 rounded-full
-                           bg-white/15 hover:bg-white/30 text-white backdrop-blur-sm
-                           transition-all duration-200 border border-white/20 group"
-                aria-label="Cerrar"
-              >
-                <X
-                  size={18}
-                  className="group-hover:rotate-90 transition-transform duration-200"
-                />
-              </button>
-
-              {/* Category badge */}
-              <div className="absolute top-4 left-4">
-                <span
-                  className="px-3 py-1 rounded-full text-xs font-bold text-proyecta-navy"
-                  style={{ background: categoryColors[community.category] }}
-                >
-                  {categoryLabels[community.category]}
-                </span>
-              </div>
-            </div>
-
-            {/* ── Content ── */}
-            <div className="p-6 sm:p-8">
-              {/* Header */}
-              <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-6">
-                <div>
-                  <h2
-                    className="text-2xl sm:text-3xl font-black text-proyecta-navy dark:text-white leading-tight mb-1"
-                    style={{ fontFamily: "var(--font-sans)" }}
-                  >
-                    {community.name}
-                  </h2>
-                  <div className="flex flex-wrap items-center gap-3 text-sm text-gray-500 dark:text-white/50">
-                    <span className="flex items-center gap-1.5">
-                      <MapPin
-                        size={13}
-                        strokeWidth={2}
-                        className="text-proyecta-cyan"
-                      />
-                      {community.region}
-                    </span>
-                    <span className="w-1 h-1 rounded-full bg-gray-300 dark:bg-white/20" />
-                    <span className="flex items-center gap-1.5">
-                      <Calendar
-                        size={13}
-                        strokeWidth={2}
-                        className="text-proyecta-yellow"
-                      />
-                      {community.year}
+              {/* ── Overlay de Información (Fondo Degradado) ── */}
+              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black via-black/80 to-transparent pt-24 pb-6 px-6 sm:px-10">
+                
+                {/* Lema (Opcional) */}
+                {community.lema && (
+                  <div className="flex items-center gap-2 mb-3 text-proyecta-cyan/90">
+                    <Quote size={16} className="fill-current opacity-60" />
+                    <span className="italic font-medium tracking-wide text-sm sm:text-base">
+                      "{community.lema}"
                     </span>
                   </div>
-                </div>
+                )}
 
-                {/* Tags */}
-                <div className="flex flex-wrap gap-1.5 sm:justify-end">
-                  {community.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-2.5 py-1 rounded-full text-xs font-semibold
-                                 bg-gray-100 dark:bg-white/8 text-gray-600 dark:text-white/60
-                                 border border-gray-200 dark:border-white/10"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              {/* Divider with "what was built" */}
-              <div
-                className="flex items-center gap-4 p-4 rounded-2xl mb-6"
-                style={{
-                  background: `${categoryColors[community.category]}15`,
-                  borderLeft: `3px solid ${categoryColors[community.category]}`,
-                }}
-              >
-                <Hammer
-                  size={18}
-                  style={{ color: categoryColors[community.category] }}
-                  strokeWidth={1.8}
-                />
-                <div>
-                  <div className="text-xs font-bold uppercase tracking-widest text-gray-400 dark:text-white/40 mb-0.5">
-                    Qué se realizó
-                  </div>
-                  <div className="font-bold text-proyecta-navy dark:text-white text-sm">
-                    {community.whatWasBuilt}
-                  </div>
-                </div>
-              </div>
-
-              {/* Summary */}
-              <p className="text-gray-600 dark:text-white/65 text-sm leading-relaxed mb-8">
-                {community.summary}
-              </p>
-
-              {/* Metrics grid */}
-              <div className="mb-6">
-                <h3 className="text-xs font-bold uppercase tracking-widest text-gray-400 dark:text-white/40 mb-4">
-                  Impacto en cifras
-                </h3>
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                  {community.metrics.map((metric) => (
-                    <div
-                      key={metric.label}
-                      className="p-4 rounded-2xl bg-gray-50 dark:bg-white/5
-                                 border border-gray-100 dark:border-white/10
-                                 text-center group hover:border-proyecta-cyan/40 transition-colors"
-                    >
-                      <div className="flex justify-center mb-2">
-                        <MetricIcon
-                          name={metric.icon}
-                          className="text-proyecta-cyan group-hover:scale-110 transition-transform"
-                        />
-                      </div>
-                      <div
-                        className="text-xl font-black text-proyecta-navy dark:text-white mb-0.5"
-                        style={{ fontFamily: "var(--font-display)" }}
+                {/* Título y Meta */}
+                <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+                  <div>
+                    <h2 className="text-3xl sm:text-4xl font-black text-white leading-tight mb-2 font-display">
+                      {community.name} {/* Usualmente aquí va la comuna */}
+                    </h2>
+                    
+                    <div className="flex flex-wrap items-center gap-4 text-white/70 text-sm">
+                      <span className="flex items-center gap-1.5">
+                        <MapPin size={16} className="text-proyecta-cyan" />
+                        {community.region}
+                      </span>
+                      <span className="w-1.5 h-1.5 rounded-full bg-white/20" />
+                      <span className="flex items-center gap-1.5">
+                        <Calendar size={16} className="text-proyecta-yellow" />
+                        {community.year}
+                      </span>
+                      {/* Categoría Badge */}
+                      <span className="w-1.5 h-1.5 rounded-full bg-white/20 hidden sm:block" />
+                      <span 
+                        className="px-2.5 py-0.5 rounded text-xs font-bold text-black bg-white"
+                        style={{ backgroundColor: categoryColors[community.category] }}
                       >
-                        {metric.value}
-                      </div>
-                      <div className="text-xs text-gray-500 dark:text-white/50 leading-tight">
-                        {metric.label}
-                      </div>
+                        {categoryLabels[community.category]}
+                      </span>
                     </div>
+                  </div>
+
+                  {/* Lo que se construyó (Secundario) */}
+                  {community.construcciones && (
+                    <div className="bg-white/10 backdrop-blur-md border border-white/10 px-4 py-2.5 rounded-xl max-w-xs">
+                      <div className="flex items-center gap-2 text-white/50 text-xs font-bold uppercase tracking-wider mb-1">
+                        <Hammer size={12} />
+                        Construcción
+                      </div>
+                      <p className="text-white text-sm font-medium leading-snug">
+                        {community.construcciones}
+                      </p>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+
+            {/* ── Cinta de Miniaturas (Thumbnails) ── */}
+            {community.photos.length > 1 && (
+              <div className="bg-[#0A0A0A] p-4 flex items-center justify-center border-t border-white/10">
+                <div className="flex gap-2 overflow-x-auto scrollbar-hide snap-x">
+                  {community.photos.map((photo, i) => (
+                    <button
+                      key={i}
+                      onClick={() => setPhotoIndex(i)}
+                      className={`relative flex-none w-20 h-14 rounded-lg overflow-hidden snap-center transition-all duration-300 ${
+                        i === photoIndex
+                          ? "ring-2 ring-proyecta-cyan opacity-100 scale-105"
+                          : "opacity-40 hover:opacity-100 grayscale hover:grayscale-0"
+                      }`}
+                    >
+                      <img
+                        src={photo.url}
+                        alt={`Miniatura ${i + 1}`}
+                        className="w-full h-full object-cover"
+                      />
+                    </button>
                   ))}
                 </div>
               </div>
-
-              {/* Thumbnail strip */}
-              {community.photos.length > 1 && (
-                <div>
-                  <h3 className="text-xs font-bold uppercase tracking-widest text-gray-400 dark:text-white/40 mb-3">
-                    Galería
-                  </h3>
-                  <div className="flex gap-2 overflow-x-auto pb-1">
-                    {community.photos.map((photo, i) => (
-                      <button
-                        key={i}
-                        onClick={() => setPhotoIndex(i)}
-                        className={`flex-none w-20 h-14 rounded-xl overflow-hidden border-2 transition-all ${
-                          i === photoIndex
-                            ? "border-proyecta-cyan scale-105 shadow-proyecta"
-                            : "border-transparent opacity-60 hover:opacity-90"
-                        }`}
-                      >
-                        <img
-                          src={photo.url}
-                          alt={photo.caption}
-                          className="w-full h-full object-cover"
-                        />
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
+            )}
           </motion.div>
         </motion.div>
       )}

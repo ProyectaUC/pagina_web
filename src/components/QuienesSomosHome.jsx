@@ -8,6 +8,7 @@ export default function QuienesSomosHome() {
 
   return (
     <section
+      id="quienes-somos"
       className="py-24 sm:py-32 relative overflow-hidden bg-white dark:bg-[#0D1F2A] transition-colors duration-300"
       ref={ref}
     >
@@ -112,6 +113,7 @@ export default function QuienesSomosHome() {
               <ArrowRight size={20} />
             </Link>
           </div>
+          
         </div>
       </div>
     </section>
