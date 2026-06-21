@@ -5,28 +5,28 @@ export default function Historia() {
   // ¡Cambia las URLs de 'image' por tus rutas reales cuando las tengas!
   const hitos = [
     {
-      year: "2015",
+      year: "2005",
       title: "La primera semilla",
       description:
         "Un grupo pequeño de estudiantes soñó con un voluntariado diferente. Realizamos nuestro primer operativo de salud comunitaria con apenas 10 personas.",
-      alignment: "left",
-      image: `${import.meta.env.BASE_URL}assets/photos/yoshi.jpeg`,
+      alignment: "right",
+      image: `${import.meta.env.BASE_URL}assets/photos/saludo.JPG`,
     },
     {
-      year: "2020",
+      year: "2010",
       title: "Adaptación digital",
       description:
         "Frente al desafío global, lanzamos los Talleres de Habilidades Digitales, demostrando que la comunidad se construye también a través de las pantallas.",
       alignment: "left",
-      image: `${import.meta.env.BASE_URL}assets/photos/yoshi.jpeg`,
+      image: `${import.meta.env.BASE_URL}assets/photos/comunidad.jpg`,
     },
     {
-      year: "2023",
+      year: "2015",
       title: "Redes consolidadas",
       description:
         "Alcanzamos hitos históricos en recaudación y operativos. Proyecta se establece como un pilar de acción social estudiantil en Chile.",
       alignment: "right",
-      image: `${import.meta.env.BASE_URL}assets/photos/yoshi.jpeg`,
+      image: `${import.meta.env.BASE_URL}assets/photos/awada.jpeg`,
     },
     {
       year: "2026",
@@ -34,7 +34,7 @@ export default function Historia() {
       description:
         "Seguimos construyendo comunidad desde la acción, con nuevos programas de infraestructura y apoyo social continuo.",
       alignment: "left",
-      image: `${import.meta.env.BASE_URL}assets/photos/yoshi.jpeg`,
+      image: `${import.meta.env.BASE_URL}assets/photos/epica.jpeg`,
     },
   ];
 

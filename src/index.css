@@ -87,20 +87,19 @@
 @layer components {
   /* Botón primario */
   .btn-primary {
-    @apply inline-flex items-center gap-2 px-6 py-3 rounded-xl
-           bg-proyecta-cyan text-proyecta-navy font-bold text-sm
-           shadow-proyecta hover:shadow-proyecta-lg
-           hover:bg-white hover:text-proyecta-teal
-           transition-all duration-300 transform hover:-translate-y-0.5
+      @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full
+        bg-gradient-to-r from-proyecta-cyan to-proyecta-sky text-proyecta-navy font-bold text-sm
+        shadow-proyecta hover:shadow-proyecta-lg
+        hover:brightness-105 hover:-translate-y-0.5
            focus:outline-none focus:ring-2 focus:ring-proyecta-cyan focus:ring-offset-2;
   }
 
   /* Botón secundario (outline) */
   .btn-secondary {
-    @apply inline-flex items-center gap-2 px-6 py-3 rounded-xl
-           border-2 border-proyecta-cyan text-proyecta-cyan font-bold text-sm
-           hover:bg-proyecta-cyan hover:text-proyecta-navy
-           transition-all duration-300 transform hover:-translate-y-0.5
+      @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full
+        border border-proyecta-cyan/30 bg-white/70 text-proyecta-navy font-bold text-sm
+        backdrop-blur-md hover:bg-white hover:border-proyecta-cyan/50 hover:text-proyecta-teal
+        hover:-translate-y-0.5
            focus:outline-none focus:ring-2 focus:ring-proyecta-cyan focus:ring-offset-2;
   }
 

@@ -8,6 +8,7 @@ export default function QuienesSomosHome() {
 
   return (
     <section
+      id="quienes-somos"
       className="py-24 sm:py-32 relative overflow-hidden bg-white dark:bg-[#0D1F2A] transition-colors duration-300"
       ref={ref}
     >
@@ -28,7 +29,7 @@ export default function QuienesSomosHome() {
 
             <div className="relative z-10 w-full h-[400px] sm:h-[550px] rounded-[2.5rem] sm:rounded-[3rem] overflow-hidden shadow-2xl border border-black/5 dark:border-white/10 group">
               <img
-                src={`${import.meta.env.BASE_URL}assets/photos/yoshi.jpeg`}
+                src={`${import.meta.env.BASE_URL}assets/photos/blanco_y_negro.JPG`}
                 alt="Voluntarios de Proyecta trabajando en equipo"
                 className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-1000 ease-in-out"
               />
@@ -112,6 +113,7 @@ export default function QuienesSomosHome() {
               <ArrowRight size={20} />
             </Link>
           </div>
+          
         </div>
       </div>
     </section>

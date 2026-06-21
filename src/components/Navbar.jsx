@@ -11,7 +11,7 @@ const navLinks = [
   { label: "Historia", to: "/historia" },
   { label: "Equipo", to: "/equipo" },
   { label: "Apóyanos", to: "/apoyanos" },
-  { label: "Contacto", to: "/contacto" },
+  // { label: "Contacto", to: "/contacto" },
 ];
 
 export default function Navbar() {
@@ -85,14 +85,14 @@ export default function Navbar() {
           {/* Right actions */}
           <div className="hidden lg:flex items-center gap-3">
             {/* Dark mode toggle */}
-            <button
+            {/* <button
               onClick={() => setIsDark(!isDark)}
               className="p-2 rounded-lg text-white/70 hover:text-proyecta-cyan hover:bg-white/10
                          transition-all duration-200"
               aria-label="Cambiar tema"
             >
               {isDark ? <Sun size={18} /> : <Moon size={18} />}
-            </button>
+            </button> */}
 
             {/* CTA button */}
             <Link to="/apoyanos" className="btn-primary text-sm px-5 py-2.5">

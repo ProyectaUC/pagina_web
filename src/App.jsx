@@ -6,7 +6,7 @@ import QuienesSomosPage from "./pages/QuienesSomosPage";
 // import ImpactoPage from "./pages/ImpactoPage";
 import HistoriaPage from "./pages/HistoriaPage";
 import ApoyanosPage from "./pages/ApoyanosPage";
-import ContactoPage from "./pages/ContactoPage";
+// import ContactoPage from "./pages/ContactoPage";
 import TrabajosPage from "./pages/TrabajosPage";
 import EquipoPage from "./pages/EquipoPage";
 
@@ -34,7 +34,7 @@ export default function App() {
         <Route path="historia" element={<HistoriaPage />} />
         <Route path="equipo" element={<EquipoPage />} />
         <Route path="apoyanos" element={<ApoyanosPage />} />
-        <Route path="contacto" element={<ContactoPage />} />
+        {/* <Route path="contacto" element={<ContactoPage />} /> */}
       </Route>
     </Routes>
   );
