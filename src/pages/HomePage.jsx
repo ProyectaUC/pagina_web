@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import Hero from "../components/Hero";
 import QuienesSomosHome from "../components/QuienesSomosHome";
 import Impacto from "../components/Impacto";
+import MetaFinan from "../components/MetaFinan";
 
 export default function HomePage() {
   const location = useLocation();
@@ -16,8 +17,9 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-      <QuienesSomosHome variant="full" />
-      <Impacto variant="full" />
+      <QuienesSomosHome />
+      <Impacto/>
+      <MetaFinan />
     </>
   );
 }

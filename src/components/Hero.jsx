@@ -4,7 +4,14 @@ import { content } from "../styles/theme/brand";
 
 export default function Hero() {
   const scrollToSection = (id) => {
-    document.querySelector(id)?.scrollIntoView({ behavior: "smooth" });
+    document.querySelector(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
+  const scrollToQuienesSomos = () => {
+    const section = document.getElementById("quienes-somos");
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" }); // "smooth" hace que el deslizamiento sea suave
+    }
   };
 
   return (
@@ -51,8 +58,7 @@ export default function Hero() {
           className="text-lg sm:text-2xl text-white/90 max-w-2xl leading-relaxed mb-12 drop-shadow-md animate-fade-up font-light"
           style={{ animationDelay: "200ms" }}
         >
-          {content.org.description} Sumamos manos y voluntades para disminuir la
-          pobreza multidimensional en sectores rurales de nuestro país.
+          {content.org.description}
         </p>
 
         {/* Botones de Acción (CTAs) */}
@@ -60,54 +66,26 @@ export default function Hero() {
           className="flex flex-col sm:flex-row gap-4 sm:gap-6 w-full sm:w-auto animate-fade-up"
           style={{ animationDelay: "300ms" }}
         >
-          <button
-            onClick={() => scrollToSection("#quienes-somos")}
-            className="px-8 py-4 bg-proyecta-cyan text-proyecta-navy text-lg font-bold rounded-full hover:bg-white hover:-translate-y-1 transition-all duration-300 flex items-center justify-center gap-2 shadow-[0_0_30px_rgba(64,208,240,0.4)] w-full sm:w-auto"
-          >
-            Conócenos
-            <ArrowRight size={20} />
-          </button>
+          <button 
+        onClick={scrollToQuienesSomos}
+        className="btn-primary px-8 py-4 text-lg w-full sm:w-auto"
+      >
+        Conócenos <ArrowRight size={20} />
+      </button>
           <Link
             to="/apoyanos"
-            className="px-8 py-4 bg-white/10 text-white text-lg font-bold rounded-full border border-white/30 hover:bg-white/20 hover:-translate-y-1 transition-all duration-300 flex items-center justify-center gap-2 backdrop-blur-sm w-full sm:w-auto"
+            className="btn-secondary px-8 py-4 text-lg bg-white/10 text-white border-white/20 hover:bg-white/20 hover:text-white w-full sm:w-auto"
           >
             <Heart size={20} className="text-proyecta-yellow" />
             Apóyanos
           </Link>
-        </div>
-
-        {/* Estadísticas en contenedor Glassmorphism */}
-        <div
-          className="mt-16 pt-8 px-8 pb-6 bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-16 shadow-2xl animate-fade-up w-full max-w-3xl mx-auto"
-          style={{ animationDelay: "400ms" }}
-        >
-          {[
-            { value: "1.200+", label: "Personas ayudadas" },
-            { value: "320+", label: "Voluntarios activos" },
-            { value: "48", label: "Operativos" },
-          ].map((s, index) => (
-            <div
-              key={s.label}
-              className={`relative flex flex-col items-center ${index !== 2 ? 'sm:after:content-[""] sm:after:absolute sm:after:-right-8 sm:after:top-1/4 sm:after:h-1/2 sm:after:w-px sm:after:bg-white/20' : ""}`}
-            >
-              <div
-                className="text-3xl lg:text-4xl font-black text-white drop-shadow-md"
-                style={{ fontFamily: "var(--font-display)" }}
-              >
-                {s.value}
-              </div>
-              <div className="text-xs sm:text-sm text-proyecta-cyan uppercase tracking-widest mt-2 font-bold">
-                {s.label}
-              </div>
-            </div>
-          ))}
         </div>
       </div>
 
       {/* ─── Indicador de Scroll ─── */}
       <div
         className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/70 hover:text-white transition-colors animate-bounce cursor-pointer z-20"
-        onClick={() => scrollToSection("#quienes-somos")}
+        onClick={() => scrollToSection("#quienes-somos-home")}
       >
         <span className="text-[10px] font-bold tracking-[0.2em] uppercase">
           Explorar

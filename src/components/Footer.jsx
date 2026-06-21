@@ -9,30 +9,30 @@ const socialLinks = [
     label: "Instagram",
     color: "hover:text-pink-400",
   },
-  {
-    icon: Facebook,
-    href: content.social.facebook,
-    label: "Facebook",
-    color: "hover:text-blue-400",
-  },
-  {
-    icon: Twitter,
-    href: content.social.twitter,
-    label: "Twitter/X",
-    color: "hover:text-sky-400",
-  },
+  // {
+  //   icon: Facebook,
+  //   href: content.social.facebook,
+  //   label: "Facebook",
+  //   color: "hover:text-blue-400",
+  // },
+  // {
+  //   icon: Twitter,
+  //   href: content.social.twitter,
+  //   label: "Twitter/X",
+  //   color: "hover:text-sky-400",
+  // },
   {
     icon: Linkedin,
     href: content.social.linkedin,
     label: "LinkedIn",
     color: "hover:text-blue-500",
   },
-  {
-    icon: Youtube,
-    href: content.social.youtube,
-    label: "YouTube",
-    color: "hover:text-red-400",
-  },
+  // {
+  //   icon: Youtube,
+  //   href: content.social.youtube,
+  //   label: "YouTube",
+  //   color: "hover:text-red-400",
+  // },
 ];
 
 const navLinks = [
@@ -55,15 +55,24 @@ export default function Footer() {
       <div className="section-container">
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
           <div className="lg:col-span-2">
-            <img
+             <img
               src={assets.logo}
               alt={content.org.name}
-              className="h-14 w-auto object-contain mb-4"
+              className="h-10 w-auto object-contain mb-4 group-hover:scale-105 transition-transform duration-300"
+              onError={(e) => {
+                e.target.style.display = "none";
+                e.target.nextSibling.style.display = "flex";
+              }}
             />
+            {/* Fallback text logo */}
+            <span
+              className="hidden items-center gap-2 text-proyecta-cyan font-display text-2xl"
+              style={{ fontFamily: "var(--font-display)" }}
+            >
+              {content.org.name}
+            </span>
             <p className="text-white/60 text-sm leading-relaxed max-w-sm">
-              Voluntariado comprometido con el desarrollo comunitario, la
-              educacion y el bienestar social. Construyendo Chile desde la
-              accion colectiva.
+              Voluntariado universitario con la visión de potenciar a las comunidades rurales de nuestro país mediante la acción comunitaria.
             </p>
             <div className="flex gap-3 mt-5">
               {socialLinks.map((s) => {
@@ -114,7 +123,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3">
+        {/* <div className="pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-xs text-white/30">
             © {new Date().getFullYear()} {content.org.fullName}. Todos los
             derechos reservados.
@@ -127,7 +136,7 @@ export default function Footer() {
               Terminos de uso
             </a>
           </div>
-        </div>
+        </div> */}
       </div>
     </footer>
   );
