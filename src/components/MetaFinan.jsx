@@ -1,13 +1,59 @@
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Target, HeartHandshake } from "lucide-react";
 
 export default function MetaFinan() {
-  // Estos datos podrían venir de tu brand.js en el futuro
-  const meta = 5000000; // 5 millones
-  const recaudado = 500000; // 500 lucas
-  const porcentaje = Math.round((recaudado / meta) * 100);
+  // Estado inicial de respaldo (por si el Excel falla o el usuario no tiene internet)
+  const [datosFinancieros, setDatosFinancieros] = useState({
+    meta: 5000000,
+    recaudado: 500000
+  });
 
- return (
+  useEffect(() => {
+    const GOOGLE_SHEETS_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vS6PMtwD2_-Iaj2Cz8z8lkWTUrtFE2MD6w26zmbF3bJYcuVyKcGd6r33MPU05Nj9F8wMTIQBeo55Ldf/pub?gid=0&single=true&output=csv";
+
+    const fetchDatos = async () => {
+      try {
+        const response = await fetch(GOOGLE_SHEETS_CSV_URL);
+        const csvText = await response.text();
+
+        // Procesamos el texto del CSV
+        // El CSV se ve así:
+        // meta,recaudado
+        // 5000000,650000
+        
+        // Dividimos el texto por saltos de línea para obtener las filas
+        const filas = csvText.trim().split('\n');
+        
+        if (filas.length >= 2) {
+          // Tomamos la segunda fila (índice 1) y la dividimos por comas
+          const valores = filas[1].split(',');
+          
+          const metaParsed = parseInt(valores[0], 10);
+          const recaudadoParsed = parseInt(valores[1], 10);
+
+          // Verificamos que sean números válidos antes de actualizar el estado
+          if (!isNaN(metaParsed) && !isNaN(recaudadoParsed)) {
+            setDatosFinancieros({
+              meta: metaParsed,
+              recaudado: recaudadoParsed
+            });
+          }
+        }
+      } catch (error) {
+        console.error("Error al obtener datos de Google Sheets:", error);
+      }
+    };
+
+    fetchDatos();
+  }, []);
+
+  // Calculamos el porcentaje de forma segura
+  const porcentaje = datosFinancieros.meta > 0 
+    ? Math.round((datosFinancieros.recaudado / datosFinancieros.meta) * 100) 
+    : 0;
+
+  return (
     <section className="relative w-full py-24 bg-gradient-to-br from-proyecta-navy to-proyecta-darkTeal overflow-hidden">
       
       {/* Decoraciones de fondo expandidas */}
@@ -64,8 +110,8 @@ export default function MetaFinan() {
           </div>
           
           <div className="flex justify-between text-base sm:text-lg text-white/70 font-medium">
-            <span>${(recaudado / 1000000).toFixed(1)}M</span>
-            <span>Meta: ${(meta / 1000000).toFixed(1)}M</span>
+            <span>${(datosFinancieros.recaudado / 1000000).toFixed(1)}M</span>
+            <span>Meta: ${(datosFinancieros.meta / 1000000).toFixed(1)}M</span>
           </div>
         </div>
 

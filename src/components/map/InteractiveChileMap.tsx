@@ -11,22 +11,30 @@ import { Plus, Minus, Maximize2, Hand } from "lucide-react";
 import type { Community, Category } from "../../data/communities";
 import { categoryColors } from "../../data/communities";
 
-// ── Local GeoJSON for Chile regions (bundled, no CDN dependency) ──
-const CHILE_GEO_URL = `${import.meta.env.BASE_URL}/assets/geo/chile-regions.json`;
+// ── Local GeoJSON for Chile regions (WGS84 SimpleMaps structure) ──
+const CHILE_GEO_URL = `${import.meta.env.BASE_URL}/assets/geo/cl.json`;
 
 // ── Chile projection config ──────────────────────────────────
-// Chile: lon ≈ -75 to -66, lat ≈ -56 to -17
-// Center of mainland: [-71, -37]
 const PROJECTION_CONFIG = {
   scale: 1250,
   center: [-71.5, -37] as [number, number],
 };
 
-const DEFAULT_CENTER: [number, number] = [-71.5, -37];
-const DEFAULT_ZOOM = 1;
+const DEFAULT_CENTER: [number, number] = [-71.5, -38.5]; // Chile central
+const DEFAULT_ZOOM = 1.5;
 const MIN_ZOOM = 0.8;
 const MAX_ZOOM = 6;
-const ZOOM_STEP = 1.5;
+const ZOOM_STEP = 1;
+
+// Por debajo de este factor de zoom-corrección, los trazos finos (stroke de
+// regiones, anillo de pulso) dejan de reducirse: a zoom muy alto, dividir
+// todo literalmente por `zoom` los volvería invisibles. Mantenemos un
+// "piso" perceptible para que el mapa se siga viendo nítido y vivo.
+const MIN_SCALE_DIVISOR = 2.2;
+
+// Calcula el divisor de escala a usar para trazos/radios: escala
+// proporcionalmente con el zoom, pero nunca más agresivo que el piso.
+const scaleDivisor = (zoom: number) => Math.min(zoom, MIN_SCALE_DIVISOR);
 
 // ── Types ────────────────────────────────────────────────────
 interface TooltipState {
@@ -42,76 +50,103 @@ interface Props {
 }
 
 // ── Marker component (memoized for performance) ──────────────
+// Tamaños "base" del marcador, en unidades del SVG sin corregir por zoom.
+// El ajuste por zoom se aplica una sola vez, como transform de escala en
+// el <g> envolvente — así el pulso infinito (que vive adentro) nunca se
+// reinicia cuando el usuario hace zoom, y el cambio de tamaño se anima
+// suavemente en vez de saltar de golpe.
+const BASE_MAIN_RADIUS = 3;
+const BASE_PULSE_RADIUS = 5;
+const BASE_INNER_RADIUS = 1;
+const BASE_STROKE_MAIN = 1;
+const BASE_STROKE_PULSE = 1;
+
 const CommunityMarker = memo(function CommunityMarker({
   community,
   isFiltered,
+  zoom,
   onSelect,
   onHoverStart,
   onHoverEnd,
 }: {
   community: Community;
   isFiltered: boolean;
+  zoom: number;
   onSelect: (c: Community) => void;
   onHoverStart: (c: Community, e: React.MouseEvent) => void;
   onHoverEnd: () => void;
 }) {
   const color = categoryColors[community.category];
 
+  // Usamos scaleDivisor (con piso) en vez de dividir directo por zoom:
+  // así el punto se va achicando de forma natural a medida que entras,
+  // pero no se vuelve un punto invisible a zoom alto — se asienta en un
+  // tamaño mínimo legible, como hacen Google Maps / Mapbox.
+  const groupScale = 1 / scaleDivisor(zoom);
+
   return (
     <Marker coordinates={community.coordinates}>
-      {/* Pulse ring */}
-      <motion.circle
-        r={14}
-        fill="transparent"
-        stroke={color}
-        strokeWidth={1.5}
-        initial={{ scale: 1, opacity: 0.4 }}
-        animate={
-          isFiltered
-            ? { scale: [1, 2.2, 1], opacity: [0.4, 0, 0.4] }
-            : { scale: 1, opacity: 0 }
-        }
-        transition={{ duration: 2.4, repeat: Infinity, ease: "easeOut" }}
-      />
-
-      {/* Main dot */}
-      <motion.circle
-        r={7}
-        fill={color}
-        stroke="white"
-        strokeWidth={1.8}
-        style={{
-          cursor: "pointer",
-          filter: `drop-shadow(0 2px 8px ${color}88)`,
-          opacity: isFiltered ? 1 : 0.25,
-        }}
-        whileHover={
-          isFiltered
-            ? { scale: 1.55, filter: `drop-shadow(0 4px 14px ${color}cc)` }
-            : {}
-        }
-        whileTap={isFiltered ? { scale: 0.9 } : {}}
-        transition={{ type: "spring", stiffness: 400, damping: 20 }}
-        onClick={() => isFiltered && onSelect(community)}
-        onMouseEnter={(e) =>
-          isFiltered &&
-          onHoverStart(community, e as unknown as React.MouseEvent)
-        }
-        onMouseLeave={onHoverEnd}
-      />
-
-      {/* Inner highlight */}
-      {isFiltered && (
+      {/* Wrapper que absorbe el escalado por zoom. Anima suavemente cada
+          vez que `groupScale` cambia (botones +/-, pinch, etc.), sin
+          afectar las animaciones internas (pulso, hover). */}
+      <motion.g
+        animate={{ scale: groupScale }}
+        transition={{ type: "tween", duration: 0.25, ease: "easeOut" }}
+      >
+        {/* Pulse ring — radios fijos; el <g> externo ya escala todo */}
         <motion.circle
-          r={2.5}
-          fill="white"
-          opacity={0.8}
-          style={{ pointerEvents: "none" }}
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          transition={{ delay: 0.1 }}
+          r={BASE_PULSE_RADIUS}
+          fill="transparent"
+          stroke={color}
+          strokeWidth={BASE_STROKE_PULSE}
+          initial={{ scale: 1, opacity: 0.4 }}
+          animate={
+            isFiltered
+              ? { scale: [1, 2.2, 1], opacity: [0.4, 0, 0.4] }
+              : { scale: 1, opacity: 0 }
+          }
+          transition={{ duration: 2.4, repeat: Infinity, ease: "easeOut" }}
         />
-      )}
+
+        {/* Main dot */}
+        <motion.circle
+          r={BASE_MAIN_RADIUS}
+          fill={color}
+          stroke="white"
+          strokeWidth={BASE_STROKE_MAIN}
+          style={{
+            cursor: "pointer",
+            filter: `drop-shadow(0px 2px 8px ${color}88)`,
+            opacity: isFiltered ? 1 : 0.25,
+          }}
+          whileHover={
+            isFiltered
+              ? { scale: 1.4, filter: `drop-shadow(0px 4px 12px ${color}cc)` }
+              : {}
+          }
+          whileTap={isFiltered ? { scale: 0.9 } : {}}
+          transition={{ type: "spring", stiffness: 400, damping: 20 }}
+          onClick={() => isFiltered && onSelect(community)}
+          onMouseEnter={(e) =>
+            isFiltered &&
+            onHoverStart(community, e as unknown as React.MouseEvent)
+          }
+          onMouseLeave={onHoverEnd}
+        />
+
+        {/* Inner highlight */}
+        {isFiltered && (
+          <motion.circle
+            r={BASE_INNER_RADIUS}
+            fill="white"
+            opacity={0.8}
+            style={{ pointerEvents: "none" }}
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ delay: 0.1 }}
+          />
+        )}
+      </motion.g>
     </Marker>
   );
 });
@@ -206,6 +241,15 @@ export default function InteractiveChileMap({
     setPosition({ coordinates: DEFAULT_CENTER, zoom: DEFAULT_ZOOM });
   }, []);
 
+  // Nota sobre el contorno de las regiones: en vez de recalcular el
+  // strokeWidth a mano según el zoom, usamos `vectorEffect:
+  // "non-scaling-stroke"` (ver abajo en <Geography>). Esa propiedad SVG
+  // nativa mantiene el grosor del trazo constante en píxeles de pantalla
+  // sin importar cuánto se haga zoom — es más preciso que aproximarlo
+  // matemáticamente, y es el mismo truco que usan herramientas de mapas
+  // como Mapbox GL para que los bordes nunca se vean ni gigantes ni
+  // invisibles.
+
   return (
     <div
       ref={containerRef}
@@ -222,9 +266,6 @@ export default function InteractiveChileMap({
         touchAction: isMapActive || position.zoom > DEFAULT_ZOOM ? "none" : "pan-y",
       }}
     >
-      {/* Tooltip (rendered outside SVG in DOM) */}
-      {/* <MapTooltip tooltip={tooltip} /> */}
-
       {/* ── Aviso breve: scroll normal no hace zoom (desktop) ── */}
       <AnimatePresence>
         {showHint && (
@@ -313,29 +354,37 @@ export default function InteractiveChileMap({
             return true;
           }}
         >
-          {/* ── Chile regions fill ── */}
+          {/* ── Renderizado del GeoJSON de SimpleMaps ──
+              El borde entre regiones usa vectorEffect: "non-scaling-stroke"
+              (ver style abajo), así que su grosor en pantalla se mantiene
+              constante sin importar el zoom: ni se ve grueso de cerca ni
+              desaparece al alejar. */}
           <Geographies geography={CHILE_GEO_URL}>
             {({ geographies }) =>
               geographies.map((geo) => (
                 <Geography
-                  key={geo.rsmKey}
+                  // Se usa la clave oficial única del objeto properties (ej: "CLAP", "CLRM")
+                  key={geo.properties.id || geo.rsmKey}
                   geography={geo}
                   style={{
                     default: {
                       fill: "#1B3A4B",
                       stroke: "#29B6D8",
-                      strokeWidth: 0.4,
+                      strokeWidth: 0.6,
                       outline: "none",
+                      vectorEffect: "non-scaling-stroke",
                     },
                     hover: {
                       fill: "#1B5E7A",
                       stroke: "#40D0F0",
-                      strokeWidth: 0.6,
+                      strokeWidth: 0.9,
                       outline: "none",
+                      vectorEffect: "non-scaling-stroke",
                     },
                     pressed: {
                       fill: "#1B5E7A",
                       outline: "none",
+                      vectorEffect: "non-scaling-stroke",
                     },
                   }}
                 />
@@ -349,6 +398,7 @@ export default function InteractiveChileMap({
               key={community.id}
               community={community}
               isFiltered={isFiltered(community)}
+              zoom={position.zoom}
               onSelect={onSelectCommunity}
               onHoverStart={handleHoverStart}
               onHoverEnd={handleHoverEnd}

@@ -282,6 +282,15 @@ export const communities: Community[] = [
     year: 2015,
     coordinates: [-70.5808, -32.8050],
     category: "Trabajos",
+    photos: [
+      { url: "public/assets/communities/san-esteban/4fee1fc4-838f-4b23-9cd2-70ff03f54f8c.jpg" },
+      { url: "public/assets/communities/san-esteban/632d6503-1b9c-467a-ab66-4c8d5b7d9b4c.JPG" },
+      { url: "public/assets/communities/san-esteban/862c4d63-f192-4c76-915c-2912d1cb64c8 (1).jpg" },
+      { url: "public/assets/communities/san-esteban/20250731_110137.jpg" },
+      { url: "public/assets/communities/san-esteban/20260209_095319.jpg" },
+
+    ],
+    construcciones: "Mejoramiento de la plaza y construcción de juegos infantiles",
     lema: "Que nuestras acciones llenen corazones",
     tags: ["Valparaíso", "Otoño"],
   },

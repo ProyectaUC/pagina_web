@@ -67,11 +67,11 @@ export default function CommunityModal({
 
   const prevPhoto = () =>
     setPhotoIndex((i) =>
-      i === 0 ? (community?.photos.length ?? 1) - 1 : i - 1,
+      i === 0 ? (community?.photos?.length ?? 1) - 1 : i - 1,
     );
   const nextPhoto = () =>
     setPhotoIndex((i) =>
-      i === (community?.photos.length ?? 1) - 1 ? 0 : i + 1,
+      i === (community?.photos?.length ?? 1) - 1 ? 0 : i + 1,
     );
 
   return (
@@ -112,24 +112,28 @@ export default function CommunityModal({
 
             {/* ── Visor de Imagen Principal ── */}
             <div className="relative h-[60vh] sm:h-[70vh] bg-[#0A0A0A] overflow-hidden flex items-center justify-center">
-              <AnimatePresence mode="wait">
-                <motion.img
-                  key={photoIndex}
-                  src={community.photos[photoIndex]?.url}
-                  alt={community.photos[photoIndex]?.caption || community.name}
-                  initial={{ opacity: 0, scale: 1.02 }}
-                  animate={{
-                    opacity: 1,
-                    scale: 1,
-                    transition: { duration: 0.4 },
-                  }}
-                  exit={{ opacity: 0, transition: { duration: 0.2 } }}
-                  className="absolute inset-0 w-full h-full object-cover"
-                />
-              </AnimatePresence>
+              
+              {/* Renderiza la imagen solo si existen fotos en el objeto */}
+              {community.photos && community.photos.length > 0 && (
+                <AnimatePresence mode="wait">
+                  <motion.img
+                    key={photoIndex}
+                    src={community.photos[photoIndex]?.url}
+                    alt={community.photos[photoIndex]?.caption || community.name}
+                    initial={{ opacity: 0, scale: 1.02 }}
+                    animate={{
+                      opacity: 1,
+                      scale: 1,
+                      transition: { duration: 0.4 },
+                    }}
+                    exit={{ opacity: 0, transition: { duration: 0.2 } }}
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
+                </AnimatePresence>
+              )}
 
-              {/* Controles de Navegación */}
-              {community.photos.length > 1 && (
+              {/* Controles de Navegación de Fotos */}
+              {(community.photos?.length ?? 0) > 1 && (
                 <>
                   <button
                     onClick={prevPhoto}
@@ -147,7 +151,7 @@ export default function CommunityModal({
               )}
 
               {/* ── Overlay de Información (Fondo Degradado) ── */}
-              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black via-black/80 to-transparent pt-24 pb-6 px-6 sm:px-10">
+              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black via-black/80 to-transparent pt-24 pb-6 px-6 sm:px-10-z-10">
                 
                 {/* Lema (Opcional) */}
                 {community.lema && (
@@ -163,7 +167,7 @@ export default function CommunityModal({
                 <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
                   <div>
                     <h2 className="text-3xl sm:text-4xl font-black text-white leading-tight mb-2 font-display">
-                      {community.name} {/* Usualmente aquí va la comuna */}
+                      {community.name}
                     </h2>
                     
                     <div className="flex flex-wrap items-center gap-4 text-white/70 text-sm">
@@ -179,7 +183,7 @@ export default function CommunityModal({
                       {/* Categoría Badge */}
                       <span className="w-1.5 h-1.5 rounded-full bg-white/20 hidden sm:block" />
                       <span 
-                        className="px-2.5 py-0.5 rounded text-xs font-bold text-black bg-white"
+                        className="px-2.5 py-0.5 rounded text-xs font-bold text-black"
                         style={{ backgroundColor: categoryColors[community.category] }}
                       >
                         {categoryLabels[community.category]}
@@ -204,10 +208,10 @@ export default function CommunityModal({
             </div>
 
             {/* ── Cinta de Miniaturas (Thumbnails) ── */}
-            {community.photos.length > 1 && (
+            {(community.photos?.length ?? 0) > 1 && (
               <div className="bg-[#0A0A0A] p-4 flex items-center justify-center border-t border-white/10">
                 <div className="flex gap-2 overflow-x-auto scrollbar-hide snap-x">
-                  {community.photos.map((photo, i) => (
+                  {community.photos!.map((photo, i) => (
                     <button
                       key={i}
                       onClick={() => setPhotoIndex(i)}

@@ -66,7 +66,7 @@ export const content = {
     fullName: "Proyecta CAI",
     tagline: "Construyendo comunidad desde la acción",
     description: "Voluntariado comprometido con el fortalecimiento de comunidades rurales de nuestro país. Trabajamos junto a vecinos y vecinas para promover el tejido social mediante la recuperación de espacios y talleres comunitarios.",
-    email: "redesycontactos@proyecta.cl",
+    email: "Redesycontactos@trabajosproyecta.cl",
     phone: "+56 9 76988683",
     address: "Macul, Santiago, Chile",
   },

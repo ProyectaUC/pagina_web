@@ -23,8 +23,7 @@ const equiposData = [
     icon: Star,
     color: "text-proyecta-yellow",
     bgIcon: "bg-proyecta-yellow/10",
-    groupImage:
-      "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&q=80",
+    groupImage: `${import.meta.env.BASE_URL}assets/equipos/jefes/20260417_134004.jpg`,
     groupDescription:
       "Los encargados de guiar la visión 2026, coordinar a todas las áreas y asegurar que el espíritu de Proyecta se mantenga vivo en cada decisión.",
     members: [],
@@ -35,19 +34,9 @@ const equiposData = [
     icon: Megaphone,
     color: "text-proyecta-cyan",
     bgIcon: "bg-proyecta-cyan/10",
-    groupImage:
-      "https://images.unsplash.com/photo-1552664730-d307ca884978?w=1200&q=80",
     groupDescription:
       "La voz de Proyecta. Encargados de comunicar nuestro impacto, manejar las redes sociales y conectar con nuevos voluntarios y la comunidad.",
     members: [
-      {
-        name: "Camila Soto",
-        carrera: "Periodismo",
-        year: "3er Año",
-        funFact: "Ha visto la serie 'The Office' 7 veces completas.",
-        image:
-          "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=600&q=80",
-      },
     ],
   },
   {
@@ -56,19 +45,9 @@ const equiposData = [
     icon: Coins,
     color: "text-proyecta-orange",
     bgIcon: "bg-proyecta-orange/10",
-    groupImage:
-      "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=1200&q=80",
     groupDescription:
       "El motor económico. Buscan auspicios, organizan eventos de recaudación y gestionan los fondos para hacer posibles los proyectos.",
     members: [
-      {
-        name: "Lucas Mendoza",
-        carrera: "Ingeniería Comercial",
-        year: "4to Año",
-        funFact: "Hace el mejor asado del equipo (comprobado empíricamente).",
-        image:
-          "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=600&q=80",
-      },
     ],
   },
   {
@@ -77,8 +56,6 @@ const equiposData = [
     icon: BookOpen,
     color: "text-proyecta-teal",
     bgIcon: "bg-proyecta-teal/10",
-    groupImage:
-      "https://images.unsplash.com/photo-1455390582262-044cdead27d8?w=1200&q=80",
     groupDescription:
       "Guardianes de nuestras raíces. Documentan el trabajo en terreno y aseguran que la cultura de Proyecta se transmita de generación en generación.",
     members: [],
@@ -89,7 +66,7 @@ const equiposData = [
     icon: Package,
     color: "text-proyecta-yellow",
     bgIcon: "bg-proyecta-yellow/10",
-    groupImage: `${import.meta.env.BASE_URL}assets/photos/recursos.jpeg`,
+    groupImage: `${import.meta.env.BASE_URL}assets/equipos/recursos/recursos.jpeg`,
     groupDescription:
       "Los adictos al fideo y al excel. Les mantenemos las watas llenas a los voluntarios en terreno. La comision mas importante de todas. Sin nosotros se mueren de hambre.",
     members: [
@@ -98,35 +75,35 @@ const equiposData = [
         carrera: "LICD",
         year: "3er Año",
         funFact: "El que programo esta pagina jeje.",
-        image: `${import.meta.env.BASE_URL}assets/photos/pancito.jpeg`,
+        image: `${import.meta.env.BASE_URL}assets/equipos/recursos/pancito.jpeg`,
       },
       {
         name: "Momo",
         carrera: "Pedagogia basica",
         year: "3er Año",
         funFact: "Las siglas de su nombre son 'M.E.A.R'.",
-        image: `${import.meta.env.BASE_URL}assets/photos/momo.jpeg`,
+        image: `${import.meta.env.BASE_URL}assets/equipos/recursos/momo.jpeg`,
       },
       {
         name: "Conyshi",
         carrera: "Ingenieria Ambiental",
         year: "4to Año",
         funFact: "No me acuerdo :(.",
-        image: `${import.meta.env.BASE_URL}assets/photos/conyshi.jpeg`,
+        image: `${import.meta.env.BASE_URL}assets/equipos/recursos/conyshi.jpeg`,
       },
       {
         name: "Carozzi",
         carrera: "Ingenieria Comercial",
         year: "2do Año",
         funFact: "Tampoco me acuerdo",
-        image: `${import.meta.env.BASE_URL}assets/photos/carozzi.jpeg`,
+        image: `${import.meta.env.BASE_URL}assets/equipos/recursos/carozzi.jpeg`,
       },
       {
         name: "Naxo",
         carrera: "Ingenieria Civil",
         year: "5to Año",
         funFact: "Tampoco me acuerdo",
-        image: `${import.meta.env.BASE_URL}assets/photos/naxo.jpeg`,
+        image: `${import.meta.env.BASE_URL}assets/equipos/recursos/naxo.jpeg`,
         isMentor: true,
       },
     ],
@@ -137,19 +114,10 @@ const equiposData = [
     icon: Hammer,
     color: "text-proyecta-sky",
     bgIcon: "bg-proyecta-sky/10",
-    groupImage:
-      "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1200&q=80",
     groupDescription:
       "Planifican y ejecutan la infraestructura en terreno. Desde la planimetría hasta clavar el último clavo en la comunidad.",
     members: [
-      {
-        name: "Sofía Vergara",
-        carrera: "Arquitectura",
-        year: "5to Año",
-        funFact: "Su gata se llama 'AutoCAD'.",
-        image:
-          "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=600&q=80",
-      },
+
     ],
   },
   {
@@ -158,8 +126,6 @@ const equiposData = [
     icon: TrendingUp,
     color: "text-proyecta-cyan",
     bgIcon: "bg-proyecta-cyan/10",
-    groupImage:
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=80",
     groupDescription:
       "Miden nuestro avance. Recopilan datos, encuestan comunidades y evalúan si estamos cumpliendo nuestros objetivos de reducir la pobreza multidimensional.",
     members: [],
@@ -170,8 +136,6 @@ const equiposData = [
     icon: Globe,
     color: "text-proyecta-orange",
     bgIcon: "bg-proyecta-orange/10",
-    groupImage:
-      "https://images.unsplash.com/photo-1515162816999-a0c47dc192f7?w=1200&q=80",
     groupDescription:
       "Construyen puentes. Mantienen relaciones con municipalidades, otras fundaciones y actores clave para el desarrollo territorial.",
     members: [],
@@ -182,8 +146,6 @@ const equiposData = [
     icon: Palette,
     color: "text-proyecta-teal",
     bgIcon: "bg-proyecta-teal/10",
-    groupImage:
-      "https://images.unsplash.com/photo-1544928147-79a2dbc1f389?w=1200&q=80",
     groupDescription:
       "Diseñan instancias educativas y recreativas para fomentar la asociatividad y el aprendizaje en las comunidades rurales.",
     members: [],
@@ -194,8 +156,7 @@ const equiposData = [
     icon: GraduationCap,
     color: "text-proyecta-yellow",
     bgIcon: "bg-proyecta-yellow/10",
-    groupImage:
-      "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=1200&q=80",
+
     groupDescription:
       "A cargo del frente interno: capacitar a nuestros voluntarios para que sean verdaderos agentes de cambio social.",
     members: [],
@@ -206,8 +167,6 @@ const equiposData = [
     icon: HeartHandshake,
     color: "text-proyecta-cyan",
     bgIcon: "bg-proyecta-cyan/10",
-    groupImage:
-      "https://images.unsplash.com/photo-1593113630400-ea4288922559?w=1200&q=80",
     groupDescription:
       "El corazón del terreno. Se encargan de la alimentación, el bienestar y el cuidado espiritual/emocional de todo el equipo durante los operativos.",
     members: [],
@@ -215,8 +174,8 @@ const equiposData = [
 ];
 
 export default function Equipo() {
-  // Estado para controlar qué acordeón está abierto (por defecto Jefes Generales)
-  const [openSection, setOpenSection] = useState("jefes");
+  // Estado para controlar qué acordeón está abierto
+  const [openSection, setOpenSection] = useState("recursos"); // Por defecto, el de Recursos está abierto
 
   const toggleSection = (id) => {
     setOpenSection(openSection === id ? null : id);
@@ -229,7 +188,7 @@ export default function Equipo() {
         {/* Imagen de fondo */}
         <div className="absolute inset-0 z-0">
           <img
-            src="assets/photos/equipo.jpeg"
+            src="assets/equipos/equipo.jpeg"
             alt="Equipo Proyecta 2026 en terreno"
             className="w-full h-full object-cover object-center"
           />
