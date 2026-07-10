@@ -102,13 +102,13 @@ export default function Navbar() {
 
           {/* Mobile menu button */}
           <div className="flex lg:hidden items-center gap-2">
-            <button
+            {/* <button
               onClick={() => setIsDark(!isDark)}
               className="p-2 rounded-lg text-white/70 hover:text-proyecta-cyan"
               aria-label="Cambiar tema"
             >
               {isDark ? <Sun size={16} /> : <Moon size={16} />}
-            </button>
+            </button> */}
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="p-2 rounded-lg text-white hover:bg-white/10 transition-colors"

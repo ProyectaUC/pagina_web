@@ -1,4 +1,5 @@
-import { Routes, Route, Outlet } from "react-router-dom";
+import { useEffect } from "react"; // <-- 1. Importa useEffect
+import { Routes, Route, Outlet, useLocation } from "react-router-dom"; // <-- 2. Añade useLocation
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import HomePage from "./pages/HomePage";
@@ -11,6 +12,13 @@ import TrabajosPage from "./pages/TrabajosPage";
 import EquipoPage from "./pages/EquipoPage";
 
 function Layout() {
+  const { pathname } = useLocation(); // <-- 3. Obtenemos la ruta actual
+
+  // <-- 4. Forzamos el scroll al inicio cada vez que la ruta cambia
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
   return (
     <div className="min-h-screen bg-white dark:bg-[#0D1F2A] font-sans">
       <Navbar />

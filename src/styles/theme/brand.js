@@ -49,8 +49,8 @@ export const assets = {
 
   sponsors: {
     maruchan: `${base}assets/sponsors/maruchan.png`,
-    wasil: `${base}assets/sponsors/wasil.jpg`
-  }
+    wasil: `${base}assets/sponsors/wasil.jpg`,
+  },
 };
 
 export const gradients = {
@@ -65,9 +65,10 @@ export const content = {
     name: "Proyecta",
     fullName: "Proyecta CAI",
     tagline: "Construyendo comunidad desde la acción",
-    description: "Voluntariado comprometido con el fortalecimiento de comunidades rurales de nuestro país. Trabajamos junto a vecinos y vecinas para promover el tejido social mediante la recuperación de espacios y talleres comunitarios.",
+    description:
+      "Voluntariado comprometido con el fortalecimiento de comunidades rurales de nuestro país. Trabajamos junto a vecinos y vecinas para promover el tejido social mediante la recuperación de espacios y talleres comunitarios.",
     email: "Redesycontactos@trabajosproyecta.cl",
-    phone: "+56 9 76988683",
+    phone: "+56 9 3395 6752",
     address: "Macul, Santiago, Chile",
   },
   social: {

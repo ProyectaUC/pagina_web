@@ -15,3 +15,5 @@ Thumbs.db
 
 # Configuración de VS Code (opcional)
 .vscode/
+
+.vite/
