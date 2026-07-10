@@ -23,10 +23,33 @@ const equiposData = [
     icon: Star,
     color: "text-proyecta-yellow",
     bgIcon: "bg-proyecta-yellow/10",
-    groupImage: `${import.meta.env.BASE_URL}assets/equipos/jefes/20260417_134004.jpg`,
+    groupImage: `${import.meta.env.BASE_URL}assets/equipos/jefes/jefes.jpg`,
+    isVerticalGroupImage: true,
     groupDescription:
       "Los encargados de guiar la visión 2026, coordinar a todas las áreas y asegurar que el espíritu de Proyecta se mantenga vivo en cada decisión.",
-    members: [],
+    members: [
+      {
+        name: "Marta",
+        carrera: "",
+        year: "",
+        funFact: "",
+        image: `${import.meta.env.BASE_URL}assets/equipos/jefes/marta.jpg`,
+      },
+      {
+        name: "Mimi",
+        carrera: "",
+        year: "",
+        funFact: "",
+        image: `${import.meta.env.BASE_URL}assets/equipos/jefes/mimi.jpg`,
+      },
+      {
+        name: "Pinky",
+        carrera: "",
+        year: "",
+        funFact: "",
+        image: `${import.meta.env.BASE_URL}assets/equipos/jefes/pinky.jpg`,
+      },
+    ],
   },
   {
     id: "difusion",
@@ -34,9 +57,32 @@ const equiposData = [
     icon: Megaphone,
     color: "text-proyecta-cyan",
     bgIcon: "bg-proyecta-cyan/10",
+    groupImage: `${import.meta.env.BASE_URL}assets/equipos/difusion/difu.jpg`,
+    isVerticalGroupImage: true,
     groupDescription:
       "La voz de Proyecta. Encargados de comunicar nuestro impacto, manejar las redes sociales y conectar con nuevos voluntarios y la comunidad.",
     members: [
+      {
+        name: "Anto",
+        carrera: "",
+        year: "",
+        funFact: "",
+        image: `${import.meta.env.BASE_URL}assets/equipos/difusion/anto.jpg`,
+      },
+      {
+        name: "Bambi",
+        carrera: "",
+        year: "",
+        funFact: "",
+        image: `${import.meta.env.BASE_URL}assets/equipos/difusion/bambi.jpg`,
+      },
+      {
+        name: "Rebe",
+        carrera: "",
+        year: "",
+        funFact: "",
+        image: `${import.meta.env.BASE_URL}assets/equipos/difusion/rebe.jpg`,
+      },
     ],
   },
   {
@@ -45,9 +91,39 @@ const equiposData = [
     icon: Coins,
     color: "text-proyecta-orange",
     bgIcon: "bg-proyecta-orange/10",
+    groupImage: `${import.meta.env.BASE_URL}assets/equipos/financiamiento/finan.jpg`,
+    isVerticalGroupImage: true,
     groupDescription:
       "El motor económico. Buscan auspicios, organizan eventos de recaudación y gestionan los fondos para hacer posibles los proyectos.",
     members: [
+      {
+        name: "Joao",
+        carrera: "",
+        year: "",
+        funFact: "",
+        image: `${import.meta.env.BASE_URL}assets/equipos/financiamiento/joao.jpg`,
+      },
+      {
+        name: "Maca",
+        carrera: "",
+        year: "",
+        funFact: "",
+        image: `${import.meta.env.BASE_URL}assets/equipos/financiamiento/maca.jpg`,
+      },
+      {
+        name: "Pipe",
+        carrera: "",
+        year: "",
+        funFact: "",
+        image: `${import.meta.env.BASE_URL}assets/equipos/financiamiento/pipe.jpg`,
+      },
+      {
+        name: "Yoshi",
+        carrera: "",
+        year: "",
+        funFact: "",
+        image: `${import.meta.env.BASE_URL}assets/equipos/financiamiento/yoshi.jpg`,
+      },
     ],
   },
   {
@@ -58,7 +134,15 @@ const equiposData = [
     bgIcon: "bg-proyecta-teal/10",
     groupDescription:
       "Guardianes de nuestras raíces. Documentan el trabajo en terreno y aseguran que la cultura de Proyecta se transmita de generación en generación.",
-    members: [],
+    members: [
+      {
+        name: "Max",
+        carrera: "",
+        year: "",
+        funFact: "",
+        image: `${import.meta.env.BASE_URL}assets/equipos/historia_y_legado/max.jpg`,
+      },
+    ],
   },
   {
     id: "recursos",
@@ -67,6 +151,7 @@ const equiposData = [
     color: "text-proyecta-yellow",
     bgIcon: "bg-proyecta-yellow/10",
     groupImage: `${import.meta.env.BASE_URL}assets/equipos/recursos/recursos.jpeg`,
+    isVerticalGroupImage: false,
     groupDescription:
       "Los adictos al fideo y al excel. Les mantenemos las watas llenas a los voluntarios en terreno. La comision mas importante de todas. Sin nosotros se mueren de hambre.",
     members: [
@@ -112,23 +197,60 @@ const equiposData = [
     id: "diseno",
     title: "Diseño y Construcción",
     icon: Hammer,
-    color: "text-proyecta-sky",
-    bgIcon: "bg-proyecta-sky/10",
-    groupDescription:
-      "Planifican y ejecutan la infraestructura en terreno. Desde la planimetría hasta clavar el último clavo en la comunidad.",
+    color: "text-proyecta-cyan",
+    bgIcon: "bg-proyecta-cyan/10",
+    groupImage: `${import.meta.env.BASE_URL}assets/equipos/diseño_y_construccion/dyc.jpg`,
+    isVerticalGroupImage: true,
+    groupDescription: "",
     members: [
-
+      {
+        name: "Fefe",
+        carrera: "",
+        year: "",
+        funFact: "",
+        image: `${import.meta.env.BASE_URL}assets/equipos/diseño_y_construccion/fefe.jpg`,
+      },
+      {
+        name: "Walala",
+        carrera: "",
+        year: "",
+        funFact: "",
+        image: `${import.meta.env.BASE_URL}assets/equipos/diseño_y_construccion/walala.jpg`,
+      },
     ],
   },
   {
-    id: "resultados",
-    title: "Resultados e Impacto",
-    icon: TrendingUp,
-    color: "text-proyecta-cyan",
-    bgIcon: "bg-proyecta-cyan/10",
-    groupDescription:
-      "Miden nuestro avance. Recopilan datos, encuestan comunidades y evalúan si estamos cumpliendo nuestros objetivos de reducir la pobreza multidimensional.",
-    members: [],
+    id: "formacion",
+    title: "Formación",
+    icon: GraduationCap,
+    color: "text-proyecta-teal",
+    bgIcon: "bg-proyecta-teal/10",
+    groupImage: `${import.meta.env.BASE_URL}assets/equipos/formacion/formacion.jpg`,
+    isVerticalGroupImage: true,
+    groupDescription: "",
+    members: [
+      {
+        name: "Berni",
+        carrera: "",
+        year: "",
+        funFact: "",
+        image: `${import.meta.env.BASE_URL}assets/equipos/formacion/berni.jpg`,
+      },
+      {
+        name: "Maura",
+        carrera: "",
+        year: "",
+        funFact: "",
+        image: `${import.meta.env.BASE_URL}assets/equipos/formacion/maura.jpg`,
+      },
+      {
+        name: "Pitu",
+        carrera: "",
+        year: "",
+        funFact: "",
+        image: `${import.meta.env.BASE_URL}assets/equipos/formacion/pitu.jpg`,
+      },
+    ],
   },
   {
     id: "redes",
@@ -136,46 +258,137 @@ const equiposData = [
     icon: Globe,
     color: "text-proyecta-orange",
     bgIcon: "bg-proyecta-orange/10",
-    groupDescription:
-      "Construyen puentes. Mantienen relaciones con municipalidades, otras fundaciones y actores clave para el desarrollo territorial.",
-    members: [],
+    groupImage: `${import.meta.env.BASE_URL}assets/equipos/redes_y_contactos/ryc.jpg`,
+    isVerticalGroupImage: true,
+    groupDescription: "",
+    members: [
+      {
+        name: "Camilu",
+        carrera: "",
+        year: "",
+        funFact: "",
+        image: `${import.meta.env.BASE_URL}assets/equipos/redes_y_contactos/camilu.jpg`,
+      },
+      {
+        name: "Sofi",
+        carrera: "",
+        year: "",
+        funFact: "",
+        image: `${import.meta.env.BASE_URL}assets/equipos/redes_y_contactos/maruchan.jpg`,
+      },
+    ],
   },
   {
-    id: "talleres",
-    title: "Talleres",
-    icon: Palette,
-    color: "text-proyecta-teal",
-    bgIcon: "bg-proyecta-teal/10",
-    groupDescription:
-      "Diseñan instancias educativas y recreativas para fomentar la asociatividad y el aprendizaje en las comunidades rurales.",
-    members: [],
-  },
-  {
-    id: "formacion",
-    title: "Formación",
-    icon: GraduationCap,
+    id: "resultados",
+    title: "Resultados e Impacto",
+    icon: TrendingUp,
     color: "text-proyecta-yellow",
     bgIcon: "bg-proyecta-yellow/10",
-
-    groupDescription:
-      "A cargo del frente interno: capacitar a nuestros voluntarios para que sean verdaderos agentes de cambio social.",
-    members: [],
+    groupImage: `${import.meta.env.BASE_URL}assets/equipos/resultados_e_impacto/rei.jpg`,
+    isVerticalGroupImage: true,
+    groupDescription: "",
+    members: [
+      {
+        name: "Cami",
+        carrera: "",
+        year: "",
+        funFact: "",
+        image: `${import.meta.env.BASE_URL}assets/equipos/resultados_e_impacto/cami.jpg`,
+      },
+      {
+        name: "Rorro",
+        carrera: "",
+        year: "",
+        funFact: "",
+        image: `${import.meta.env.BASE_URL}assets/equipos/resultados_e_impacto/rorro.jpg`,
+      },
+      {
+        name: "Tomi",
+        carrera: "",
+        year: "",
+        funFact: "",
+        image: `${import.meta.env.BASE_URL}assets/equipos/resultados_e_impacto/tomi.jpg`,
+      },
+    ],
   },
   {
     id: "servicio",
     title: "Servicio",
     icon: HeartHandshake,
+    color: "text-proyecta-teal",
+    bgIcon: "bg-proyecta-teal/10",
+    groupImage: `${import.meta.env.BASE_URL}assets/equipos/servicio/servicio.jpg`,
+    isVerticalGroupImage: false,
+    groupDescription: "",
+    members: [
+      {
+        name: "Alex",
+        carrera: "",
+        year: "",
+        funFact: "",
+        image: `${import.meta.env.BASE_URL}assets/equipos/servicio/alex.jpg`,
+      },
+      {
+        name: "Gabo",
+        carrera: "",
+        year: "",
+        funFact: "",
+        image: `${import.meta.env.BASE_URL}assets/equipos/servicio/gabo.jpg`,
+      },
+      {
+        name: "Perdon",
+        carrera: "",
+        year: "",
+        funFact: "",
+        image: `${import.meta.env.BASE_URL}assets/equipos/servicio/perdon.jpg`,
+      },
+      {
+        name: "Tata",
+        carrera: "",
+        year: "",
+        funFact: "",
+        image: `${import.meta.env.BASE_URL}assets/equipos/servicio/tata.jpg`,
+      },
+    ],
+  },
+  {
+    id: "talleres",
+    title: "Talleres",
+    icon: Palette,
     color: "text-proyecta-cyan",
     bgIcon: "bg-proyecta-cyan/10",
-    groupDescription:
-      "El corazón del terreno. Se encargan de la alimentación, el bienestar y el cuidado espiritual/emocional de todo el equipo durante los operativos.",
-    members: [],
+    groupImage: `${import.meta.env.BASE_URL}assets/equipos/talleres/talleres.jpg`,
+    isVerticalGroupImage: true,
+    groupDescription: "",
+    members: [
+      {
+        name: "Eli",
+        carrera: "",
+        year: "",
+        funFact: "",
+        image: `${import.meta.env.BASE_URL}assets/equipos/talleres/eli.jpg`,
+      },
+      {
+        name: "Reni",
+        carrera: "",
+        year: "",
+        funFact: "",
+        image: `${import.meta.env.BASE_URL}assets/equipos/talleres/reni.jpg`,
+      },
+      {
+        name: "Sopita",
+        carrera: "",
+        year: "",
+        funFact: "",
+        image: `${import.meta.env.BASE_URL}assets/equipos/talleres/sopita.jpg`,
+      },
+    ],
   },
 ];
 
 export default function Equipo() {
   // Estado para controlar qué acordeón está abierto
-  const [openSection, setOpenSection] = useState("recursos"); // Por defecto, el de Recursos está abierto
+  const [openSection, setOpenSection] = useState("jefes"); // Por defecto, el de Recursos está abierto
 
   const toggleSection = (id) => {
     setOpenSection(openSection === id ? null : id);
@@ -183,23 +396,23 @@ export default function Equipo() {
 
   return (
     <div className="bg-white dark:bg-[#0D1F2A] min-h-screen transition-colors duration-300">
-      {/* HERO SECTION: Imagen gigante del Equipo 2026 */}
+      {/* HERO SECTION: Huge 2026 Team Image */}
       <section className="relative w-full h-[80vh] min-h-[600px] flex flex-col items-center justify-center overflow-hidden">
-        {/* Imagen de fondo */}
+        {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <img
             src="assets/equipos/equipo.jpeg"
             alt="Equipo Proyecta 2026 en terreno"
             className="w-full h-full object-cover object-center"
           />
-          {/* Overlay oscuro para que se lea el texto sobre cualquier foto */}
-          <div className="absolute inset-0 bg-proyecta-navy/60 dark:bg-[#0D1F2A]/70 mix-blend-multiply"></div>
+          {/* Dark Overlay for Text Readability */}
+          <div className="absolute inset-0 bg-proyecta-navy/60 dark:bg-[#0D1F2A]/50 mix-blend-multiply"></div>
 
-          {/* Degradado inferior para fusionarse suavemente con la página */}
+          {/* Bottom Gradient for Smooth Fading into the Page */}
           <div className="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-t from-white dark:from-[#0D1F2A] to-transparent"></div>
         </div>
 
-        {/* Contenido del Hero (Título flotante) */}
+        {/* Hero Content (Floating Title) */}
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto mt-16 animate-on-scroll is-visible">
           <span className="inline-block py-1.5 px-4 rounded-full bg-white/10 border border-white/20 text-white text-xs sm:text-sm font-bold tracking-widest uppercase mb-6 backdrop-blur-md shadow-lg">
             Nuestro Motor
@@ -220,7 +433,7 @@ export default function Equipo() {
           </p>
         </div>
 
-        {/* Indicador de Scroll hacia abajo */}
+        {/* Scroll Down Indicator */}
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center animate-bounce">
           <span className="text-proyecta-navy dark:text-white/60 text-[10px] uppercase tracking-[0.2em] mb-2 font-bold">
             Conócenos
@@ -229,7 +442,7 @@ export default function Equipo() {
         </div>
       </section>
 
-      {/* 📋 SECCIÓN DE ACORDEONES */}
+      {/* 📋 ACCORDION SECTION */}
       <section className="py-16 sm:py-24 relative z-10">
         <div className="section-container">
           <div className="max-w-5xl mx-auto space-y-6">
@@ -242,10 +455,10 @@ export default function Equipo() {
                   key={equipo.id}
                   className={`card dark:card-dark overflow-hidden transition-all duration-500 border ${isOpen ? "border-proyecta-cyan shadow-proyecta-lg dark:border-proyecta-cyan/50" : "border-transparent"}`}
                 >
-                  {/* Botón del Acordeón */}
+                  {/* Accordion Toggle Button */}
                   <button
                     onClick={() => toggleSection(equipo.id)}
-                    className="w-full flex items-center justify-between p-6 sm:p-8 hover:bg-proyecta-lightBg/50 dark:hover:bg-white/5 transition-colors"
+                    className="w-full flex items-center justify-between p-6 sm:p-8 transition-colors"
                   >
                     <div className="flex items-center gap-5">
                       <div
@@ -263,18 +476,24 @@ export default function Equipo() {
                     />
                   </button>
 
-                  {/* Contenido Desplegable */}
+                  {/* Dropdown Content */}
                   <div
                     className={`grid transition-[grid-template-rows,opacity] duration-500 ease-in-out ${isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}
                   >
                     <div className="overflow-hidden">
                       <div className="p-6 sm:p-8 pt-0 border-t border-gray-100 dark:border-white/10 mt-2">
-                        {/* Imagen Grupal */}
-                        <div className="relative w-full h-[300px] sm:h-[450px] rounded-[2rem] overflow-hidden shadow-lg mb-12 group border border-black/5 dark:border-white/10">
+                        {/* Adaptable Group Image Container */}
+                        <div
+                          className={`relative w-full rounded-[2rem] overflow-hidden shadow-lg mb-12 border border-black/5 dark:border-white/10 ${
+                            equipo.isVerticalGroupImage
+                              ? "aspect-[2/3] sm:aspect-[2/3] max-h-[75vh]"
+                              : "aspect-[3/2] sm:aspect-[3/2]"
+                          }`}
+                        >
                           <img
                             src={equipo.groupImage}
                             alt={`Equipo de ${equipo.title}`}
-                            className="w-full h-full object-cover transform scale-100 group-hover:scale-105 transition-transform duration-700"
+                            className="w-full h-full object-cover"
                           />
                           <div className="absolute inset-0 bg-gradient-to-t from-[#0D1F2A]/90 via-[#0D1F2A]/40 to-transparent"></div>
                           <div className="absolute bottom-0 left-0 w-full p-8 sm:p-10">
@@ -287,37 +506,34 @@ export default function Equipo() {
                           </div>
                         </div>
 
-                        {/* Grilla de Miembros Individuales */}
+                        {/* Individual Members Grid */}
                         {equipo.members.length > 0 ? (
                           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                             {equipo.members.map((member, idx) => (
                               <div
                                 key={idx}
-                                className={`glass rounded-[2rem] overflow-hidden flex flex-col group hover:-translate-y-2 transition-all duration-500 border relative ${
+                                className={`glass rounded-[2rem] overflow-hidden flex flex-col transition-all duration-500 border relative ${
                                   member.isMentor
                                     ? "border-proyecta-yellow/80 shadow-[0_0_20px_rgba(255,183,3,0.2)] dark:shadow-[0_0_20px_rgba(255,183,3,0.15)]"
                                     : "border-black/5 dark:border-white/10"
                                 }`}
                               >
-                                {/* ETIQUETA DE MENTOR */}
+                                {/* MENTOR TAG */}
                                 {member.isMentor && (
                                   <div className="absolute top-0 left-0 bg-proyecta-yellow text-proyecta-navy font-black px-6 py-2 rounded-br-[2rem] z-20 text-xs uppercase tracking-widest shadow-lg">
                                     Mentor
                                   </div>
                                 )}
 
-                                {/* Imagen Individual Gigante */}
-                                <div className="relative h-80 sm:h-96 w-full overflow-hidden bg-gray-100 dark:bg-gray-800">
+                                {/* Huge Individual Image */}
+                                {/* Cambiamos h-80 sm:h-96 por aspect-[3/4] para que sea proporcional */}
+                                <div className="relative w-full aspect-[3/4] overflow-hidden bg-gray-100 dark:bg-gray-800">
                                   <img
                                     src={member.image}
                                     alt={member.name}
-                                    className={`w-full h-full object-cover transform scale-100 group-hover:scale-105 transition-all duration-700 ${
-                                      member.isMentor
-                                        ? "grayscale-0"
-                                        : "grayscale-[20%] group-hover:grayscale-0"
-                                    }`}
+                                    className="w-full h-full object-cover"
                                   />
-                                  {/* Insignia Año/Carrera Flotante */}
+                                  {/* Floating Year/Field Badge */}
                                   <div className="absolute top-4 right-4 flex flex-col gap-2 items-end z-10">
                                     <span className="px-3 py-1 bg-white/90 dark:bg-[#0D1F2A]/90 backdrop-blur-sm text-proyecta-navy dark:text-white text-xs font-bold uppercase tracking-wider rounded-full shadow-md">
                                       {member.year}
@@ -328,13 +544,13 @@ export default function Equipo() {
                                   </div>
                                 </div>
 
-                                {/* Información del Miembro */}
+                                {/* Member Information */}
                                 <div className="p-6 flex flex-col flex-grow bg-white/50 dark:bg-transparent">
                                   <h4 className="text-2xl font-bold text-proyecta-navy dark:text-white mb-4 font-sans">
                                     {member.name}
                                   </h4>
 
-                                  {/* Dato Curioso - Destacado en caja */}
+                                  {/* Fun Fact - Highlighted Box */}
                                   <div
                                     className={`mt-auto p-4 rounded-r-xl border-l-4 ${
                                       member.isMentor
@@ -360,7 +576,7 @@ export default function Equipo() {
                             ))}
                           </div>
                         ) : (
-                          // Placeholder si aún no hay miembros cargados en el array
+                          // Placeholder if no members have been loaded yet
                           <div className="text-center py-12 glass rounded-[2rem] border border-dashed border-proyecta-cyan/30">
                             <p className="text-proyecta-navy/50 dark:text-white/40 text-lg">
                               Miembros de {equipo.title} por anunciar...
