@@ -336,7 +336,7 @@ const equiposData = [
         image: `${import.meta.env.BASE_URL}assets/equipos/servicio/gabo.jpg`,
       },
       {
-        name: "Perdon",
+        name: "Danii",
         carrera: "",
         year: "",
         funFact: "",

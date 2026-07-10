@@ -7,7 +7,7 @@ import {
   MapPin,
   Calendar,
   Hammer,
-  Quote
+  Quote,
 } from "lucide-react";
 import type { Community } from "../../data/communities";
 import { categoryColors, categoryLabels } from "../../data/communities";
@@ -98,28 +98,40 @@ export default function CommunityModal({
             animate="visible"
             exit="exit"
             onClick={(e) => e.stopPropagation()}
-            className="relative w-full max-w-5xl flex flex-col rounded-3xl bg-black shadow-2xl overflow-hidden"
+            className="
+    relative
+    w-[min(92vw,1200px)]
+    aspect-[3/2] 
+    max-h-[90vh]
+    rounded-3xl
+    overflow-hidden
+    bg-[#0A0A0A]
+    shadow-2xl
+  "
           >
-            
             {/* ── Botón de Cerrar Flotante ── */}
             <button
               onClick={onClose}
               className="absolute top-4 right-4 z-50 p-2 rounded-full bg-black/40 hover:bg-black/60 text-white backdrop-blur-md transition-all duration-200 border border-white/20 group"
               aria-label="Cerrar"
             >
-              <X size={20} className="group-hover:rotate-90 transition-transform duration-200" />
+              <X
+                size={20}
+                className="group-hover:rotate-90 transition-transform duration-200"
+              />
             </button>
 
             {/* ── Visor de Imagen Principal ── */}
-            <div className="relative h-[60vh] sm:h-[70vh] bg-[#0A0A0A] overflow-hidden flex items-center justify-center">
-              
+            <div className="relative h-full bg-[#0A0A0A] overflow-hidden flex items-center justify-center">
               {/* Renderiza la imagen solo si existen fotos en el objeto */}
               {community.photos && community.photos.length > 0 && (
                 <AnimatePresence mode="wait">
                   <motion.img
                     key={photoIndex}
                     src={community.photos[photoIndex]?.url}
-                    alt={community.photos[photoIndex]?.caption || community.name}
+                    alt={
+                      community.photos[photoIndex]?.caption || community.name
+                    }
                     initial={{ opacity: 0, scale: 1.02 }}
                     animate={{
                       opacity: 1,
@@ -127,7 +139,7 @@ export default function CommunityModal({
                       transition: { duration: 0.4 },
                     }}
                     exit={{ opacity: 0, transition: { duration: 0.2 } }}
-                    className="absolute inset-0 w-full h-full object-cover"
+                    className="absolute inset-0 w-full h-full object-contain"
                   />
                 </AnimatePresence>
               )}
@@ -152,7 +164,6 @@ export default function CommunityModal({
 
               {/* ── Overlay de Información (Fondo Degradado) ── */}
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black via-black/80 to-transparent pt-24 pb-6 px-6 sm:px-10-z-10">
-                
                 {/* Lema (Opcional) */}
                 {community.lema && (
                   <div className="flex items-center gap-2 mb-3 text-proyecta-cyan/90">
@@ -169,7 +180,7 @@ export default function CommunityModal({
                     <h2 className="text-3xl sm:text-4xl font-black text-white leading-tight mb-2 font-display">
                       {community.name}
                     </h2>
-                    
+
                     <div className="flex flex-wrap items-center gap-4 text-white/70 text-sm">
                       <span className="flex items-center gap-1.5">
                         <MapPin size={16} className="text-proyecta-cyan" />
@@ -182,9 +193,11 @@ export default function CommunityModal({
                       </span>
                       {/* Categoría Badge */}
                       <span className="w-1.5 h-1.5 rounded-full bg-white/20 hidden sm:block" />
-                      <span 
+                      <span
                         className="px-2.5 py-0.5 rounded text-xs font-bold text-black"
-                        style={{ backgroundColor: categoryColors[community.category] }}
+                        style={{
+                          backgroundColor: categoryColors[community.category],
+                        }}
                       >
                         {categoryLabels[community.category]}
                       </span>
