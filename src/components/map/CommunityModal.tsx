@@ -98,16 +98,7 @@ export default function CommunityModal({
             animate="visible"
             exit="exit"
             onClick={(e) => e.stopPropagation()}
-            className="
-    relative
-    w-[min(92vw,1200px)]
-    aspect-[3/2] 
-    max-h-[90vh]
-    rounded-3xl
-    overflow-hidden
-    bg-[#0A0A0A]
-    shadow-2xl
-  "
+            className="relative w-full max-w-5xl flex flex-col rounded-3xl bg-black shadow-2xl overflow-hidden"
           >
             {/* ── Botón de Cerrar Flotante ── */}
             <button
@@ -122,7 +113,7 @@ export default function CommunityModal({
             </button>
 
             {/* ── Visor de Imagen Principal ── */}
-            <div className="relative h-full bg-[#0A0A0A] overflow-hidden flex items-center justify-center">
+            <div className="relative h-[60vh] sm:h-[70vh] bg-[#0A0A0A] overflow-hidden flex items-center justify-center">
               {/* Renderiza la imagen solo si existen fotos en el objeto */}
               {community.photos && community.photos.length > 0 && (
                 <AnimatePresence mode="wait">
@@ -139,7 +130,7 @@ export default function CommunityModal({
                       transition: { duration: 0.4 },
                     }}
                     exit={{ opacity: 0, transition: { duration: 0.2 } }}
-                    className="absolute inset-0 w-full h-full object-contain"
+                    className="absolute inset-0 w-full h-full object-cover"
                   />
                 </AnimatePresence>
               )}

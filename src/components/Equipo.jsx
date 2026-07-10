@@ -16,11 +16,11 @@ import {
 
 // Datos del equipo estructurados.
 // Reemplaza las URLs de Unsplash con las fotos reales de tu equipo.
-const equiposData = [
+export const equiposData = [
   {
     id: "jefes",
     title: "Jefes Generales",
-    icon: Star,
+    icon: Star, // Recuerda que debes tener los iconos importados
     color: "text-proyecta-yellow",
     bgIcon: "bg-proyecta-yellow/10",
     groupImage: `${import.meta.env.BASE_URL}assets/equipos/jefes/jefes.jpg`,
@@ -30,23 +30,17 @@ const equiposData = [
     members: [
       {
         name: "Marta",
-        carrera: "",
-        year: "",
-        funFact: "",
+        carrera: "Medicina",
         image: `${import.meta.env.BASE_URL}assets/equipos/jefes/marta.jpg`,
       },
       {
         name: "Mimi",
-        carrera: "",
-        year: "",
-        funFact: "",
+        carrera: "Veterinaria",
         image: `${import.meta.env.BASE_URL}assets/equipos/jefes/mimi.jpg`,
       },
       {
         name: "Pinky",
-        carrera: "",
-        year: "",
-        funFact: "",
+        carrera: "Ingeniería y Física",
         image: `${import.meta.env.BASE_URL}assets/equipos/jefes/pinky.jpg`,
       },
     ],
@@ -64,23 +58,17 @@ const equiposData = [
     members: [
       {
         name: "Anto",
-        carrera: "",
-        year: "",
-        funFact: "",
+        carrera: "Derecho",
         image: `${import.meta.env.BASE_URL}assets/equipos/difusion/anto.jpg`,
       },
       {
         name: "Bambi",
-        carrera: "",
-        year: "",
-        funFact: "",
+        carrera: "Pedagogía",
         image: `${import.meta.env.BASE_URL}assets/equipos/difusion/bambi.jpg`,
       },
       {
         name: "Rebe",
-        carrera: "",
-        year: "",
-        funFact: "",
+        carrera: "Ingeniería Civil",
         image: `${import.meta.env.BASE_URL}assets/equipos/difusion/rebe.jpg`,
       },
     ],
@@ -98,31 +86,50 @@ const equiposData = [
     members: [
       {
         name: "Joao",
-        carrera: "",
-        year: "",
-        funFact: "",
+        carrera: "Ingeniería Civil",
         image: `${import.meta.env.BASE_URL}assets/equipos/financiamiento/joao.jpg`,
       },
       {
         name: "Maca",
-        carrera: "",
-        year: "",
-        funFact: "",
+        carrera: "Ingeniería Civil",
         image: `${import.meta.env.BASE_URL}assets/equipos/financiamiento/maca.jpg`,
       },
       {
         name: "Pipe",
-        carrera: "",
-        year: "",
-        funFact: "",
+        carrera: "Ingeniería Civil",
         image: `${import.meta.env.BASE_URL}assets/equipos/financiamiento/pipe.jpg`,
       },
       {
         name: "Yoshi",
-        carrera: "",
-        year: "",
-        funFact: "",
+        carrera: "Ingeniería Civil",
         image: `${import.meta.env.BASE_URL}assets/equipos/financiamiento/yoshi.jpg`,
+      },
+    ],
+  },
+  {
+    id: "equipo",
+    title: "Equipo",
+    icon: BookOpen,
+    color: "text-proyecta-teal",
+    bgIcon: "bg-proyecta-teal/10",
+    groupImage: `${import.meta.env.BASE_URL}assets/equipos/equipo/equipo.jpg`,
+    groupDescription:
+      "Los que se encargan de que la cultura de Proyecta se mantenga viva.",
+    members: [
+      {
+        name: "Fer",
+        carrera: "Ingenieria Civil",
+        image: `${import.meta.env.BASE_URL}assets/equipos/equipo/fer.jpg`,
+      },
+      {
+        name: "Zazu",
+        carrera: "Pedagogía",
+        image: `${import.meta.env.BASE_URL}assets/equipos/equipo/zazu.jpg`,
+      },
+      {
+        name: "Pollo",
+        carrera: "Ingenieria Comercial",
+        image: `${import.meta.env.BASE_URL}assets/equipos/equipo/pollo.jpg`,
       },
     ],
   },
@@ -137,9 +144,7 @@ const equiposData = [
     members: [
       {
         name: "Max",
-        carrera: "",
-        year: "",
-        funFact: "",
+        carrera: "Ciencia Política y Sociología",
         image: `${import.meta.env.BASE_URL}assets/equipos/historia_y_legado/max.jpg`,
       },
     ],
@@ -158,36 +163,27 @@ const equiposData = [
       {
         name: "Pancito",
         carrera: "LICD",
-        year: "3er Año",
-        funFact: "El que programo esta pagina jeje.",
+        funFact: "El que programó esta página jeje.",
         image: `${import.meta.env.BASE_URL}assets/equipos/recursos/pancito.jpeg`,
       },
       {
         name: "Momo",
-        carrera: "Pedagogia basica",
-        year: "3er Año",
-        funFact: "Las siglas de su nombre son 'M.E.A.R'.",
+        carrera: "Pedagogía",
         image: `${import.meta.env.BASE_URL}assets/equipos/recursos/momo.jpeg`,
       },
       {
         name: "Conyshi",
-        carrera: "Ingenieria Ambiental",
-        year: "4to Año",
-        funFact: "No me acuerdo :(.",
+        carrera: "Ingeniería en Recursos Naturales",
         image: `${import.meta.env.BASE_URL}assets/equipos/recursos/conyshi.jpeg`,
       },
       {
         name: "Carozzi",
-        carrera: "Ingenieria Comercial",
-        year: "2do Año",
-        funFact: "Tampoco me acuerdo",
+        carrera: "Ingeniería Comercial",
         image: `${import.meta.env.BASE_URL}assets/equipos/recursos/carozzi.jpeg`,
       },
       {
         name: "Naxo",
-        carrera: "Ingenieria Civil",
-        year: "5to Año",
-        funFact: "Tampoco me acuerdo",
+        carrera: "Ingeniería Civil",
         image: `${import.meta.env.BASE_URL}assets/equipos/recursos/naxo.jpeg`,
         isMentor: true,
       },
@@ -205,16 +201,12 @@ const equiposData = [
     members: [
       {
         name: "Fefe",
-        carrera: "",
-        year: "",
-        funFact: "",
+        carrera: "Construcción Civil",
         image: `${import.meta.env.BASE_URL}assets/equipos/diseño_y_construccion/fefe.jpg`,
       },
       {
         name: "Walala",
-        carrera: "",
-        year: "",
-        funFact: "",
+        carrera: "Construcción Civil",
         image: `${import.meta.env.BASE_URL}assets/equipos/diseño_y_construccion/walala.jpg`,
       },
     ],
@@ -231,23 +223,17 @@ const equiposData = [
     members: [
       {
         name: "Berni",
-        carrera: "",
-        year: "",
-        funFact: "",
+        carrera: "Terapia Ocupacional",
         image: `${import.meta.env.BASE_URL}assets/equipos/formacion/berni.jpg`,
       },
       {
         name: "Maura",
-        carrera: "",
-        year: "",
-        funFact: "",
+        carrera: "College para Derecho",
         image: `${import.meta.env.BASE_URL}assets/equipos/formacion/maura.jpg`,
       },
       {
         name: "Pitu",
-        carrera: "",
-        year: "",
-        funFact: "",
+        carrera: "Psicología",
         image: `${import.meta.env.BASE_URL}assets/equipos/formacion/pitu.jpg`,
       },
     ],
@@ -264,16 +250,12 @@ const equiposData = [
     members: [
       {
         name: "Camilu",
-        carrera: "",
-        year: "",
-        funFact: "",
+        carrera: "Medicina",
         image: `${import.meta.env.BASE_URL}assets/equipos/redes_y_contactos/camilu.jpg`,
       },
       {
         name: "Sofi",
-        carrera: "",
-        year: "",
-        funFact: "",
+        carrera: "Ingeniería en Recursos Naturales",
         image: `${import.meta.env.BASE_URL}assets/equipos/redes_y_contactos/maruchan.jpg`,
       },
     ],
@@ -290,23 +272,17 @@ const equiposData = [
     members: [
       {
         name: "Cami",
-        carrera: "",
-        year: "",
-        funFact: "",
+        carrera: "Trabajo Social",
         image: `${import.meta.env.BASE_URL}assets/equipos/resultados_e_impacto/cami.jpg`,
       },
       {
         name: "Rorro",
-        carrera: "",
-        year: "",
-        funFact: "",
+        carrera: "Ingeniería Civil",
         image: `${import.meta.env.BASE_URL}assets/equipos/resultados_e_impacto/rorro.jpg`,
       },
       {
         name: "Tomi",
-        carrera: "",
-        year: "",
-        funFact: "",
+        carrera: "Ingeniería Civil",
         image: `${import.meta.env.BASE_URL}assets/equipos/resultados_e_impacto/tomi.jpg`,
       },
     ],
@@ -323,30 +299,22 @@ const equiposData = [
     members: [
       {
         name: "Alex",
-        carrera: "",
-        year: "",
-        funFact: "",
+        carrera: "Construcción Civil",
         image: `${import.meta.env.BASE_URL}assets/equipos/servicio/alex.jpg`,
       },
       {
         name: "Gabo",
-        carrera: "",
-        year: "",
-        funFact: "",
+        carrera: "Física",
         image: `${import.meta.env.BASE_URL}assets/equipos/servicio/gabo.jpg`,
       },
       {
         name: "Danii",
-        carrera: "",
-        year: "",
-        funFact: "",
+        carrera: "Enfermería",
         image: `${import.meta.env.BASE_URL}assets/equipos/servicio/perdon.jpg`,
       },
       {
         name: "Tata",
-        carrera: "",
-        year: "",
-        funFact: "",
+        carrera: "College para Ingeniería",
         image: `${import.meta.env.BASE_URL}assets/equipos/servicio/tata.jpg`,
       },
     ],
@@ -363,23 +331,17 @@ const equiposData = [
     members: [
       {
         name: "Eli",
-        carrera: "",
-        year: "",
-        funFact: "",
+        carrera: "Ingeniería Comercial",
         image: `${import.meta.env.BASE_URL}assets/equipos/talleres/eli.jpg`,
       },
       {
         name: "Reni",
-        carrera: "",
-        year: "",
-        funFact: "",
+        carrera: "Terapia Ocupacional",
         image: `${import.meta.env.BASE_URL}assets/equipos/talleres/reni.jpg`,
       },
       {
         name: "Sopita",
-        carrera: "",
-        year: "",
-        funFact: "",
+        carrera: "College de Derecho",
         image: `${import.meta.env.BASE_URL}assets/equipos/talleres/sopita.jpg`,
       },
     ],
@@ -401,7 +363,7 @@ export default function Equipo() {
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <img
-            src="assets/equipos/equipo.jpeg"
+            src="assets/equipos/completo.jpeg"
             alt="Equipo Proyecta 2026 en terreno"
             className="w-full h-full object-cover object-center"
           />
@@ -434,8 +396,10 @@ export default function Equipo() {
         </div>
 
         {/* Scroll Down Indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center animate-bounce">
-          <span className="text-proyecta-navy dark:text-white/60 text-[10px] uppercase tracking-[0.2em] mb-2 font-bold">
+        {/* Cambiamos left-1/2 -translate-x-1/2 por left-0 w-full */}
+        <div className="absolute bottom-8 left-0 w-full z-10 flex flex-col items-center animate-bounce">
+          {/* Mantenemos el pl-[0.2em] para balancear el tracking visualmente */}
+          <span className="text-proyecta-navy dark:text-white/60 text-[10px] uppercase tracking-[0.2em] pl-[0.2em] mb-2 font-bold text-center">
             Conócenos
           </span>
           <ChevronDown className="text-proyecta-cyan" size={28} />

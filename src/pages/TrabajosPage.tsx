@@ -6,14 +6,12 @@ import { communities } from "../data/communities";
 import type { Community } from "../data/communities";
 // import type { Category } from "../data/communities";
 
-
-
 // ── Main Page ────────────────────────────────────────────────
 export default function TrabajosPage() {
   const [selectedCommunity, setSelectedCommunity] = useState<Community | null>(
     null,
   );
- 
+
   return (
     <div
       className="relative pt-20 flex flex-col min-h-screen overflow-hidden"

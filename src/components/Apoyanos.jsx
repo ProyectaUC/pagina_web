@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState } from "react";
 import {
   Users,
   Building2,
@@ -10,36 +10,42 @@ import {
   MessageCircle,
   Mail,
   Hammer,
-} from 'lucide-react'
-import { useInView } from '../hooks/useAnimations'
-import { sponsors } from '../styles/theme/brand'
-import { content } from '../styles/theme/brand'
+} from "lucide-react";
+import { useInView } from "../hooks/useAnimations";
+import { sponsors } from "../styles/theme/brand";
+import { content } from "../styles/theme/brand";
 
 // ============================================================
 // 🔗 ENLACES Y CONTACTOS — completar antes de publicar
 // ============================================================
 // Grupo de WhatsApp para voluntarios: reemplazar por el link real
 // generado desde WhatsApp (Configuración > Grupo > Invitar por link).
-const WHATSAPP_GROUP_URL = 'https://wa.me/'
+const WHATSAPP_GROUP_URL =
+  "https://chat.whatsapp.com/IbhVde7LXfnIfXyonU6rBr?s=cl&p=i&ilr=4&amv=1";
 
 // Correo de contacto para sponsors/empresas.
-const SPONSORS_EMAIL = content.org.email
+const SPONSORS_EMAIL = content.org.email;
 
 const tabs = [
-  { id: 'voluntarios', label: 'Voluntarios', icon: Users },
-  { id: 'sponsors', label: 'Sponsors', icon: Building2 },
-  { id: 'donaciones', label: 'Donaciones', icon: Heart },
-]
+  { id: "voluntarios", label: "Voluntarios", icon: Users },
+  { id: "sponsors", label: "Sponsors", icon: Building2 },
+  { id: "donaciones", label: "Donaciones", icon: Heart },
+];
 
 function VoluntariosTab() {
-  const [sent, setSent] = useState(false)
-  const [form, setForm] = useState({ nombre: '', email: '', area: '', mensaje: '' })
+  const [sent, setSent] = useState(false);
+  const [form, setForm] = useState({
+    nombre: "",
+    email: "",
+    area: "",
+    mensaje: "",
+  });
 
   const handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     // TODO: Conectar con Formspree, Netlify Forms o similar
-    setSent(true)
-  }
+    setSent(true);
+  };
 
   if (sent) {
     return (
@@ -52,7 +58,7 @@ function VoluntariosTab() {
           Nos pondremos en contacto contigo pronto.
         </p>
       </div>
-    )
+    );
   }
 
   return (
@@ -60,7 +66,10 @@ function VoluntariosTab() {
       {/* ── Bloque destacado: grupo de WhatsApp ── */}
       <div
         className="rounded-2xl p-6 sm:p-8 flex flex-col sm:flex-row items-center gap-6 border border-proyecta-cyan/20"
-        style={{ background: 'linear-gradient(135deg, rgba(37,211,102,0.08), rgba(64,208,240,0.08))' }}
+        style={{
+          background:
+            "linear-gradient(135deg, rgba(37,211,102,0.08), rgba(64,208,240,0.08))",
+        }}
       >
         <div className="flex-shrink-0 w-14 h-14 rounded-2xl bg-[#25D366] flex items-center justify-center shadow-lg">
           <MessageCircle size={28} className="text-white" />
@@ -70,7 +79,8 @@ function VoluntariosTab() {
             Únete a nuestro grupo de WhatsApp
           </h4>
           <p className="text-sm text-gray-500 dark:text-white/60">
-            Entérate primero de operativos, talleres y actividades. Es la forma más rápida de mantenerte al día con Proyecta.
+            Entérate primero de operativos, talleres y actividades. Es la forma
+            más rápida de mantenerte al día con Proyecta.
           </p>
         </div>
         <a
@@ -78,7 +88,7 @@ function VoluntariosTab() {
           target="_blank"
           rel="noopener noreferrer"
           className="flex-shrink-0 flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm text-white transition-all hover:opacity-90 hover:-translate-y-0.5 shadow-lg"
-          style={{ background: '#25D366' }}
+          style={{ background: "#25D366" }}
         >
           <MessageCircle size={18} />
           Unirme al grupo
@@ -90,25 +100,35 @@ function VoluntariosTab() {
         <div>
           <h3
             className="text-3xl text-proyecta-navy dark:text-white mb-4"
-            style={{ fontFamily: 'var(--font-display)' }}
+            style={{ fontFamily: "var(--font-display)" }}
           >
             Únete a nuestra red
           </h3>
           <p className="text-gray-500 dark:text-white/60 mb-8 leading-relaxed">
-            Ser voluntario en Proyecta significa ser parte de una comunidad que trabaja junta para mejorar la vida de las comunidades rurales. No importa tu experiencia previa: lo que más valoramos es tu entusiasmo y compromiso.
+            Ser voluntario en Proyecta significa ser parte de una comunidad que
+            trabaja junta para mejorar la vida de las comunidades rurales. No
+            importa tu experiencia previa: lo que más valoramos es tu entusiasmo
+            y compromiso.
           </p>
           <p className="text-gray-500 dark:text-white/60 mb-4 leading-relaxed">
             Al unirte, podrás:
           </p>
           <ul className="space-y-3">
             {[
-              'Participa en operativos comunitarios',
-              'Desarrolla habilidades de liderazgo',
-              'Forma parte de una red interuniversitaria',
-              'Impacta vidas directamente',
+              "Participa en operativos comunitarios",
+              "Desarrolla habilidades de liderazgo",
+              "Forma parte de una red interuniversitaria",
+              "Impacta vidas directamente",
             ].map((item) => (
-              <li key={item} className="flex items-center gap-3 text-gray-600 dark:text-white/70">
-                <CheckCircle size={18} className="text-proyecta-cyan flex-shrink-0" strokeWidth={2} />
+              <li
+                key={item}
+                className="flex items-center gap-3 text-gray-600 dark:text-white/70"
+              >
+                <CheckCircle
+                  size={18}
+                  className="text-proyecta-cyan flex-shrink-0"
+                  strokeWidth={2}
+                />
                 <span className="text-sm font-medium">{item}</span>
               </li>
             ))}
@@ -116,7 +136,7 @@ function VoluntariosTab() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 function SponsorsTab() {
@@ -124,55 +144,71 @@ function SponsorsTab() {
   // contactar por correo para coordinar los detalles.
   const tiers = [
     {
-      tier: 'Aporte Puntual',
-      subtitle: 'Una sola operación o periodo',
-      color: 'border-proyecta-cyan bg-proyecta-cyan/5 dark:bg-proyecta-cyan/10',
+      tier: "Aporte Puntual",
+      subtitle: "Una sola operación o periodo",
+      color: "border-proyecta-cyan bg-proyecta-cyan/5 dark:bg-proyecta-cyan/10",
       benefits: [
-        'Logo en Instagram (publicación del operativo)',
-        'Mención en la página web',
-        'Agradecimiento público al cierre del operativo',
+        "Logo en Instagram (publicación del operativo)",
+        "Mención en la página web",
+        "Agradecimiento público al cierre del operativo",
       ],
     },
     {
-      tier: 'Sponsor Permanente',
-      subtitle: 'Alianza durante todo el año',
-      color: 'border-proyecta-yellow bg-proyecta-yellow/5 dark:bg-proyecta-yellow/10',
+      tier: "Sponsor Permanente",
+      subtitle: "Alianza durante todo el año",
+      color:
+        "border-proyecta-yellow bg-proyecta-yellow/5 dark:bg-proyecta-yellow/10",
       benefits: [
-        'Logo en poleras y polerones de Proyecta',
-        'Logo permanente en sitio web',
-        'Presencia continua en Instagram',
-        'Mención en cada operativo del periodo',
-        'Prioridad para renovar el siguiente año',
+        "Logo en poleras y polerones de Proyecta",
+        "Logo permanente en sitio web",
+        "Presencia continua en Instagram",
+        "Mención en cada operativo del periodo",
+        "Prioridad para renovar el siguiente año",
       ],
     },
-  ]
+  ];
 
   return (
     <div className="grid lg:grid-cols-2 gap-12 items-start">
       <div>
         <h3
           className="text-3xl text-proyecta-navy dark:text-white mb-4"
-          style={{ fontFamily: 'var(--font-display)' }}
+          style={{ fontFamily: "var(--font-display)" }}
         >
           Sé parte del cambio
         </h3>
         <p className="text-gray-500 dark:text-white/60 mb-6 leading-relaxed">
-          Las donaciones de empresas pueden ser en dinero, alimentos, o materiales
-          como ropa, herramientas, materiales de construcción y más. Coordinamos
-          contigo la forma que mejor se ajuste a lo que puedan aportar.
+          Las donaciones de empresas pueden ser en dinero, alimentos, o
+          materiales como ropa, herramientas, materiales de construcción y más.
+          Coordinamos contigo la forma que mejor se ajuste a lo que puedan
+          aportar.
         </p>
 
         <div className="space-y-4">
           {tiers.map((t) => (
-            <div key={t.tier} className={`p-5 rounded-xl border-l-4 ${t.color}`}>
+            <div
+              key={t.tier}
+              className={`p-5 rounded-xl border-l-4 ${t.color}`}
+            >
               <div className="flex items-baseline justify-between gap-3 mb-3">
-                <div className="font-bold text-sm text-proyecta-navy dark:text-white">{t.tier}</div>
-                <div className="text-xs text-gray-400 dark:text-white/40">{t.subtitle}</div>
+                <div className="font-bold text-sm text-proyecta-navy dark:text-white">
+                  {t.tier}
+                </div>
+                <div className="text-xs text-gray-400 dark:text-white/40">
+                  {t.subtitle}
+                </div>
               </div>
               <ul className="space-y-1.5">
                 {t.benefits.map((b) => (
-                  <li key={b} className="flex items-start gap-2 text-xs text-gray-600 dark:text-white/70">
-                    <CheckCircle size={13} className="text-proyecta-cyan flex-shrink-0 mt-0.5" strokeWidth={2} />
+                  <li
+                    key={b}
+                    className="flex items-start gap-2 text-xs text-gray-600 dark:text-white/70"
+                  >
+                    <CheckCircle
+                      size={13}
+                      className="text-proyecta-cyan flex-shrink-0 mt-0.5"
+                      strokeWidth={2}
+                    />
                     {b}
                   </li>
                 ))}
@@ -182,7 +218,7 @@ function SponsorsTab() {
         </div>
 
         <a
-          href={`mailto:${SPONSORS_EMAIL}?subject=${encodeURIComponent('Quiero ser sponsor de Proyecta')}`}
+          href={`mailto:${SPONSORS_EMAIL}?subject=${encodeURIComponent("Quiero ser sponsor de Proyecta")}`}
           className="btn-primary mt-6 inline-flex"
         >
           <Mail size={16} />
@@ -212,7 +248,9 @@ function SponsorsTab() {
                   className="max-h-30 w-full p-2 object-contain transition-transform duration-300 group-hover:scale-110"
                 />
               ) : (
-                <span className="text-xs text-gray-400 dark:text-white/30 font-medium">{s.name}</span>
+                <span className="text-xs text-gray-400 dark:text-white/30 font-medium">
+                  {s.name}
+                </span>
               )}
             </div>
           ))}
@@ -222,31 +260,36 @@ function SponsorsTab() {
         </p>
       </div>
     </div>
-  )
+  );
 }
 
 function DonacionesTab() {
   // 1. Agregamos los links específicos de cada monto dentro del mismo array
   const amounts = [
     {
-      value: 1000,
-      label: 'Un chungo',
-      mpLink: 'https://mpago.la/1FcPJ58', // Cambiar por tu link real de $1.000
+      value: 25000,
+      label: "Una banca con respaldo",
+      mpLink: "https://mpago.la/2Cmprq2",
     },
     {
-      value: 5000,
-      label: 'Una tapa',
-      mpLink: 'https://mpago.la/1ikvAJV', // Cambiar por tu link real de $2.500
+      value: 45000,
+      label: "Una mesa tipo picnic",
+      mpLink: "https://mpago.la/2fQWR7M",
     },
     {
-      value: 10000,
-      label: 'Una viga',
-      mpLink: 'https://mpago.la/2eYRSCc', // Cambiar por tu link real de $5.000
+      value: 300000,
+      label: "Un techo para la comunidad",
+      mpLink: "https://mpago.la/2qiScjb",
     },
     {
-      value: 20000,
-      label: 'Un pilar',
-      mpLink: 'https://mpago.la/2r119Bo', // Cambiar por tu link real de $10.000
+      value: 400000,
+      label: "Un juego de dos torres",
+      mpLink: "https://mpago.la/1uNxtxQ",
+    },
+    {
+      value: 1000000,
+      label: "Una sede vecinal",
+      mpLink: "https://mpago.la/2gc5S8K",
     },
   ];
 
@@ -254,7 +297,7 @@ function DonacionesTab() {
   const MP_LINK_GENERICO = "https://link.mercadopago.cl/proyectauc";
 
   const [selected, setSelected] = useState(amounts[1].value);
-  const [custom, setCustom] = useState('');
+  const [custom, setCustom] = useState("");
 
   // 2. Buscamos el link que corresponde al botón seleccionado
   const handleMercadoPago = () => {
@@ -263,7 +306,7 @@ function DonacionesTab() {
       window.location.href = MP_LINK_GENERICO;
     } else {
       // Si seleccionó un botón, buscamos su link específico
-      const opcion = amounts.find(a => a.value === selected);
+      const opcion = amounts.find((a) => a.value === selected);
       window.location.href = opcion ? opcion.mpLink : MP_LINK_GENERICO;
     }
   };
@@ -272,7 +315,7 @@ function DonacionesTab() {
     if (custom) {
       window.location.href = STRIPE_LINK_GENERICO;
     } else {
-      const opcion = amounts.find(a => a.value === selected);
+      const opcion = amounts.find((a) => a.value === selected);
       window.location.href = opcion ? opcion.stripeLink : STRIPE_LINK_GENERICO;
     }
   };
@@ -282,7 +325,7 @@ function DonacionesTab() {
       <div>
         <h3
           className="text-3xl text-proyecta-navy dark:text-white mb-4 font-bold"
-          style={{ fontFamily: 'var(--font-display)' }}
+          style={{ fontFamily: "var(--font-display)" }}
         >
           Tu apoyo hace la diferencia
         </h3>
@@ -292,12 +335,15 @@ function DonacionesTab() {
         </p>
         <ul className="space-y-2 mb-8">
           {amounts.map((a) => (
-            <li key={a.value} className="flex items-center gap-3 text-sm text-gray-600 dark:text-white/70">
+            <li
+              key={a.value}
+              className="flex items-center gap-3 text-sm text-gray-600 dark:text-white/70"
+            >
               <Hammer size={14} className="text-proyecta-cyan flex-shrink-0" />
               <span>
                 <strong className="text-proyecta-navy dark:text-white">
-                  ${a.value.toLocaleString('es-CL')}
-                </strong>{' '}
+                  ${a.value.toLocaleString("es-CL")}
+                </strong>{" "}
                 → {a.label}
               </span>
             </li>
@@ -315,13 +361,19 @@ function DonacionesTab() {
           {amounts.map((a) => (
             <button
               key={a.value}
-              onClick={() => { setSelected(a.value); setCustom('') }}
-              className={`py-3 px-2 rounded-xl text-center border-2 transition-all ${selected === a.value && !custom
-                  ? 'bg-proyecta-cyan border-proyecta-cyan text-proyecta-navy font-bold shadow-md'
-                  : 'border-gray-200 dark:border-proyecta-teal/30 text-gray-600 dark:text-white/70 hover:border-proyecta-cyan'
-                }`}
+              onClick={() => {
+                setSelected(a.value);
+                setCustom("");
+              }}
+              className={`py-3 px-2 rounded-xl text-center border-2 transition-all ${
+                selected === a.value && !custom
+                  ? "bg-proyecta-cyan border-proyecta-cyan text-proyecta-navy font-bold shadow-md"
+                  : "border-gray-200 dark:border-proyecta-teal/30 text-gray-600 dark:text-white/70 hover:border-proyecta-cyan"
+              }`}
             >
-              <div className="text-sm font-bold">${a.value.toLocaleString('es-CL')}</div>
+              <div className="text-sm font-bold">
+                ${a.value.toLocaleString("es-CL")}
+              </div>
               <div className="text-[11px] opacity-80">{a.label}</div>
             </button>
           ))}
@@ -332,7 +384,10 @@ function DonacionesTab() {
           type="number"
           placeholder="Monto personalizado..."
           value={custom}
-          onChange={(e) => { setCustom(e.target.value); setSelected(null) }}
+          onChange={(e) => {
+            setCustom(e.target.value);
+            setSelected(null);
+          }}
           className="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-proyecta-teal/30
                      bg-white dark:bg-proyecta-navy text-gray-900 dark:text-white
                      focus:outline-none focus:ring-2 focus:ring-proyecta-cyan mb-5 text-sm"
@@ -343,7 +398,7 @@ function DonacionesTab() {
           <button
             className="w-full flex items-center justify-center gap-3 py-3.5 rounded-xl
                        text-white font-bold text-sm transition-all hover:opacity-90 hover:-translate-y-0.5 shadow-lg"
-            style={{ background: 'linear-gradient(135deg, #009EE3, #00B1EA)' }}
+            style={{ background: "linear-gradient(135deg, #009EE3, #00B1EA)" }}
             onClick={handleMercadoPago}
           >
             <CreditCard size={18} />
@@ -368,17 +423,21 @@ function DonacionesTab() {
 }
 
 export default function Apoyanos() {
-  const [activeTab, setActiveTab] = useState('voluntarios')
-  const [ref, isVisible] = useInView()
+  const [activeTab, setActiveTab] = useState("voluntarios");
+  const [ref, isVisible] = useInView();
 
   return (
-    <section id="apoyanos" className="py-24 bg-white dark:bg-[#0D1F2A]" ref={ref}>
+    <section
+      id="apoyanos"
+      className="py-24 bg-white dark:bg-[#0D1F2A]"
+      ref={ref}
+    >
       <div className="section-container">
-
         {/* Header */}
         <div
-          className={`text-center mb-16 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-            }`}
+          className={`text-center mb-16 transition-all duration-700 ${
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+          }`}
         >
           <span className="section-tag mb-4">Apóyanos</span>
           <h2 className="section-title mb-4">
@@ -392,42 +451,45 @@ export default function Apoyanos() {
 
         {/* Tab switcher */}
         <div
-          className={`flex justify-center mb-10 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-            }`}
-          style={{ transitionDelay: '100ms' }}
+          className={`flex justify-center mb-10 transition-all duration-700 ${
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+          }`}
+          style={{ transitionDelay: "100ms" }}
         >
           <div className="inline-flex p-1.5 rounded-2xl bg-gray-100 dark:bg-proyecta-navy gap-1">
             {tabs.map((tab) => {
-              const Icon = tab.icon
+              const Icon = tab.icon;
               return (
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
                   className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold
-                               transition-all duration-200 ${activeTab === tab.id
-                      ? 'bg-proyecta-cyan text-proyecta-navy shadow-proyecta'
-                      : 'text-gray-500 dark:text-white/60 hover:text-proyecta-teal'
-                    }`}
+                               transition-all duration-200 ${
+                                 activeTab === tab.id
+                                   ? "bg-proyecta-cyan text-proyecta-navy shadow-proyecta"
+                                   : "text-gray-500 dark:text-white/60 hover:text-proyecta-teal"
+                               }`}
                 >
                   <Icon size={16} />
                   {tab.label}
                 </button>
-              )
+              );
             })}
           </div>
         </div>
 
         {/* Tab content */}
         <div
-          className={`transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-            }`}
-          style={{ transitionDelay: '200ms' }}
+          className={`transition-all duration-700 ${
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+          }`}
+          style={{ transitionDelay: "200ms" }}
         >
-          {activeTab === 'voluntarios' && <VoluntariosTab />}
-          {activeTab === 'sponsors' && <SponsorsTab />}
-          {activeTab === 'donaciones' && <DonacionesTab />}
+          {activeTab === "voluntarios" && <VoluntariosTab />}
+          {activeTab === "sponsors" && <SponsorsTab />}
+          {activeTab === "donaciones" && <DonacionesTab />}
         </div>
       </div>
     </section>
-  )
+  );
 }

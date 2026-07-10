@@ -4,7 +4,9 @@ import { content } from "../styles/theme/brand";
 
 export default function Hero() {
   const scrollToSection = (id) => {
-    document.querySelector(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+    document
+      .querySelector(id)
+      ?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
   const scrollToQuienesSomos = () => {
@@ -66,12 +68,12 @@ export default function Hero() {
           className="flex flex-col sm:flex-row gap-4 sm:gap-6 w-full sm:w-auto animate-fade-up"
           style={{ animationDelay: "300ms" }}
         >
-          <button 
-        onClick={scrollToQuienesSomos}
-        className="btn-primary px-8 py-4 text-lg w-full sm:w-auto"
-      >
-        Conócenos <ArrowRight size={20} />
-      </button>
+          <button
+            onClick={scrollToQuienesSomos}
+            className="btn-primary px-8 py-4 text-lg w-full sm:w-auto"
+          >
+            Conócenos <ArrowRight size={20} />
+          </button>
           <Link
             to="/apoyanos"
             className="btn-secondary px-8 py-4 text-lg bg-white/10 text-white border-white/20 hover:bg-white/20 hover:text-white w-full sm:w-auto"
@@ -83,14 +85,14 @@ export default function Hero() {
       </div>
 
       {/* ─── Indicador de Scroll ─── */}
-      <div
-        className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/70 hover:text-white transition-colors animate-bounce cursor-pointer z-20"
-        onClick={() => scrollToSection("#quienes-somos-home")}
-      >
-        <span className="text-[10px] font-bold tracking-[0.2em] uppercase">
+      {/* Scroll Down Indicator */}
+      {/* Cambiamos left-1/2 -translate-x-1/2 por left-0 w-full */}
+      <div className="absolute bottom-8 left-0 w-full z-10 flex flex-col items-center animate-bounce">
+        {/* Mantenemos el pl-[0.2em] para balancear el tracking visualmente */}
+        <span className="text-proyecta-navy dark:text-white/60 text-[10px] uppercase tracking-[0.2em] pl-[0.2em] mb-2 font-bold text-center">
           Explorar
         </span>
-        <ChevronDown size={28} />
+        <ChevronDown className="text-proyecta-cyan" size={28} />
       </div>
 
       {/* ─── Ola de transición inferior ─── */}
