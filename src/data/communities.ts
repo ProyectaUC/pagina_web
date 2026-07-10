@@ -33,12 +33,17 @@
 //   sin lema por la misma razón.
 // ============================================================
 
-export type Category = "Trabajos" | "Operaciones" | "Intervenciones" | "Operativos";
+export type Category =
+  | "Trabajos"
+  | "Operaciones"
+  | "Intervenciones"
+  | "Operativos";
 
 export interface Photo {
   url: string;
   caption?: string;
 }
+
 export interface Community {
   id: string;
   name: string; // Nombre del lugar/sector, tal como aparece en el mapa
@@ -141,7 +146,7 @@ export const communities: Community[] = [
     region: "Región del Libertador General Bernardo O'Higgins",
     regionCode: "O'Higgins",
     year: 2009,
-    coordinates: [-70.7310, -34.1732],
+    coordinates: [-70.731, -34.1732],
     category: "Trabajos",
     lema: "En tus manos está actuar, en tus corazón las ansias de servir",
     tags: ["O'Higgins", "Otoño"],
@@ -185,7 +190,7 @@ export const communities: Community[] = [
     region: "Región Metropolitana",
     regionCode: "Metropolitana",
     year: 2011,
-    coordinates: [-70.8720, -33.2883],
+    coordinates: [-70.872, -33.2883],
     category: "Trabajos",
     lema: "Trabajar es servir, servir es vivir y vivir es amar",
     tags: ["Metropolitana", "Otoño"],
@@ -196,8 +201,16 @@ export const communities: Community[] = [
     region: "Región del Maule",
     regionCode: "Maule",
     year: 2021,
-    coordinates: [-71.4083, -35.0400],
+    coordinates: [-71.4083, -35.04],
     category: "Trabajos",
+    photos: [
+      {
+        url: `${import.meta.env.BASE_URL}assets/comunidades/Sagrada familia 2012/Sagrada familia 2012/e3b32dc4-cb80-48d2-8297-c268abca09e8.jpg`,
+      },
+      {
+        url: `${import.meta.env.BASE_URL}assets/comunidades/Sagrada familia 2012/Sagrada familia 2012/e87258bb-b717-4985-b051-8964dc59438a.jpg`,
+      },
+    ],
     lema: "Que en tu sonrisa se dibuje la alegría de servir",
     // El mapa indica año 2021; el archivo de lemas registra "Verano 2012"
     // para Sagrada Familia. Discrepancia sin resolver, queda marcada.
@@ -209,7 +222,7 @@ export const communities: Community[] = [
     region: "Región del Maule",
     regionCode: "Maule",
     year: 2012,
-    coordinates: [-72.0000, -34.9830],
+    coordinates: [-72.0, -34.983],
     category: "Trabajos",
     lema: "Que en tu sonrisa se dibuje la alegría de servir",
     // Nota: el lema de "Otoño 2012" en el archivo corresponde a Mataquito;
@@ -236,7 +249,7 @@ export const communities: Community[] = [
     region: "Región del Libertador General Bernardo O'Higgins",
     regionCode: "O'Higgins",
     year: 2013,
-    coordinates: [-71.3020, -34.3693],
+    coordinates: [-71.302, -34.3693],
     category: "Trabajos",
     lema: "A veces basta un simple gesto para despertar un sueño",
     tags: ["O'Higgins", "Otoño"],
@@ -247,8 +260,16 @@ export const communities: Community[] = [
     region: "Región de Ñuble",
     regionCode: "Ñuble",
     year: 2014,
-    coordinates: [-71.4820, -36.5657],
+    coordinates: [-71.482, -36.5657],
     category: "Trabajos",
+    photos: [
+      {
+        url: `${import.meta.env.BASE_URL}assets/comunidades/San fabián 2014/San fabián 2014/b82ef189-5240-4fc4-bc8c-c6cda5b0ae4c.jpg`,
+      },
+      {
+        url: `${import.meta.env.BASE_URL}assets/comunidades/San fabián 2014/San fabián 2014/bd13e9d8-5c48-4e3e-99a4-a3826f6b153c.jpg`,
+      },
+    ],
     lema: "Entreguémonos por completo para alcanzar un sueño",
     tags: ["Ñuble", "Verano"],
   },
@@ -280,17 +301,11 @@ export const communities: Community[] = [
     region: "Región de Valparaíso",
     regionCode: "Valparaíso",
     year: 2015,
-    coordinates: [-70.5808, -32.8050],
+    coordinates: [-70.5808, -32.805],
     category: "Trabajos",
-    photos: [
-      { url: "public/assets/communities/san-esteban/4fee1fc4-838f-4b23-9cd2-70ff03f54f8c.jpg" },
-      { url: "public/assets/communities/san-esteban/632d6503-1b9c-467a-ab66-4c8d5b7d9b4c.JPG" },
-      { url: "public/assets/communities/san-esteban/862c4d63-f192-4c76-915c-2912d1cb64c8 (1).jpg" },
-      { url: "public/assets/communities/san-esteban/20250731_110137.jpg" },
-      { url: "public/assets/communities/san-esteban/20260209_095319.jpg" },
-
-    ],
-    construcciones: "Mejoramiento de la plaza y construcción de juegos infantiles",
+    photos: [],
+    construcciones:
+      "Mejoramiento de la plaza y construcción de juegos infantiles",
     lema: "Que nuestras acciones llenen corazones",
     tags: ["Valparaíso", "Otoño"],
   },
@@ -377,7 +392,7 @@ export const communities: Community[] = [
     region: "Región del Maule",
     regionCode: "Maule",
     year: 2020,
-    coordinates: [-71.7419, -35.6650],
+    coordinates: [-71.7419, -35.665],
     category: "Trabajos",
     lema: "Vivamos contagiando felicidad, siendo auténticos con los demás",
     tags: ["Maule", "Verano"],
@@ -412,6 +427,29 @@ export const communities: Community[] = [
     year: 2022,
     coordinates: [-71.2828, -34.7328],
     category: "Trabajos",
+    photos: [
+      {
+        url: `${import.meta.env.BASE_URL}assets/comunidades/Chepica 2022/Chepica 2022/1e202623-c13e-48cb-8796-f31aa4a2d92a.jpg`,
+      },
+      {
+        url: `${import.meta.env.BASE_URL}assets/comunidades/Chepica 2022/Chepica 2022/9b37ce09-950d-4ef1-9049-9e09b56b4c4e.jpg`,
+      },
+      {
+        url: `${import.meta.env.BASE_URL}assets/comunidades/Chepica 2022/Chepica 2022/763c9101-d4a1-4b67-8404-d815a766bfd3.jpg`,
+      },
+      {
+        url: `${import.meta.env.BASE_URL}assets/comunidades/Chepica 2022/Chepica 2022/32832828-3654-4f69-85ef-3afa25c867fc.jpg`,
+      },
+      {
+        url: `${import.meta.env.BASE_URL}assets/comunidades/Chepica 2022/Chepica 2022/66930929-af39-44bc-a59c-97cbb19f4ddc.jpg`,
+      },
+      {
+        url: `${import.meta.env.BASE_URL}assets/comunidades/Chepica 2022/Chepica 2022/ade8696c-1390-4271-8791-e6e554d8e613.jpg`,
+      },
+      {
+        url: `${import.meta.env.BASE_URL}assets/comunidades/Chepica 2022/Chepica 2022/deea6f9e-b91a-4748-9bbd-d92f0b6e5ebe.jpg`,
+      },
+    ],
     lema: "Entreguemos lo mejor de nosotros para convertirnos en motor de cambio",
     tags: ["O'Higgins", "Invierno"],
   },
@@ -423,6 +461,11 @@ export const communities: Community[] = [
     year: 2023,
     coordinates: [-70.9271, -34.4487],
     category: "Trabajos",
+    photos: [
+      {
+        url: `${import.meta.env.BASE_URL}assets/comunidades/Malloa 2023/Malloa 2023/08d7b175-cdb4-4e3a-86c6-de3f43a407fa.jpg`,
+      },
+    ],
     lema: "Valoremos el poder que tienen nuestros lazos para crecer con alegría en comunidad",
     tags: ["O'Higgins", "Verano"],
   },
@@ -434,6 +477,14 @@ export const communities: Community[] = [
     year: 2023,
     coordinates: [-71.1259, -32.8213],
     category: "Trabajos",
+    photos: [
+      {
+        url: `${import.meta.env.BASE_URL}assets/comunidades/Hijuelas 2023/Hijuelas 2023/0b832430-a72c-4c7a-9a74-aa6422fbb955.jpg`,
+      },
+      {
+        url: `${import.meta.env.BASE_URL}assets/comunidades/Hijuelas 2023/Hijuelas 2023/b458b94f-c4e9-41fd-a056-11ba2bf83171.jpg`,
+      },
+    ],
     lema: "Con nuestros pasos constantes, hacemos un cambio importante",
     tags: ["Valparaíso", "Invierno"],
   },
@@ -445,6 +496,14 @@ export const communities: Community[] = [
     year: 2024,
     coordinates: [-71.0961, -34.9631],
     category: "Trabajos",
+    photos: [
+      {
+        url: `${import.meta.env.BASE_URL}assets/comunidades/Romeral 2024/Romeral 2024/e24ace71-0f90-4341-97ca-5a08dfdb19af.jpg`,
+      },
+      {
+        url: `${import.meta.env.BASE_URL}assets/comunidades/Romeral 2024/Romeral 2024/f4f3a888-91e0-4598-96c7-24f86d5e76df.jpg`,
+      },
+    ],
     lema: "Fomentemos el servicio y la alegría, estando siempre en sintonía",
     tags: ["Maule", "Verano"],
   },
@@ -456,6 +515,14 @@ export const communities: Community[] = [
     year: 2025,
     coordinates: [-71.0988, -34.3107],
     category: "Trabajos",
+    photos: [
+      {
+        url: `${import.meta.env.BASE_URL}assets/comunidades/Coltauco 2025/Coltauco 2025/fbf4528c-1ed8-48c9-b961-4b68fb8801a4.jpg`,
+      },
+      {
+        url: `${import.meta.env.BASE_URL}assets/comunidades/Coltauco 2025/Coltauco 2025/ff6e5ef6-f2a8-4883-af4c-6a016b66f310.jpg`,
+      },
+    ],
     // Sin lema registrado: el archivo de lemas termina en Romeral 2024.
     tags: ["O'Higgins"],
   },
@@ -467,6 +534,11 @@ export const communities: Community[] = [
     year: 2026,
     coordinates: [-72.2742, -35.6342],
     category: "Trabajos",
+    photos: [
+      {
+        url: `${import.meta.env.BASE_URL}assets/comunidades/Empedrado 2026/Empedrado 2026/6131ac78-0af6-4cfc-ac7b-1cb161b6b0e9.jpg`,
+      },
+    ],
     // Sin lema registrado: el archivo de lemas termina en Romeral 2024.
     tags: ["Maule"],
   },

@@ -215,7 +215,8 @@ export default function InteractiveChileMap({
   const handleTouchStart = useCallback(
     (e: React.TouchEvent<HTMLDivElement>) => {
       const isPinch = e.touches.length >= 2;
-      const isPanningZoomedMap = e.touches.length === 1 && position.zoom > DEFAULT_ZOOM;
+      const isPanningZoomedMap =
+        e.touches.length === 1 && position.zoom > DEFAULT_ZOOM;
       if (isPinch || isPanningZoomedMap) {
         setIsMapActive(true);
       }
@@ -263,7 +264,8 @@ export default function InteractiveChileMap({
         // aplicado (el usuario ya está explorando de cerca) o durante un
         // pinch, bloqueamos touch-action para que el gesto del mapa sea
         // fluido sin que el navegador lo interprete como scroll de página.
-        touchAction: isMapActive || position.zoom > DEFAULT_ZOOM ? "none" : "pan-y",
+        touchAction:
+          isMapActive || position.zoom > DEFAULT_ZOOM ? "none" : "pan-y",
       }}
     >
       {/* ── Aviso breve: scroll normal no hace zoom (desktop) ── */}
@@ -281,7 +283,10 @@ export default function InteractiveChileMap({
             }}
           >
             <Hand size={13} className="text-proyecta-cyan" />
-            Usa <kbd className="px-1.5 py-0.5 rounded bg-white/15 font-semibold">Ctrl</kbd>{" "}
+            Usa{" "}
+            <kbd className="px-1.5 py-0.5 rounded bg-white/15 font-semibold">
+              Ctrl
+            </kbd>{" "}
             + scroll (o ⌘ + scroll) para hacer zoom
           </motion.div>
         )}
@@ -294,7 +299,10 @@ export default function InteractiveChileMap({
           aria-label="Acercar"
           onClick={() => zoomBy(ZOOM_STEP)}
           className="w-10 h-10 flex items-center justify-center rounded-xl text-white shadow-lg active:scale-95 transition-transform"
-          style={{ background: "rgba(15, 30, 45, 0.85)", backdropFilter: "blur(8px)" }}
+          style={{
+            background: "rgba(15, 30, 45, 0.85)",
+            backdropFilter: "blur(8px)",
+          }}
         >
           <Plus size={18} />
         </button>
@@ -303,7 +311,10 @@ export default function InteractiveChileMap({
           aria-label="Alejar"
           onClick={() => zoomBy(1 / ZOOM_STEP)}
           className="w-10 h-10 flex items-center justify-center rounded-xl text-white shadow-lg active:scale-95 transition-transform"
-          style={{ background: "rgba(15, 30, 45, 0.85)", backdropFilter: "blur(8px)" }}
+          style={{
+            background: "rgba(15, 30, 45, 0.85)",
+            backdropFilter: "blur(8px)",
+          }}
         >
           <Minus size={18} />
         </button>
@@ -312,7 +323,10 @@ export default function InteractiveChileMap({
           aria-label="Restablecer vista"
           onClick={resetView}
           className="w-10 h-10 flex items-center justify-center rounded-xl text-white shadow-lg active:scale-95 transition-transform"
-          style={{ background: "rgba(15, 30, 45, 0.85)", backdropFilter: "blur(8px)" }}
+          style={{
+            background: "rgba(15, 30, 45, 0.85)",
+            backdropFilter: "blur(8px)",
+          }}
         >
           <Maximize2 size={16} />
         </button>
@@ -349,7 +363,10 @@ export default function InteractiveChileMap({
           // scroll normal de página vs. zoom intencional (Ctrl/Cmd).
           filterZoomEvent={(event) => {
             if (event.type === "wheel") {
-              return (event as unknown as WheelEvent).ctrlKey || (event as unknown as WheelEvent).metaKey;
+              return (
+                (event as unknown as WheelEvent).ctrlKey ||
+                (event as unknown as WheelEvent).metaKey
+              );
             }
             return true;
           }}
