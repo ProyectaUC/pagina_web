@@ -448,11 +448,10 @@ export default function Equipo() {
                       <div className="p-6 sm:p-8 pt-0 border-t border-gray-100 dark:border-white/10 mt-2">
                         {/* Adaptable Group Image Container */}
                         <div
-                          className={`relative w-full rounded-[2rem] overflow-hidden shadow-lg mb-12 border border-black/5 dark:border-white/10 ${
-                            equipo.isVerticalGroupImage
+                          className={`relative w-full rounded-[2rem] overflow-hidden shadow-lg mb-12 border border-black/5 dark:border-white/10 ${equipo.isVerticalGroupImage
                               ? "aspect-[2/3] sm:aspect-[2/3] max-h-[75vh]"
                               : "aspect-[3/2] sm:aspect-[3/2]"
-                          }`}
+                            }`}
                         >
                           <img
                             src={equipo.groupImage}
@@ -476,11 +475,10 @@ export default function Equipo() {
                             {equipo.members.map((member, idx) => (
                               <div
                                 key={idx}
-                                className={`glass rounded-[2rem] overflow-hidden flex flex-col transition-all duration-500 border relative ${
-                                  member.isMentor
+                                className={`glass rounded-[2rem] overflow-hidden flex flex-col transition-all duration-500 border relative ${member.isMentor
                                     ? "border-proyecta-yellow/80 shadow-[0_0_20px_rgba(255,183,3,0.2)] dark:shadow-[0_0_20px_rgba(255,183,3,0.15)]"
                                     : "border-black/5 dark:border-white/10"
-                                }`}
+                                  }`}
                               >
                                 {/* MENTOR TAG */}
                                 {member.isMentor && (
@@ -514,27 +512,26 @@ export default function Equipo() {
                                     {member.name}
                                   </h4>
 
-                                  {/* Fun Fact - Highlighted Box */}
-                                  <div
-                                    className={`mt-auto p-4 rounded-r-xl border-l-4 ${
-                                      member.isMentor
-                                        ? "bg-proyecta-yellow/20 dark:bg-proyecta-yellow/10 border-proyecta-yellow"
-                                        : "bg-proyecta-cyan/10 dark:bg-proyecta-cyan/5 border-proyecta-cyan"
-                                    }`}
-                                  >
-                                    <p
-                                      className={`text-xs font-bold uppercase tracking-widest mb-1 ${
-                                        member.isMentor
-                                          ? "text-proyecta-yellow"
-                                          : "text-proyecta-cyan"
-                                      }`}
+                                  {member.funFact && (
+                                    <div
+                                      className={`mt-auto p-4 rounded-r-xl border-l-4 ${member.isMentor
+                                          ? "bg-proyecta-yellow/20 dark:bg-proyecta-yellow/10 border-proyecta-yellow"
+                                          : "bg-proyecta-cyan/10 dark:bg-proyecta-cyan/5 border-proyecta-cyan"
+                                        }`}
                                     >
-                                      Dato Curioso
-                                    </p>
-                                    <p className="text-proyecta-navy/80 dark:text-white/70 text-sm italic">
-                                      "{member.funFact}"
-                                    </p>
-                                  </div>
+                                      <p
+                                        className={`text-xs font-bold uppercase tracking-widest mb-1 ${member.isMentor
+                                            ? "text-proyecta-yellow"
+                                            : "text-proyecta-cyan"
+                                          }`}
+                                      >
+                                        Dato Curioso
+                                      </p>
+                                      <p className="text-proyecta-navy/80 dark:text-white/70 text-sm italic">
+                                        "{member.funFact}"
+                                      </p>
+                                    </div>
+                                  )}
                                 </div>
                               </div>
                             ))}

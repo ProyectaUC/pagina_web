@@ -12,7 +12,7 @@ import type { Community, Category } from "../../data/communities";
 import { categoryColors } from "../../data/communities";
 
 // ── Local GeoJSON for Chile regions (WGS84 SimpleMaps structure) ──
-const CHILE_GEO_URL = `${import.meta.env.BASE_URL}/assets/geo/cl.json`;
+const CHILE_GEO_URL = `${import.meta.env.BASE_URL}assets/geo/cl.json`;
 
 // ── Chile projection config ──────────────────────────────────
 const PROJECTION_CONFIG = {
