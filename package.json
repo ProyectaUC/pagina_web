@@ -2,7 +2,7 @@
   "name": "proyecta-web",
   "version": "1.0.0",
   "description": "Sitio web oficial de Proyecta CAI",
-  "homepage": "https://proyectauc.github.io/pagina_web/",
+  "homepage": "https://proyecta.cai.cl/",
   "type": "module",
   "scripts": {
     "dev": "vite",
