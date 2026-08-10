@@ -229,6 +229,8 @@ export default function CommunityModal({
                         src={photo.url}
                         alt={`Miniatura ${i + 1}`}
                         className="w-full h-full object-cover"
+                        loading="lazy"
+                        decoding="async"
                       />
                     </button>
                   ))}

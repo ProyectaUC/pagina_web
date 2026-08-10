@@ -246,6 +246,8 @@ function SponsorsTab() {
                   alt={s.name}
                   // Aumentamos el tamaño (max-h-16), quitamos la opacidad, y agregamos un efecto de zoom al hacer hover
                   className="max-h-30 w-full p-2 object-contain transition-transform duration-300 group-hover:scale-110"
+                  loading="lazy"
+                  decoding="async"
                 />
               ) : (
                 <span className="text-xs text-gray-400 dark:text-white/30 font-medium">

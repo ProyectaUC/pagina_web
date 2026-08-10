@@ -27,6 +27,9 @@ export default function Hero() {
           src={`${import.meta.env.BASE_URL}assets/photos/epica.jpeg`}
           alt="Voluntarios de Proyecta trabajando en equipo"
           className="w-full h-full object-cover object-center transform scale-105 animate-[kenburns_20s_ease-in-out_infinite_alternate]"
+          loading="eager"
+          decoding="async"
+          fetchpriority="high"
         />
         {/* Overlay oscuro para legibilidad */}
         <div className="absolute inset-0 bg-[#0D1F2A]/30 mix-blend-multiply"></div>

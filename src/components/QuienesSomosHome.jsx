@@ -32,6 +32,8 @@ export default function QuienesSomosHome() {
                 src={`${import.meta.env.BASE_URL}assets/photos/blanco_y_negro.JPG`}
                 alt="Voluntarios de Proyecta trabajando en equipo"
                 className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-1000 ease-in-out"
+                loading="lazy"
+                decoding="async"
               />
               <div className="absolute inset-0 bg-proyecta-navy/10 mix-blend-multiply group-hover:bg-transparent transition-colors duration-700"></div>
             </div>
