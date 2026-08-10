@@ -115,6 +115,8 @@ export default function QuienesSomos() {
                 src={`${import.meta.env.BASE_URL}assets/photos/blanco_y_negro.JPG`}
                 alt="Voluntarios de Proyecta trabajando en equipo"
                 className="w-full h-full object-cover"
+                loading="lazy"
+                decoding="async"
               />
               <div className="absolute inset-0 bg-proyecta-navy/20 mix-blend-multiply"></div>
             </div>
@@ -194,6 +196,8 @@ export default function QuienesSomos() {
                 src={`${import.meta.env.BASE_URL}assets/photos/comunidad.jpg`}
                 alt="Comunidad unida en Proyecta"
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                loading="lazy"
+                decoding="async"
               />
             </div>
           </div>
@@ -211,6 +215,8 @@ export default function QuienesSomos() {
                 src={`${import.meta.env.BASE_URL}assets/photos/saludo.JPG`}
                 alt="Voluntarios mirando hacia el futuro rural"
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                loading="lazy"
+                decoding="async"
               />
             </div>
             <div className="md:w-5/12 glass p-8 sm:p-12 rounded-[2rem] relative overflow-hidden group">
@@ -365,6 +371,8 @@ export default function QuienesSomos() {
                     src={pilar.image}
                     alt={pilar.title}
                     className="absolute inset-0 w-full h-full object-cover rounded-[2.5rem] transform scale-100 group-hover:scale-105 transition-transform duration-700 ease-in-out"
+                    loading="lazy"
+                    decoding="async"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0B151E]/95 via-[#0B151E]/75 to-transparent group-hover:via-[#0B151E]/85 transition-all duration-300 rounded-[2.5rem]"></div>
 
@@ -420,6 +428,8 @@ export default function QuienesSomos() {
                       src={p.image}
                       alt={p.label}
                       className="w-full h-full object-cover transform scale-100 group-hover:scale-110 transition-transform duration-700 ease-in-out"
+                      loading="lazy"
+                      decoding="async"
                     />
                     <div className="absolute inset-0 bg-proyecta-navy/30 group-hover:bg-proyecta-navy/10 transition-colors duration-500"></div>
                   </div>

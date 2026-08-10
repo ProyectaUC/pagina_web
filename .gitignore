@@ -17,3 +17,6 @@ Thumbs.db
 .vscode/
 
 .vite/
+
+# Configuración local de Claude Code
+.claude/

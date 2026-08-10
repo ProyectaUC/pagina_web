@@ -366,6 +366,9 @@ export default function Equipo() {
             src="assets/equipos/completo.jpeg"
             alt="Equipo Proyecta 2026 en terreno"
             className="w-full h-full object-cover object-center"
+            loading="eager"
+            decoding="async"
+            fetchpriority="high"
           />
           {/* Dark Overlay for Text Readability */}
           <div className="absolute inset-0 bg-proyecta-navy/60 dark:bg-[#0D1F2A]/50 mix-blend-multiply"></div>
@@ -457,6 +460,8 @@ export default function Equipo() {
                             src={equipo.groupImage}
                             alt={`Equipo de ${equipo.title}`}
                             className="w-full h-full object-cover"
+                            loading="lazy"
+                            decoding="async"
                           />
                           <div className="absolute inset-0 bg-gradient-to-t from-[#0D1F2A]/90 via-[#0D1F2A]/40 to-transparent"></div>
                           <div className="absolute bottom-0 left-0 w-full p-8 sm:p-10">
@@ -494,6 +499,8 @@ export default function Equipo() {
                                     src={member.image}
                                     alt={member.name}
                                     className="w-full h-full object-cover"
+                                    loading="lazy"
+                                    decoding="async"
                                   />
                                   {/* Floating Year/Field Badge */}
                                   <div className="absolute top-4 right-4 flex flex-col gap-2 items-end z-10">
