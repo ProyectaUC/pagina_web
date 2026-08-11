@@ -54,7 +54,7 @@ export default function QuienesSomosHome() {
 
           {/* COLUMNA DERECHA: Textos y CTA */}
           <div className="flex flex-col items-start text-left order-1 lg:order-2">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-proyecta-cyan/10 border border-proyecta-cyan/20 text-proyecta-cyan text-xs font-bold uppercase tracking-widest mb-6">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-proyecta-cyan/10 border border-proyecta-teal/30 dark:border-proyecta-cyan/20 text-proyecta-teal dark:text-proyecta-cyan text-xs font-bold uppercase tracking-widest mb-6">
               Nuestra Esencia
             </div>
 
@@ -85,7 +85,7 @@ export default function QuienesSomosHome() {
             {/* Mini-Grid de Misión y Visión resumidas */}
             <div className="grid sm:grid-cols-2 gap-6 mb-10 w-full">
               <div className="glass p-5 rounded-2xl border border-black/5 dark:border-white/10 bg-proyecta-cyan/5 dark:bg-proyecta-cyan/5">
-                <Target size={24} className="text-proyecta-cyan mb-3" />
+                <Target size={24} className="text-proyecta-teal dark:text-proyecta-cyan mb-3" />
                 <h4 className="text-proyecta-navy dark:text-white font-bold mb-1">
                   Misión
                 </h4>
@@ -95,7 +95,7 @@ export default function QuienesSomosHome() {
                 </p>
               </div>
               <div className="glass p-5 rounded-2xl border border-black/5 dark:border-white/10 bg-proyecta-yellow/5 dark:bg-proyecta-yellow/5">
-                <Eye size={24} className="text-proyecta-yellow mb-3" />
+                <Eye size={24} className="text-proyecta-orange dark:text-proyecta-yellow mb-3" />
                 <h4 className="text-proyecta-navy dark:text-white font-bold mb-1">
                   Visión
                 </h4>

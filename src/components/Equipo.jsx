@@ -21,7 +21,7 @@ export const equiposData = [
     id: "jefes",
     title: "Jefes Generales",
     icon: Star, // Recuerda que debes tener los iconos importados
-    color: "text-proyecta-yellow",
+    color: "text-proyecta-orange dark:text-proyecta-yellow",
     bgIcon: "bg-proyecta-yellow/10",
     groupImage: `${import.meta.env.BASE_URL}assets/equipos/jefes/jefes.jpg`,
     isVerticalGroupImage: true,
@@ -49,7 +49,7 @@ export const equiposData = [
     id: "difusion",
     title: "Difusión",
     icon: Megaphone,
-    color: "text-proyecta-cyan",
+    color: "text-proyecta-teal dark:text-proyecta-cyan",
     bgIcon: "bg-proyecta-cyan/10",
     groupImage: `${import.meta.env.BASE_URL}assets/equipos/difusion/difu.jpg`,
     isVerticalGroupImage: true,
@@ -153,7 +153,7 @@ export const equiposData = [
     id: "recursos",
     title: "Recursos",
     icon: Package,
-    color: "text-proyecta-yellow",
+    color: "text-proyecta-orange dark:text-proyecta-yellow",
     bgIcon: "bg-proyecta-yellow/10",
     groupImage: `${import.meta.env.BASE_URL}assets/equipos/recursos/recursos.jpeg`,
     isVerticalGroupImage: false,
@@ -193,7 +193,7 @@ export const equiposData = [
     id: "diseno",
     title: "Diseño y Construcción",
     icon: Hammer,
-    color: "text-proyecta-cyan",
+    color: "text-proyecta-teal dark:text-proyecta-cyan",
     bgIcon: "bg-proyecta-cyan/10",
     groupImage: `${import.meta.env.BASE_URL}assets/equipos/diseño_y_construccion/dyc.jpg`,
     isVerticalGroupImage: true,
@@ -264,7 +264,7 @@ export const equiposData = [
     id: "resultados",
     title: "Resultados e Impacto",
     icon: TrendingUp,
-    color: "text-proyecta-yellow",
+    color: "text-proyecta-orange dark:text-proyecta-yellow",
     bgIcon: "bg-proyecta-yellow/10",
     groupImage: `${import.meta.env.BASE_URL}assets/equipos/resultados_e_impacto/rei.jpg`,
     isVerticalGroupImage: true,
@@ -323,7 +323,7 @@ export const equiposData = [
     id: "talleres",
     title: "Talleres",
     icon: Palette,
-    color: "text-proyecta-cyan",
+    color: "text-proyecta-teal dark:text-proyecta-cyan",
     bgIcon: "bg-proyecta-cyan/10",
     groupImage: `${import.meta.env.BASE_URL}assets/equipos/talleres/talleres.jpg`,
     isVerticalGroupImage: true,
@@ -420,7 +420,7 @@ export default function Equipo() {
               return (
                 <div
                   key={equipo.id}
-                  className={`card dark:card-dark overflow-hidden transition-all duration-500 border ${isOpen ? "border-proyecta-cyan shadow-proyecta-lg dark:border-proyecta-cyan/50" : "border-transparent"}`}
+                  className={`card overflow-hidden transition-all duration-500 border ${isOpen ? "border-proyecta-cyan shadow-proyecta-lg dark:border-proyecta-cyan/50" : "border-transparent"}`}
                 >
                   {/* Accordion Toggle Button */}
                   <button
@@ -439,7 +439,7 @@ export default function Equipo() {
                     </div>
                     <ChevronDown
                       size={32}
-                      className={`text-proyecta-navy/40 dark:text-white/40 transition-transform duration-500 ${isOpen ? "rotate-180 text-proyecta-cyan dark:text-proyecta-cyan" : ""}`}
+                      className={`text-proyecta-navy/40 dark:text-white/40 transition-transform duration-500 ${isOpen ? "rotate-180 text-proyecta-teal dark:text-proyecta-cyan" : ""}`}
                     />
                   </button>
 
@@ -528,8 +528,8 @@ export default function Equipo() {
                                     >
                                       <p
                                         className={`text-xs font-bold uppercase tracking-widest mb-1 ${member.isMentor
-                                            ? "text-proyecta-yellow"
-                                            : "text-proyecta-cyan"
+                                            ? "text-proyecta-orange dark:text-proyecta-yellow"
+                                            : "text-proyecta-teal dark:text-proyecta-cyan"
                                           }`}
                                       >
                                         Dato Curioso

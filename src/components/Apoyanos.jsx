@@ -126,7 +126,7 @@ function VoluntariosTab() {
               >
                 <CheckCircle
                   size={18}
-                  className="text-proyecta-cyan flex-shrink-0"
+                  className="text-proyecta-teal dark:text-proyecta-cyan flex-shrink-0"
                   strokeWidth={2}
                 />
                 <span className="text-sm font-medium">{item}</span>
@@ -206,7 +206,7 @@ function SponsorsTab() {
                   >
                     <CheckCircle
                       size={13}
-                      className="text-proyecta-cyan flex-shrink-0 mt-0.5"
+                      className="text-proyecta-teal dark:text-proyecta-cyan flex-shrink-0 mt-0.5"
                       strokeWidth={2}
                     />
                     {b}
@@ -229,7 +229,7 @@ function SponsorsTab() {
 
       {/* Sponsor logos grid */}
       <div>
-        <h4 className="text-sm font-bold uppercase tracking-widest text-gray-400 mb-4">
+        <h4 className="text-sm font-bold uppercase tracking-widest text-gray-400 dark:text-white/40 mb-4">
           Sponsors actuales
         </h4>
         <div className="grid grid-cols-3 gap-3">
@@ -257,7 +257,7 @@ function SponsorsTab() {
             </div>
           ))}
         </div>
-        <p className="text-xs text-gray-400 mt-3 text-center">
+        <p className="text-xs text-gray-400 dark:text-white/40 mt-3 text-center">
           Tu logo aquí → {SPONSORS_EMAIL}
         </p>
       </div>
@@ -341,7 +341,7 @@ function DonacionesTab() {
               key={a.value}
               className="flex items-center gap-3 text-sm text-gray-600 dark:text-white/70"
             >
-              <Hammer size={14} className="text-proyecta-cyan flex-shrink-0" />
+              <Hammer size={14} className="text-proyecta-teal dark:text-proyecta-cyan flex-shrink-0" />
               <span>
                 <strong className="text-proyecta-navy dark:text-white">
                   ${a.value.toLocaleString("es-CL")}

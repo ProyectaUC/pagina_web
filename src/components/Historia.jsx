@@ -44,10 +44,10 @@ export default function Historia() {
     <div className="min-h-[70vh] flex flex-col items-center justify-center bg-white dark:bg-[#0D1F2A] px-6 text-center transition-colors duration-300">
       <div className="relative mb-8">
         <div className="p-6 bg-proyecta-cyan/10 rounded-full animate-pulse">
-          <Hammer size={64} className="text-proyecta-cyan" />
+          <Hammer size={64} className="text-proyecta-teal dark:text-proyecta-cyan" />
         </div>
         <Sparkles
-          className="absolute -top-2 -right-4 text-proyecta-yellow animate-bounce"
+          className="absolute -top-2 -right-4 text-proyecta-orange dark:text-proyecta-yellow animate-bounce"
           size={36}
         />
       </div>

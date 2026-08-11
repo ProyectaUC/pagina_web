@@ -28,10 +28,10 @@ export default function Navbar() {
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 backdrop-blur-md ${
           scrolled
-            ? "bg-proyecta-navy/95 backdrop-blur-md shadow-lg py-3"
-            : "bg-transparent py-5"
+            ? "bg-white/90 dark:bg-proyecta-navy/95 shadow-lg py-3"
+            : "bg-white/75 dark:bg-proyecta-navy/80 py-5"
         }`}
       >
         <div className="section-container flex items-center justify-between">
@@ -55,7 +55,7 @@ export default function Navbar() {
             />
             {/* Fallback text logo */}
             <span
-              className="hidden items-center gap-2 text-proyecta-cyan font-display text-2xl"
+              className="hidden items-center gap-2 text-proyecta-teal dark:text-proyecta-cyan font-display text-2xl"
               style={{ fontFamily: "var(--font-display)" }}
             >
               {content.org.name}
@@ -69,10 +69,10 @@ export default function Navbar() {
                 <NavLink
                   to={link.to}
                   className={({ isActive }) =>
-                    `px-4 py-2 text-sm font-semibold transition-colors duration-200 rounded-lg hover:bg-white/5 ${
+                    `px-4 py-2 text-sm font-semibold transition-colors duration-200 rounded-lg hover:bg-proyecta-navy/5 dark:hover:bg-white/5 ${
                       isActive
-                        ? "text-proyecta-cyan"
-                        : "text-white/90 hover:text-proyecta-cyan"
+                        ? "text-proyecta-teal dark:text-proyecta-cyan"
+                        : "text-proyecta-navy/80 dark:text-white/90 hover:text-proyecta-teal dark:hover:text-proyecta-cyan"
                     }`
                   }
                 >
@@ -85,14 +85,14 @@ export default function Navbar() {
           {/* Right actions */}
           <div className="hidden lg:flex items-center gap-3">
             {/* Dark mode toggle */}
-            {/* <button
+            <button
               onClick={() => setIsDark(!isDark)}
-              className="p-2 rounded-lg text-white/70 hover:text-proyecta-cyan hover:bg-white/10
+              className="p-2 rounded-lg text-proyecta-navy/70 dark:text-white/70 hover:text-proyecta-teal dark:hover:text-proyecta-cyan hover:bg-proyecta-navy/5 dark:hover:bg-white/10
                          transition-all duration-200"
               aria-label="Cambiar tema"
             >
               {isDark ? <Sun size={18} /> : <Moon size={18} />}
-            </button> */}
+            </button>
 
             {/* CTA button */}
             <Link to="/apoyanos" className="btn-primary text-sm px-5 py-2.5">
@@ -102,16 +102,16 @@ export default function Navbar() {
 
           {/* Mobile menu button */}
           <div className="flex lg:hidden items-center gap-2">
-            {/* <button
+            <button
               onClick={() => setIsDark(!isDark)}
-              className="p-2 rounded-lg text-white/70 hover:text-proyecta-cyan"
+              className="p-2 rounded-lg text-proyecta-navy/70 dark:text-white/70 hover:text-proyecta-teal dark:hover:text-proyecta-cyan"
               aria-label="Cambiar tema"
             >
               {isDark ? <Sun size={16} /> : <Moon size={16} />}
-            </button> */}
+            </button>
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="p-2 rounded-lg text-white hover:bg-white/10 transition-colors"
+              className="p-2 rounded-lg text-proyecta-navy dark:text-white hover:bg-proyecta-navy/5 dark:hover:bg-white/10 transition-colors"
               aria-label="Menú"
             >
               {isOpen ? <X size={22} /> : <Menu size={22} />}
