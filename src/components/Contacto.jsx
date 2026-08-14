@@ -126,7 +126,7 @@ export default function Contacto() {
                   <div className="p-3 rounded-xl bg-proyecta-cyan/10">
                     <Icon
                       size={20}
-                      className="text-proyecta-cyan"
+                      className="text-proyecta-teal dark:text-proyecta-cyan"
                       strokeWidth={1.5}
                     />
                   </div>

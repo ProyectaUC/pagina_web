@@ -23,7 +23,7 @@ export default function TrabajosPage() {
       {/* ── Header section ───────────────────────────────────── */}
       <section className="pb-6">
         <div className="section-container text-center flex flex-col items-center">
-          <span className="section-tag">Exploracion</span>
+          <span className="section-tag bg-white/10 border-white/20 text-white">Exploracion</span>
           <h1 className="section-title mt-4 text-white">Nuestros Trabajos</h1>
           <span className="decorative-line mx-auto" />
           <p className="text-sm sm:text-base text-white/70 max-w-2xl mx-auto">

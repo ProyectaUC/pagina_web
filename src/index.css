@@ -100,21 +100,17 @@
         border border-proyecta-cyan/30 bg-white/70 text-proyecta-navy font-bold text-sm
         backdrop-blur-md hover:bg-white hover:border-proyecta-cyan/50 hover:text-proyecta-teal
         hover:-translate-y-0.5
+        dark:bg-proyecta-navy/40 dark:text-white dark:border-proyecta-cyan/30
+        dark:hover:bg-proyecta-navy/60 dark:hover:text-proyecta-cyan
            focus:outline-none focus:ring-2 focus:ring-proyecta-cyan focus:ring-offset-2;
   }
 
-  /* Card base */
+  /* Card base (se adapta solo al tema, sin necesidad de una clase aparte) */
   .card {
-    @apply bg-white rounded-2xl shadow-card hover:shadow-card-hover
+    @apply bg-white dark:bg-proyecta-navy/80 rounded-2xl shadow-card hover:shadow-card-hover
            transition-all duration-300 transform hover:-translate-y-1
-           border border-gray-100;
-  }
-
-  .card-dark {
-    @apply bg-proyecta-navy/80 rounded-2xl
-           border border-proyecta-teal/20
-           hover:border-proyecta-cyan/40
-           transition-all duration-300 transform hover:-translate-y-1;
+           border border-gray-100 dark:border-proyecta-teal/20
+           dark:hover:border-proyecta-cyan/40;
   }
 
   /* Sección container */
@@ -200,6 +196,10 @@
   background: #F0FAFF;
 }
 
+.dark ::-webkit-scrollbar-track {
+  background: var(--color-bg-2);
+}
+
 ::-webkit-scrollbar-thumb {
   background: var(--color-teal);
   border-radius: 4px;
@@ -223,6 +223,6 @@
   transition: none;
 }
 
-.btn-primary, .btn-secondary, .card, .card-dark, a, button {
+.btn-primary, .btn-secondary, .card, a, button {
   transition: all 0.3s ease;
 }

@@ -51,14 +51,14 @@ const principiosValores = [
   {
     icon: HeartHandshake,
     label: "Respeto",
-    color: "text-proyecta-cyan",
+    color: "text-proyecta-teal dark:text-proyecta-cyan",
     image: `${import.meta.env.BASE_URL}assets/photos/construyendo.jpg`,
     text: "Reconocemos el valor intrínseco, la historia y la identidad de cada comunidad rural, trabajando de igual a igual.",
   },
   {
     icon: Users,
     label: "Inclusión",
-    color: "text-proyecta-yellow",
+    color: "text-proyecta-orange dark:text-proyecta-yellow",
     image: `${import.meta.env.BASE_URL}assets/photos/awada.jpeg`,
     text: "Construimos espacios donde cada vecino y vecina cuenta, promoviendo la participación activa sin distinciones.",
   },
@@ -79,7 +79,7 @@ const principiosValores = [
   {
     icon: Sprout,
     label: "Agentes de Cambio",
-    color: "text-proyecta-sky",
+    color: "text-proyecta-teal dark:text-proyecta-sky",
     image: `${import.meta.env.BASE_URL}assets/photos/epica.jpeg`,
     text: "Inculcamos una actitud de servicio permanente que inspire a nuestros voluntarios a ser profesionales con conciencia social.",
   },
@@ -174,7 +174,7 @@ export default function QuienesSomos() {
               </div>
               <div className="inline-flex p-3 rounded-2xl bg-proyecta-cyan/10 mb-6">
                 <Target
-                  className="text-proyecta-cyan"
+                  className="text-proyecta-teal dark:text-proyecta-cyan"
                   size={28}
                   strokeWidth={2.5}
                 />
@@ -225,7 +225,7 @@ export default function QuienesSomos() {
               </div>
               <div className="inline-flex p-3 rounded-2xl bg-proyecta-yellow/10 mb-6">
                 <Eye
-                  className="text-proyecta-yellow"
+                  className="text-proyecta-orange dark:text-proyecta-yellow"
                   size={28}
                   strokeWidth={2.5}
                 />
@@ -258,7 +258,7 @@ export default function QuienesSomos() {
             <span className="section-tag mb-4">Nuestro Propósito</span>
             <h2 className="section-title mt-4">
               Objetivos Globales en{" "}
-              <span className="text-proyecta-cyan">Dos Frentes</span>
+              <span className="text-proyecta-teal dark:text-proyecta-cyan">Dos Frentes</span>
             </h2>
             <span className="decorative-line mx-auto" />
             <p className="max-w-2xl mx-auto text-lg text-proyecta-navy/70 dark:text-white/70 mt-4">
@@ -269,9 +269,9 @@ export default function QuienesSomos() {
 
           <div className="grid md:grid-cols-2 gap-8">
             {/* Frente Comunidades */}
-            <div className="card dark:card-dark p-8 sm:p-10 border-t-4 border-t-proyecta-yellow">
+            <div className="card p-8 sm:p-10 border-t-4 border-t-proyecta-yellow">
               <div className="flex items-center gap-4 mb-6">
-                <div className="p-4 rounded-full bg-proyecta-yellow/10 text-proyecta-yellow">
+                <div className="p-4 rounded-full bg-proyecta-yellow/10 text-proyecta-orange dark:text-proyecta-yellow">
                   <Home size={32} />
                 </div>
                 <h3 className="text-2xl font-bold text-proyecta-navy dark:text-white">
@@ -280,21 +280,21 @@ export default function QuienesSomos() {
               </div>
               <ul className="space-y-4 text-proyecta-navy/80 dark:text-white/70 text-base">
                 <li className="flex items-start gap-3">
-                  <span className="text-proyecta-yellow font-bold text-lg">
+                  <span className="text-proyecta-orange dark:text-proyecta-yellow font-bold text-lg">
                     ✓
                   </span>{" "}
                   Potenciar la asociatividad, fomentando el empoderamiento y
                   liderazgo individual vecinal.
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-proyecta-yellow font-bold text-lg">
+                  <span className="text-proyecta-orange dark:text-proyecta-yellow font-bold text-lg">
                     ✓
                   </span>{" "}
                   Fortalecer de forma orgánica las redes de comunicación
                   interna, vecindad y confianza recíproca.
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-proyecta-yellow font-bold text-lg">
+                  <span className="text-proyecta-orange dark:text-proyecta-yellow font-bold text-lg">
                     ✓
                   </span>{" "}
                   Entregar infraestructura comunitaria útil que incremente los
@@ -304,7 +304,7 @@ export default function QuienesSomos() {
             </div>
 
             {/* Frente Voluntarios */}
-            <div className="card dark:card-dark p-8 sm:p-10 border-t-4 border-t-proyecta-teal">
+            <div className="card p-8 sm:p-10 border-t-4 border-t-proyecta-teal">
               <div className="flex items-center gap-4 mb-6">
                 <div className="p-4 rounded-full bg-proyecta-teal/10 text-proyecta-teal">
                   <UserPlus size={32} />
@@ -315,21 +315,21 @@ export default function QuienesSomos() {
               </div>
               <ul className="space-y-4 text-proyecta-navy/80 dark:text-white/70 text-base">
                 <li className="flex items-start gap-3">
-                  <span className="text-proyecta-cyan font-bold text-lg">
+                  <span className="text-proyecta-teal dark:text-proyecta-cyan font-bold text-lg">
                     ✓
                   </span>{" "}
                   Interiorizar de manera profunda los principios éticos y
                   solidarios que promueve el proyecto.
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-proyecta-cyan font-bold text-lg">
+                  <span className="text-proyecta-teal dark:text-proyecta-cyan font-bold text-lg">
                     ✓
                   </span>{" "}
                   Desarrollar aptitudes críticas de liderazgo valórico y
                   catalizadores de cambio social.
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-proyecta-cyan font-bold text-lg">
+                  <span className="text-proyecta-teal dark:text-proyecta-cyan font-bold text-lg">
                     ✓
                   </span>{" "}
                   Potenciar la autoconformación reflexiva, la empatía
@@ -421,7 +421,7 @@ export default function QuienesSomos() {
               return (
                 <div
                   key={p.label}
-                  className="w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.5rem)] card dark:card-dark flex flex-col rounded-[2.5rem] overflow-hidden group hover:-translate-y-2 transition-all duration-500 shadow-card border border-proyecta-navy/5 dark:border-white/5 bg-white dark:bg-[#122530]"
+                  className="w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.5rem)] card flex flex-col rounded-[2.5rem] overflow-hidden group hover:-translate-y-2 transition-all duration-500 shadow-card border border-proyecta-navy/5 dark:border-white/5 bg-white dark:bg-[#122530]"
                 >
                   <div className="relative h-48 overflow-hidden w-full">
                     <img
