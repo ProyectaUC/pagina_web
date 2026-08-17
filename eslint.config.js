@@ -35,6 +35,10 @@ export default tseslint.config(
         { allowConstantExport: true },
       ],
       "react/prop-types": "off", // el proyecto no usa prop-types
+      // React 18 todavia no reconoce fetchPriority en camelCase (recien en
+      // React 19); en minuscula es el atributo HTML real y el navegador lo
+      // respeta sin advertencias en consola.
+      "react/no-unknown-property": ["error", { ignore: ["fetchpriority"] }],
       // Solo la version de typescript-eslint entiende las firmas de tipos
       // (interface Foo { onClick: (e: Event) => void }) y no marca esos
       // nombres de parametro como "no usados".

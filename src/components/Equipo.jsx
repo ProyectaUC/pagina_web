@@ -22,7 +22,7 @@ export default function Equipo() {
             className="w-full h-full object-cover object-center"
             loading="eager"
             decoding="async"
-            fetchPriority="high"
+            fetchpriority="high"
           />
           {/* Dark Overlay for Text Readability */}
           <div className="absolute inset-0 bg-proyecta-navy/60 dark:bg-proyecta-surface/50 mix-blend-multiply"></div>
