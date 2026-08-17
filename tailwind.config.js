@@ -69,6 +69,10 @@ export default {
           '0%':   { backgroundPosition: '-200% 0' },
           '100%': { backgroundPosition: '200% 0' },
         },
+        'kenburns': {
+          '0%':   { transform: 'scale(1.05) translate(0, 0)' },
+          '100%': { transform: 'scale(1.15) translate(-1.5%, -1.5%)' },
+        },
       },
       animation: {
         'fade-up':    'fade-up 0.6s ease-out forwards',
