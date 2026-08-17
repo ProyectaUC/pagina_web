@@ -141,9 +141,11 @@
     background-clip: text;
   }
 
-  /* Glassmorphism */
+  /* Glassmorphism (theme-aware: estas tarjetas van sobre el fondo propio
+     de la sección, blanco o navy oscuro, no sobre fotos) */
   .glass {
-    @apply backdrop-blur-md bg-white/10 border border-white/20;
+    @apply backdrop-blur-md bg-proyecta-navy/5 border border-proyecta-navy/10
+           dark:bg-white/10 dark:border-white/20;
   }
 
   /* Gradient text */

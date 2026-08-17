@@ -10,6 +10,7 @@ import ApoyanosPage from "./pages/ApoyanosPage";
 // import ContactoPage from "./pages/ContactoPage";
 import TrabajosPage from "./pages/TrabajosPage";
 import EquipoPage from "./pages/EquipoPage";
+import NotFoundPage from "./pages/NotFoundPage";
 
 function Layout() {
   const { pathname } = useLocation(); // <-- 3. Obtenemos la ruta actual
@@ -43,6 +44,7 @@ export default function App() {
         <Route path="equipo" element={<EquipoPage />} />
         <Route path="apoyanos" element={<ApoyanosPage />} />
         {/* <Route path="contacto" element={<ContactoPage />} /> */}
+        <Route path="*" element={<NotFoundPage />} />
       </Route>
     </Routes>
   );
