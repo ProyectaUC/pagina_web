@@ -16,7 +16,7 @@ export default function Hero() {
           className="w-full h-full object-cover object-center transform scale-105 animate-[kenburns_20s_ease-in-out_infinite_alternate]"
           loading="eager"
           decoding="async"
-          fetchPriority="high"
+          fetchpriority="high"
         />
         {/* Overlay oscuro para legibilidad */}
         <div className="absolute inset-0 bg-proyecta-surface/30 mix-blend-multiply"></div>
