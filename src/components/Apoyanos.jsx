@@ -115,11 +115,11 @@ function SponsorsTab() {
         <h4 className="text-sm font-bold uppercase tracking-widest text-gray-400 dark:text-white/40 mb-4">
           Sponsors actuales
         </h4>
-        <div className="grid grid-cols-3 gap-3">
+        <div className="flex flex-wrap justify-center gap-3">
           {sponsors.map((s, i) => (
             <div
               key={i}
-              className="aspect-[3/2] rounded-xl border-2 border-dashed border-gray-200
+              className="w-32 aspect-[3/2] rounded-xl border-2 border-dashed border-gray-200
                          dark:border-proyecta-teal/20 flex items-center justify-center
                          hover:border-proyecta-cyan transition-colors cursor-pointer group"
             >

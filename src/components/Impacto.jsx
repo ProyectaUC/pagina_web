@@ -2,6 +2,7 @@ import { useInView, useCountUp } from "../hooks/useAnimations";
 import { impactStats as stats } from "../styles/theme/brand";
 import { ArrowRight } from "lucide-react";
 import Button from "./ui/Button";
+import ChileMapPreview from "./ui/ChileMapPreview";
 
 function StatCard({ stat, index, isVisible }) {
   const count = useCountUp(stat.value, 2000, isVisible);
@@ -130,16 +131,23 @@ export default function Impacto() {
           </p>
         </div>
 
-        {/* Stats grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-5 mb-12">
-          {stats.map((stat, i) => (
-            <StatCard
-              key={stat.label}
-              stat={stat}
-              index={i}
-              isVisible={isVisible}
-            />
-          ))}
+        {/* Stats + preview del mapa */}
+        <div className="grid lg:grid-cols-3 gap-5 mb-12">
+          <div className="lg:col-span-2 grid sm:grid-cols-2 gap-5">
+            {stats.map((stat, i) => (
+              <StatCard
+                key={stat.label}
+                stat={stat}
+                index={i}
+                isVisible={isVisible}
+              />
+            ))}
+          </div>
+
+          {/* Los números son abstractos; ver los puntos distribuidos en
+              Chile es más convincente. Preview estático (sin
+              react-simple-maps/framer-motion) que enlaza al mapa real. */}
+          <ChileMapPreview className="lg:col-span-1 h-64 sm:h-80 lg:h-[420px]" />
         </div>
         <div className="flex justify-end">
           <Button to="/trabajos" size="lg" className="w-full sm:w-auto">
@@ -147,7 +155,7 @@ export default function Impacto() {
             <ArrowRight size={20} />
           </Button>
         </div>
-        
+
       </div>
 
     </section>
