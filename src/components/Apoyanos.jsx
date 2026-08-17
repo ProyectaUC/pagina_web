@@ -1,12 +1,10 @@
 import { useState } from "react";
 import {
-  Users,
   Building2,
   Heart,
   CreditCard,
   CheckCircle,
   ArrowRight,
-  MessageCircle,
   Mail,
   Hammer,
 } from "lucide-react";
@@ -16,101 +14,13 @@ import { donationAmounts, MP_LINK_GENERICO } from "../data/donaciones";
 import { sponsors } from "../data/sponsors";
 import Button from "./ui/Button";
 
-// ============================================================
-// 🔗 ENLACES Y CONTACTOS — completar antes de publicar
-// ============================================================
-// Grupo de WhatsApp para voluntarios: reemplazar por el link real
-// generado desde WhatsApp (Configuración > Grupo > Invitar por link).
-const WHATSAPP_GROUP_URL =
-  "https://chat.whatsapp.com/IbhVde7LXfnIfXyonU6rBr?s=cl&p=i&ilr=4&amv=1";
-
 // Correo de contacto para sponsors/empresas.
 const SPONSORS_EMAIL = content.org.email;
 
 const tabs = [
-  { id: "voluntarios", label: "Voluntarios", icon: Users },
   { id: "sponsors", label: "Sponsors", icon: Building2 },
   { id: "donaciones", label: "Donaciones", icon: Heart },
 ];
-
-function VoluntariosTab() {
-  return (
-    <div className="space-y-12">
-      {/* ── Bloque destacado: grupo de WhatsApp ── */}
-      <div
-        className="rounded-2xl p-6 sm:p-8 flex flex-col sm:flex-row items-center gap-6 border border-proyecta-cyan/20"
-        style={{
-          background:
-            "linear-gradient(135deg, rgba(37,211,102,0.08), rgba(64,208,240,0.08))",
-        }}
-      >
-        <div className="flex-shrink-0 w-14 h-14 rounded-2xl bg-[#25D366] flex items-center justify-center shadow-lg">
-          <MessageCircle size={28} className="text-white" />
-        </div>
-        <div className="flex-1 text-center sm:text-left">
-          <h4 className="font-black text-proyecta-navy dark:text-white text-lg mb-1">
-            Únete a nuestro grupo de WhatsApp
-          </h4>
-          <p className="text-sm text-gray-500 dark:text-white/60">
-            Entérate primero de operativos, talleres y actividades. Es la forma
-            más rápida de mantenerte al día con Proyecta.
-          </p>
-        </div>
-        <a
-          href={WHATSAPP_GROUP_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex-shrink-0 flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm text-white transition-all hover:opacity-90 hover:-translate-y-0.5 shadow-lg"
-          style={{ background: "#25D366" }}
-        >
-          <MessageCircle size={18} />
-          Unirme al grupo
-        </a>
-      </div>
-
-      <div className="gap-12 items-center">
-        {/* Left: info */}
-        <div>
-          <h3
-            className="text-3xl text-proyecta-navy dark:text-white mb-4"
-            style={{ fontFamily: "var(--font-display)" }}
-          >
-            Únete a nuestra red
-          </h3>
-          <p className="text-gray-500 dark:text-white/60 mb-8 leading-relaxed">
-            Ser voluntario en Proyecta significa ser parte de una comunidad que
-            trabaja junta para mejorar la vida de las comunidades rurales. No
-            importa tu experiencia previa: lo que más valoramos es tu entusiasmo
-            y compromiso.
-          </p>
-          <p className="text-gray-500 dark:text-white/60 mb-4 leading-relaxed">
-            Al unirte, podrás:
-          </p>
-          <ul className="space-y-3">
-            {[
-              "Participa en operativos comunitarios",
-              "Desarrolla habilidades de liderazgo",
-              "Forma parte de una red interuniversitaria",
-              "Impacta vidas directamente",
-            ].map((item) => (
-              <li
-                key={item}
-                className="flex items-center gap-3 text-gray-600 dark:text-white/70"
-              >
-                <CheckCircle
-                  size={18}
-                  className="text-proyecta-teal dark:text-proyecta-cyan flex-shrink-0"
-                  strokeWidth={2}
-                />
-                <span className="text-sm font-medium">{item}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-    </div>
-  );
-}
 
 function SponsorsTab() {
   // Solo listas de beneficios, sin descripciones largas: todo apunta a
@@ -351,7 +261,7 @@ function DonacionesTab() {
 }
 
 export default function Apoyanos() {
-  const [activeTab, setActiveTab] = useState("voluntarios");
+  const [activeTab, setActiveTab] = useState("sponsors");
   const [ref, isVisible] = useInView();
 
   return (
@@ -373,7 +283,8 @@ export default function Apoyanos() {
           </h2>
           <span className="decorative-line mx-auto" />
           <p className="text-gray-500 dark:text-white/60 max-w-xl mx-auto text-lg">
-            Hay muchas formas de ser parte de Proyecta. Elige la tuya.
+            Empresas y personas también pueden ser parte de Proyecta: como
+            sponsor o con una donación.
           </p>
         </div>
 
@@ -413,7 +324,6 @@ export default function Apoyanos() {
           }`}
           style={{ transitionDelay: "200ms" }}
         >
-          {activeTab === "voluntarios" && <VoluntariosTab />}
           {activeTab === "sponsors" && <SponsorsTab />}
           {activeTab === "donaciones" && <DonacionesTab />}
         </div>

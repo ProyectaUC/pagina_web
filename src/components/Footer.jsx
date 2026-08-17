@@ -39,8 +39,8 @@ const navLinks = [
   { label: "Inicio", to: "/" },
   { label: "Quiénes Somos", to: "/quienes-somos" },
   { label: "Trabajos", to: "/trabajos" },
-  { label: "Historia", to: "/historia" },
   { label: "Equipo", to: "/equipo" },
+  { label: "Únete", to: "/unete" },
   { label: "Apóyanos", to: "/apoyanos" },
 ];
 

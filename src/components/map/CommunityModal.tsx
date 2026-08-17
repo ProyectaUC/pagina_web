@@ -138,6 +138,16 @@ export default function CommunityModal({
                 </AnimatePresence>
               )}
 
+              {/* Estado vacío: sin fotos registradas para esta comunidad */}
+              {(!community.photos || community.photos.length === 0) && (
+                <div className="flex flex-col items-center gap-3 text-white/40 px-6 text-center">
+                  <MapPin size={40} strokeWidth={1.5} />
+                  <p className="text-sm max-w-xs">
+                    Todavía no tenemos fotos registradas de este trabajo.
+                  </p>
+                </div>
+              )}
+
               {/* Controles de Navegación de Fotos */}
               {(community.photos?.length ?? 0) > 1 && (
                 <>

@@ -1,16 +1,23 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import InteractiveChileMap from "../components/map/InteractiveChileMap";
 import CommunityModal from "../components/map/CommunityModal";
 import { communities } from "../data/communities";
-// import { categoryColors, categoryLabels } from "../data/communities";
 import type { Community } from "../data/communities";
-// import type { Category } from "../data/communities";
 
 // ── Main Page ────────────────────────────────────────────────
 export default function TrabajosPage() {
   const [selectedCommunity, setSelectedCommunity] = useState<Community | null>(
     null,
   );
+
+  const { count, minYear, maxYear } = useMemo(() => {
+    const years = communities.map((c) => c.year);
+    return {
+      count: communities.length,
+      minYear: Math.min(...years),
+      maxYear: Math.max(...years),
+    };
+  }, []);
 
   return (
     <div className="relative pt-20 flex flex-col min-h-screen overflow-hidden bg-gradient-hero">
@@ -22,6 +29,9 @@ export default function TrabajosPage() {
           <span className="decorative-line mx-auto" />
           <p className="text-sm sm:text-base text-white/70 max-w-2xl mx-auto">
             Historia de intervencion territorial en comunidades de Chile.
+          </p>
+          <p className="mt-3 text-xs sm:text-sm font-semibold text-proyecta-cyan">
+            {count} trabajos · {minYear}–{maxYear} · haz clic en un punto para ver el detalle
           </p>
         </div>
       </section>

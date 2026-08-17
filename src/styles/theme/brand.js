@@ -3,6 +3,7 @@
 // ============================================================
 // IMPORTAMOS LOS ÍCONOS DIRECTO DESDE LUCIDE-REACT
 import { Calendar, MapPin, Building, Shovel } from "lucide-react";
+import { communities } from "../../data/communities";
 
 export const colors = {
   navy: "#1B3A4B",
@@ -46,6 +47,11 @@ export const content = {
   social: {
     instagram: "https://www.instagram.com/proyectauc/",
     linkedin: "https://www.linkedin.com/company/proyecta-uc/",
+    // Grupo de WhatsApp para voluntarios: reemplazar por el link real
+    // generado desde WhatsApp (Configuración > Grupo > Invitar por link)
+    // si en algún momento se renueva.
+    whatsapp:
+      "https://chat.whatsapp.com/IbhVde7LXfnIfXyonU6rBr?s=cl&p=i&ilr=4&amv=1",
   },
 };
 
@@ -79,7 +85,7 @@ export const impactStats = [
     bg: "from-proyecta-teal/20 to-proyecta-navy/10",
   },
   {
-    value: 37,
+    value: communities.length,
     suffix: "",
     label: "Trabajos realizados",
     Icon: Shovel, // Componente real
