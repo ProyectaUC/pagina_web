@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { Menu, X, Sun, Moon } from "lucide-react";
-import { assets, content } from "../styles/theme/brand";
 import { useDarkMode } from "../hooks/useAnimations";
 import Button from "./ui/Button";
+import Logo from "./ui/Logo";
 
 const navLinks = [
   { label: "Inicio", to: "/" },
@@ -43,25 +43,10 @@ export default function Navbar() {
             onClick={() => setIsOpen(false)}
             className="flex items-center gap-3 group"
           >
-            {/* ================================================
-                🖼 LOGO: Reemplaza assets.logo con SVG de Figma
-                ================================================ */}
-            <img
-              src={assets.logo}
-              alt={content.org.name}
-              className="h-10 w-auto object-contain group-hover:scale-105 transition-transform duration-300"
-              onError={(e) => {
-                e.target.style.display = "none";
-                e.target.nextSibling.style.display = "flex";
-              }}
+            <Logo
+              imgClassName="h-10 w-auto object-contain group-hover:scale-105 transition-transform duration-300"
+              textClassName="text-proyecta-teal dark:text-proyecta-cyan"
             />
-            {/* Fallback text logo */}
-            <span
-              className="hidden items-center gap-2 text-proyecta-teal dark:text-proyecta-cyan font-display text-2xl"
-              style={{ fontFamily: "var(--font-display)" }}
-            >
-              {content.org.name}
-            </span>
           </Link>
 
           {/* Desktop links */}

@@ -2,6 +2,7 @@ import { useEffect, lazy, Suspense } from "react";
 import { Routes, Route, Outlet, useLocation } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import ErrorBoundary from "./components/ErrorBoundary";
 import HomePage from "./pages/HomePage";
 
 // El resto de las rutas se cargan bajo demanda: evita que /trabajos
@@ -43,9 +44,11 @@ function Layout() {
       <Navbar />
 
       <main id="contenido">
-        <Suspense fallback={<RouteLoader />}>
-          <Outlet />
-        </Suspense>
+        <ErrorBoundary key={pathname}>
+          <Suspense fallback={<RouteLoader />}>
+            <Outlet />
+          </Suspense>
+        </ErrorBoundary>
       </main>
 
       <Footer />
