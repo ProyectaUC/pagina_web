@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Instagram, Linkedin } from "lucide-react";
-import { content, assets } from "../styles/theme/brand";
+import { content } from "../styles/theme/brand";
+import Logo from "./ui/Logo";
 
 const socialLinks = [
   {
@@ -55,22 +56,10 @@ export default function Footer() {
       <div className="section-container">
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
           <div className="lg:col-span-2">
-             <img
-              src={assets.logo}
-              alt={content.org.name}
-              className="h-10 w-auto object-contain mb-4 group-hover:scale-105 transition-transform duration-300"
-              onError={(e) => {
-                e.target.style.display = "none";
-                e.target.nextSibling.style.display = "flex";
-              }}
+            <Logo
+              imgClassName="h-10 w-auto object-contain mb-4 group-hover:scale-105 transition-transform duration-300"
+              textClassName="text-proyecta-cyan mb-4"
             />
-            {/* Fallback text logo */}
-            <span
-              className="hidden items-center gap-2 text-proyecta-cyan font-display text-2xl"
-              style={{ fontFamily: "var(--font-display)" }}
-            >
-              {content.org.name}
-            </span>
             <p className="text-white/60 text-sm leading-relaxed max-w-sm">
               Voluntariado universitario con la visión de potenciar a las comunidades rurales de nuestro país mediante la acción comunitaria.
             </p>
