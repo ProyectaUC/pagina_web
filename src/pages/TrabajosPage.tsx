@@ -13,13 +13,7 @@ export default function TrabajosPage() {
   );
 
   return (
-    <div
-      className="relative pt-20 flex flex-col min-h-screen overflow-hidden"
-      style={{
-        background:
-          "linear-gradient(160deg, #1B3A4B 0%, #1B5E7A 60%, #1B9AB5 100%)",
-      }}
-    >
+    <div className="relative pt-20 flex flex-col min-h-screen overflow-hidden bg-gradient-hero">
       {/* ── Header section ───────────────────────────────────── */}
       <section className="pb-6">
         <div className="section-container text-center flex flex-col items-center">

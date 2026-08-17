@@ -1,9 +1,9 @@
-import { Link } from "react-router-dom";
 import { Compass, ArrowRight, Home } from "lucide-react";
+import Button from "../components/ui/Button";
 
 export default function NotFoundPage() {
   return (
-    <section className="min-h-[70vh] flex flex-col items-center justify-center bg-white dark:bg-[#0D1F2A] px-6 text-center transition-colors duration-300">
+    <section className="min-h-[70vh] flex flex-col items-center justify-center bg-white dark:bg-proyecta-surface px-6 text-center transition-colors duration-300">
       <div className="p-6 bg-proyecta-cyan/10 rounded-full mb-8">
         <Compass size={64} className="text-proyecta-teal dark:text-proyecta-cyan" />
       </div>
@@ -20,14 +20,14 @@ export default function NotFoundPage() {
       </p>
 
       <div className="flex flex-col sm:flex-row gap-4">
-        <Link to="/" className="btn-primary px-8 py-3.5">
+        <Button to="/">
           <Home size={18} />
           Volver al inicio
-        </Link>
-        <Link to="/trabajos" className="btn-secondary px-8 py-3.5">
+        </Button>
+        <Button variant="secondary" to="/trabajos">
           Ver nuestros trabajos
           <ArrowRight size={18} />
-        </Link>
+        </Button>
       </div>
     </section>
   );

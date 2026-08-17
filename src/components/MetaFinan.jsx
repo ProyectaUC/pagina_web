@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import { Target, HeartHandshake } from "lucide-react";
+import Button from "./ui/Button";
 
 export default function MetaFinan() {
   // Estado inicial de respaldo (por si el Excel falla o el usuario no tiene internet)
@@ -78,13 +78,10 @@ export default function MetaFinan() {
             Tu aporte se transforma directamente en herramientas, materiales y logística para seguir construyendo comunidad en zonas rurales.
           </p>
           
-          <Link 
-            to="/apoyanos" 
-            className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-proyecta-yellow text-proyecta-navy font-bold text-lg rounded-full hover:bg-white transition-all duration-300 shadow-[0_0_20px_rgba(255,187,0,0.3)] hover:shadow-[0_0_30px_rgba(255,255,255,0.5)] transform hover:-translate-y-1"
-          >
+          <Button to="/apoyanos" variant="accent" size="lg">
             <HeartHandshake size={24} />
             Aportar a la meta
-          </Link>
+          </Button>
         </div>
 
         {/* Barra de progreso con estilo Glassmorphism */}

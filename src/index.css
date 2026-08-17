@@ -33,14 +33,6 @@
   --radius-btn:  0.75rem;
 }
 
-/* Dark mode variables */
-.dark {
-  --color-bg:     #0D1F2A;
-  --color-bg-2:   #122530;
-  --color-text:   #E8F4F8;
-  --color-muted:  #7BBDD4;
-}
-
 /* ============================================================
    🏗 BASE STYLES
    ============================================================ */
@@ -62,7 +54,7 @@
   }
 
   .dark body {
-    @apply bg-[#0D1F2A] text-proyecta-cyan;
+    @apply bg-proyecta-surface text-proyecta-cyan;
   }
 
   h1, h2, h3 {
@@ -103,6 +95,16 @@
         dark:bg-proyecta-navy/40 dark:text-white dark:border-proyecta-cyan/30
         dark:hover:bg-proyecta-navy/60 dark:hover:text-proyecta-cyan
            focus:outline-none focus:ring-2 focus:ring-proyecta-cyan focus:ring-offset-2;
+  }
+
+  /* Botón de acento (llamados a la acción destacados, ej. donaciones) */
+  .btn-accent {
+      @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full
+        bg-proyecta-yellow text-proyecta-navy font-bold text-sm
+        shadow-[0_0_20px_rgba(255,187,0,0.3)]
+        hover:bg-white hover:shadow-[0_0_30px_rgba(255,255,255,0.5)]
+        hover:-translate-y-0.5
+           focus:outline-none focus:ring-2 focus:ring-proyecta-yellow focus:ring-offset-2;
   }
 
   /* Card base (se adapta solo al tema, sin necesidad de una clase aparte) */
@@ -195,11 +197,11 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #F0FAFF;
+  @apply bg-proyecta-light-bg;
 }
 
 .dark ::-webkit-scrollbar-track {
-  background: var(--color-bg-2);
+  @apply bg-proyecta-surface-2;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -213,14 +215,9 @@
 
 /* ============================================================
    📱 SMOOTH TRANSITIONS GLOBALES
+   Por defecto ningún elemento transiciona (evita flashes al
+   cambiar de tema); solo la lista de abajo lo hace.
    ============================================================ */
-* {
-  transition-property: color, background-color, border-color, box-shadow;
-  transition-duration: 200ms;
-  transition-timing-function: ease;
-}
-
-/* Excepciones para evitar flashes */
 *, *::before, *::after {
   transition: none;
 }

@@ -4,6 +4,8 @@ import { Hammer, Sparkles } from "lucide-react"; // Importamos unos íconos lind
 export default function Historia() {
   // Datos de la historia actualizados con imágenes placeholder.
   // ¡Cambia las URLs de 'image' por tus rutas reales cuando las tengas!
+  // Solo se usa en el bloque JSX comentado más abajo (NO BORRAR).
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const hitos = [
     {
       year: "2005",
@@ -41,7 +43,7 @@ export default function Historia() {
 
   // ── ESTADO: EN CONSTRUCCIÓN ───────────────────────────────────────────
   return (
-    <div className="min-h-[70vh] flex flex-col items-center justify-center bg-white dark:bg-[#0D1F2A] px-6 text-center transition-colors duration-300">
+    <div className="min-h-[70vh] flex flex-col items-center justify-center bg-white dark:bg-proyecta-surface px-6 text-center transition-colors duration-300">
       <div className="relative mb-8">
         <div className="p-6 bg-proyecta-cyan/10 rounded-full animate-pulse">
           <Hammer size={64} className="text-proyecta-teal dark:text-proyecta-cyan" />
@@ -73,7 +75,7 @@ export default function Historia() {
 
   /*
   return (
-    <section className="relative py-24 w-full bg-white dark:bg-[#0D1F2A] overflow-hidden transition-colors duration-300">
+    <section className="relative py-24 w-full bg-white dark:bg-proyecta-surface overflow-hidden transition-colors duration-300">
       <div className="section-container relative">
         {/* Encabezado de la sección * /}
         <div className="text-center mb-28 animate-on-scroll is-visible">
@@ -104,7 +106,7 @@ export default function Historia() {
 
               {/* Punto interactivo en la línea * /}
               <div
-                className="absolute left-8 sm:left-1/2 transform -translate-x-1/2 w-8 h-8 rounded-full border-4 border-white dark:border-[#0D1F2A] bg-proyecta-yellow z-20 
+                className="absolute left-8 sm:left-1/2 transform -translate-x-1/2 w-8 h-8 rounded-full border-4 border-white dark:border-proyecta-surface bg-proyecta-yellow z-20 
                               transition-all duration-300 group-hover:scale-150 group-hover:bg-proyecta-cyan shadow-proyecta group-hover:shadow-[0_0_20px_rgba(64,208,240,0.8)] mt-6 sm:mt-0"
               ></div>
 
@@ -133,7 +135,7 @@ export default function Historia() {
                       alt={`Imagen representativa del hito: ${hito.title}`}
                       className="w-full h-full object-cover transform scale-100 group-hover:scale-105 grayscale group-hover:grayscale-0 transition-all duration-700 ease-in-out"
                     />
-                    <div className="absolute inset-0 bg-proyecta-navy/20 dark:bg-[#0D1F2A]/40 group-hover:bg-transparent transition-colors duration-500"></div>
+                    <div className="absolute inset-0 bg-proyecta-navy/20 dark:bg-proyecta-surface/40 group-hover:bg-transparent transition-colors duration-500"></div>
                   </div>
 
                   <div className="px-4 pb-4">

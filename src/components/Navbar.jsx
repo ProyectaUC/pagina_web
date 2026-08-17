@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
-import { Menu, X, Sun, Moon, Map } from "lucide-react";
+import { Menu, X, Sun, Moon } from "lucide-react";
 import { assets, content } from "../styles/theme/brand";
 import { useDarkMode } from "../hooks/useAnimations";
+import Button from "./ui/Button";
 
 const navLinks = [
   { label: "Inicio", to: "/" },
@@ -95,9 +96,9 @@ export default function Navbar() {
             </button>
 
             {/* CTA button */}
-            <Link to="/apoyanos" className="btn-primary text-sm px-5 py-2.5">
+            <Button to="/apoyanos" size="sm">
               Apóyanos
-            </Link>
+            </Button>
           </div>
 
           {/* Mobile menu button */}
@@ -155,13 +156,13 @@ export default function Navbar() {
               {link.label}
             </NavLink>
           ))}
-          <Link
+          <Button
             to="/apoyanos"
             onClick={() => setIsOpen(false)}
-            className="btn-primary mt-4 text-base px-8 py-3"
+            className="mt-4"
           >
             Apóyanos
-          </Link>
+          </Button>
         </div>
       </div>
     </>

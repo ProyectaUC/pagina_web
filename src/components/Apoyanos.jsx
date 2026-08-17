@@ -6,14 +6,15 @@ import {
   CreditCard,
   CheckCircle,
   ArrowRight,
-  Send,
   MessageCircle,
   Mail,
   Hammer,
 } from "lucide-react";
 import { useInView } from "../hooks/useAnimations";
-import { sponsors } from "../styles/theme/brand";
 import { content } from "../styles/theme/brand";
+import { donationAmounts, MP_LINK_GENERICO } from "../data/donaciones";
+import { sponsors } from "../data/sponsors";
+import Button from "./ui/Button";
 
 // ============================================================
 // 🔗 ENLACES Y CONTACTOS — completar antes de publicar
@@ -33,34 +34,6 @@ const tabs = [
 ];
 
 function VoluntariosTab() {
-  const [sent, setSent] = useState(false);
-  const [form, setForm] = useState({
-    nombre: "",
-    email: "",
-    area: "",
-    mensaje: "",
-  });
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // TODO: Conectar con Formspree, Netlify Forms o similar
-    setSent(true);
-  };
-
-  if (sent) {
-    return (
-      <div className="flex flex-col items-center justify-center py-16 text-center">
-        <CheckCircle size={64} className="text-green-500 mb-4" />
-        <h3 className="text-2xl font-black text-proyecta-navy dark:text-white mb-2">
-          ¡Gracias por querer unirte!
-        </h3>
-        <p className="text-gray-500 dark:text-white/60">
-          Nos pondremos en contacto contigo pronto.
-        </p>
-      </div>
-    );
-  }
-
   return (
     <div className="space-y-12">
       {/* ── Bloque destacado: grupo de WhatsApp ── */}
@@ -217,14 +190,14 @@ function SponsorsTab() {
           ))}
         </div>
 
-        <a
+        <Button
           href={`mailto:${SPONSORS_EMAIL}?subject=${encodeURIComponent("Quiero ser sponsor de Proyecta")}`}
-          className="btn-primary mt-6 inline-flex"
+          className="mt-6"
         >
           <Mail size={16} />
           Contactar para ser sponsor
           <ArrowRight size={16} />
-        </a>
+        </Button>
       </div>
 
       {/* Sponsor logos grid */}
@@ -266,37 +239,7 @@ function SponsorsTab() {
 }
 
 function DonacionesTab() {
-  // 1. Agregamos los links específicos de cada monto dentro del mismo array
-  const amounts = [
-    {
-      value: 25000,
-      label: "Una banca con respaldo",
-      mpLink: "https://mpago.la/2Cmprq2",
-    },
-    {
-      value: 45000,
-      label: "Una mesa tipo picnic",
-      mpLink: "https://mpago.la/2fQWR7M",
-    },
-    {
-      value: 300000,
-      label: "Un techo para la comunidad",
-      mpLink: "https://mpago.la/2qiScjb",
-    },
-    {
-      value: 400000,
-      label: "Un juego de dos torres",
-      mpLink: "https://mpago.la/1uNxtxQ",
-    },
-    {
-      value: 1000000,
-      label: "Una sede vecinal",
-      mpLink: "https://mpago.la/2gc5S8K",
-    },
-  ];
-
-  // Enlace genérico (monto abierto) para cuando el usuario use el input personalizado
-  const MP_LINK_GENERICO = "https://link.mercadopago.cl/proyectauc";
+  const amounts = donationAmounts;
 
   const [selected, setSelected] = useState(amounts[1].value);
   const [custom, setCustom] = useState("");
@@ -310,15 +253,6 @@ function DonacionesTab() {
       // Si seleccionó un botón, buscamos su link específico
       const opcion = amounts.find((a) => a.value === selected);
       window.location.href = opcion ? opcion.mpLink : MP_LINK_GENERICO;
-    }
-  };
-
-  const handleStripe = () => {
-    if (custom) {
-      window.location.href = STRIPE_LINK_GENERICO;
-    } else {
-      const opcion = amounts.find((a) => a.value === selected);
-      window.location.href = opcion ? opcion.stripeLink : STRIPE_LINK_GENERICO;
     }
   };
 
@@ -406,14 +340,6 @@ function DonacionesTab() {
             <CreditCard size={18} />
             Pagar con Mercado Pago
           </button>
-          {/* <button
-            className="w-full flex items-center justify-center gap-3 py-3.5 rounded-xl
-                       bg-[#635BFF] text-white font-bold text-sm transition-all hover:opacity-90 hover:-translate-y-0.5 shadow-lg"
-            onClick={handleStripe}
-          >
-            <CreditCard size={18} />
-            Pagar con Stripe
-          </button> */}
         </div>
 
         <p className="text-xs text-gray-400 dark:text-white/40 text-center mt-3">
@@ -431,7 +357,7 @@ export default function Apoyanos() {
   return (
     <section
       id="apoyanos"
-      className="py-24 bg-white dark:bg-[#0D1F2A]"
+      className="py-24 bg-white dark:bg-proyecta-surface"
       ref={ref}
     >
       <div className="section-container">

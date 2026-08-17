@@ -174,7 +174,12 @@ export default function InteractiveChileMap({
 
   const handleHoverStart = useCallback(
     (community: Community, e: React.MouseEvent) => {
-      setTooltip({ community, x: e.clientX, y: e.clientY });
+      const bounds = containerRef.current?.getBoundingClientRect();
+      setTooltip({
+        community,
+        x: e.clientX - (bounds?.left ?? 0),
+        y: e.clientY - (bounds?.top ?? 0),
+      });
     },
     [],
   );
@@ -362,11 +367,9 @@ export default function InteractiveChileMap({
           // lo manejamos manualmente arriba para poder distinguir
           // scroll normal de página vs. zoom intencional (Ctrl/Cmd).
           filterZoomEvent={(event) => {
-            if (event.type === "wheel") {
-              return (
-                (event as unknown as WheelEvent).ctrlKey ||
-                (event as unknown as WheelEvent).metaKey
-              );
+            const wheelEvent = event as unknown as WheelEvent;
+            if (wheelEvent.type === "wheel") {
+              return wheelEvent.ctrlKey || wheelEvent.metaKey;
             }
             return true;
           }}
@@ -423,6 +426,28 @@ export default function InteractiveChileMap({
           ))}
         </ZoomableGroup>
       </ComposableMap>
+
+      {/* ── Tooltip flotante al pasar el mouse por un marcador ── */}
+      <AnimatePresence>
+        {tooltip && (
+          <motion.div
+            key="map-tooltip"
+            initial={{ opacity: 0, y: 4 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.15 }}
+            className="pointer-events-none absolute z-40 -translate-x-1/2 -translate-y-full whitespace-nowrap rounded-lg px-3 py-1.5 text-xs font-semibold text-white shadow-lg"
+            style={{
+              left: tooltip.x,
+              top: tooltip.y - 12,
+              background: "rgba(15, 30, 45, 0.92)",
+              backdropFilter: "blur(8px)",
+            }}
+          >
+            {tooltip.community.name}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

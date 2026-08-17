@@ -29,35 +29,7 @@ const base = import.meta.env.BASE_URL;
 
 export const assets = {
   logo: `${base}assets/logos/logo.png`,
-  logoWhite: `${base}assets/logos/logo-white.svg`,
-  logoMono: `${base}assets/logos/logo-mono.svg`,
   favicon: `${base}assets/logos/favicon.png`,
-
-  icons: {
-    mission: `${base}assets/icons/mission.svg`,
-    vision: `${base}assets/icons/vision.svg`,
-    values: `${base}assets/icons/values.svg`,
-    volunteers: `${base}assets/icons/volunteers.svg`,
-    donations: `${base}assets/icons/donations.svg`,
-  },
-
-  illustrations: {
-    hero: `${base}assets/illustrations/hero.svg`,
-    impact: `${base}assets/illustrations/impact.svg`,
-    community: `${base}assets/illustrations/community.svg`,
-  },
-
-  sponsors: {
-    maruchan: `${base}assets/sponsors/maruchan.png`,
-    wasil: `${base}assets/sponsors/wasil.jpg`,
-  },
-};
-
-export const gradients = {
-  hero: "linear-gradient(160deg, #1B3A4B 0%, #1B5E7A 60%, #1B9AB5 100%)",
-  brand: "linear-gradient(135deg, #1B3A4B 0%, #1B9AB5 50%, #40D0F0 100%)",
-  accent: "linear-gradient(90deg, #FFBB00 0%, #F57C00 100%)",
-  card: "linear-gradient(135deg, #1B5E7A 0%, #1B9AB5 100%)",
 };
 
 export const content = {
@@ -116,23 +88,10 @@ export const impactStats = [
   },
 ];
 
-export const sponsors = [
-  {
-    name: "Maruchan",
-    logo: assets.sponsors.maruchan,
-  },
-  {
-    name: "Wasil",
-    logo: assets.sponsors.wasil,
-  },
-];
-
 export default {
   colors,
   fonts,
   assets,
-  gradients,
   content,
   impactStats,
-  sponsors,
 };

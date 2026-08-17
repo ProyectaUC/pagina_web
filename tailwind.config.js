@@ -23,6 +23,8 @@ export default {
           orange:     '#F57C00',   // Naranja acento
           white:      '#FFFFFF',
           'light-bg': '#F0FAFF',   // Fondo claro
+          surface:    '#0D1F2A',   // Fondo de superficie en modo oscuro
+          'surface-2':'#122530',   // Fondo de superficie secundario en modo oscuro
         }
       },
       // =========================================================

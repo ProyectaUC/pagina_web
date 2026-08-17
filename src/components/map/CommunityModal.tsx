@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, type Variants } from "framer-motion";
 import {
   X,
   ChevronLeft,
@@ -18,13 +18,13 @@ interface CommunityModalProps {
 }
 
 // ── Animation variants ───────────────────────────────────────
-const backdrop = {
+const backdrop: Variants = {
   hidden: { opacity: 0 },
   visible: { opacity: 1, transition: { duration: 0.25 } },
   exit: { opacity: 0, transition: { duration: 0.2 } },
 };
 
-const panel = {
+const panel: Variants = {
   hidden: { opacity: 0, y: 40, scale: 0.97 },
   visible: {
     opacity: 1,
@@ -42,10 +42,13 @@ export default function CommunityModal({
 }: CommunityModalProps) {
   const [photoIndex, setPhotoIndex] = useState(0);
 
-  // Reset gallery on community change
-  useEffect(() => {
+  // Reset gallery on community change (ajuste de estado durante el render,
+  // en vez de un efecto, para evitar un segundo render en cascada)
+  const [lastCommunityId, setLastCommunityId] = useState(community?.id);
+  if (community?.id !== lastCommunityId) {
+    setLastCommunityId(community?.id);
     setPhotoIndex(0);
-  }, [community?.id]);
+  }
 
   // Close on Escape
   useEffect(() => {
@@ -160,7 +163,7 @@ export default function CommunityModal({
                   <div className="flex items-center gap-2 mb-3 text-proyecta-cyan/90">
                     <Quote size={16} className="fill-current opacity-60" />
                     <span className="italic font-medium tracking-wide text-sm sm:text-base">
-                      "{community.lema}"
+                      &ldquo;{community.lema}&rdquo;
                     </span>
                   </div>
                 )}
