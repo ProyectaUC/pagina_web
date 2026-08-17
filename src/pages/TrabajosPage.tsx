@@ -3,6 +3,7 @@ import InteractiveChileMap from "../components/map/InteractiveChileMap";
 import CommunityModal from "../components/map/CommunityModal";
 import { communities } from "../data/communities";
 import type { Community } from "../data/communities";
+import { usePageMeta } from "../hooks/usePageMeta";
 
 // ── Main Page ────────────────────────────────────────────────
 export default function TrabajosPage() {
@@ -18,6 +19,11 @@ export default function TrabajosPage() {
       maxYear: Math.max(...years),
     };
   }, []);
+
+  usePageMeta(
+    "Trabajos",
+    `Explora el mapa interactivo con ${count} trabajos de intervención territorial de Proyecta en comunidades de Chile, entre ${minYear} y ${maxYear}.`,
+  );
 
   return (
     <div className="relative pt-20 flex flex-col min-h-screen overflow-hidden bg-gradient-hero">

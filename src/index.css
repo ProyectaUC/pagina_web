@@ -71,6 +71,16 @@
     background-color: var(--color-cyan);
     color: var(--color-navy);
   }
+
+  /* Foco visible unificado para todo lo interactivo (enlaces, botones
+     nativos, etc.). Los .btn-* ya traen su propio anillo con este mismo
+     color; esta regla cubre el resto (nav, footer, enlaces sueltos). */
+  a:focus-visible,
+  button:focus-visible {
+    outline: 2px solid var(--color-cyan);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
 }
 
 /* ============================================================
@@ -224,4 +234,22 @@
 
 .btn-primary, .btn-secondary, .card, a, button {
   transition: all 0.3s ease;
+}
+
+/* ============================================================
+   ♿ PREFERS-REDUCED-MOTION
+   Desactiva animaciones infinitas y el scroll suave para quienes
+   lo piden a nivel de sistema operativo.
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

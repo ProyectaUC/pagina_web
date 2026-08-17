@@ -28,6 +28,7 @@ export default function Navbar() {
 
   return (
     <>
+      <header>
       <nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 backdrop-blur-md ${
           scrolled
@@ -88,7 +89,7 @@ export default function Navbar() {
             {/* Dark mode toggle */}
             <button
               onClick={() => setIsDark(!isDark)}
-              className="p-2 rounded-lg text-proyecta-navy/70 dark:text-white/70 hover:text-proyecta-teal dark:hover:text-proyecta-cyan hover:bg-proyecta-navy/5 dark:hover:bg-white/10
+              className="min-w-11 min-h-11 flex items-center justify-center rounded-lg text-proyecta-navy/70 dark:text-white/70 hover:text-proyecta-teal dark:hover:text-proyecta-cyan hover:bg-proyecta-navy/5 dark:hover:bg-white/10
                          transition-all duration-200"
               aria-label="Cambiar tema"
             >
@@ -105,14 +106,14 @@ export default function Navbar() {
           <div className="flex lg:hidden items-center gap-2">
             <button
               onClick={() => setIsDark(!isDark)}
-              className="p-2 rounded-lg text-proyecta-navy/70 dark:text-white/70 hover:text-proyecta-teal dark:hover:text-proyecta-cyan"
+              className="min-w-11 min-h-11 flex items-center justify-center rounded-lg text-proyecta-navy/70 dark:text-white/70 hover:text-proyecta-teal dark:hover:text-proyecta-cyan"
               aria-label="Cambiar tema"
             >
               {isDark ? <Sun size={16} /> : <Moon size={16} />}
             </button>
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="p-2 rounded-lg text-proyecta-navy dark:text-white hover:bg-proyecta-navy/5 dark:hover:bg-white/10 transition-colors"
+              className="min-w-11 min-h-11 flex items-center justify-center rounded-lg text-proyecta-navy dark:text-white hover:bg-proyecta-navy/5 dark:hover:bg-white/10 transition-colors"
               aria-label="Menú"
             >
               {isOpen ? <X size={22} /> : <Menu size={22} />}
@@ -120,6 +121,7 @@ export default function Navbar() {
           </div>
         </div>
       </nav>
+      </header>
 
       {/* Mobile menu overlay */}
       <div

@@ -6,7 +6,7 @@ import {
   Marker,
   ZoomableGroup,
 } from "react-simple-maps";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { Plus, Minus, Maximize2, Hand } from "lucide-react";
 import type { Community, Category } from "../../data/communities";
 import { categoryColors } from "../../data/communities";
@@ -77,6 +77,7 @@ const CommunityMarker = memo(function CommunityMarker({
   onHoverEnd: () => void;
 }) {
   const color = categoryColors[community.category];
+  const reduceMotion = useReducedMotion();
 
   // Usamos scaleDivisor (con piso) en vez de dividir directo por zoom:
   // así el punto se va achicando de forma natural a medida que entras,
@@ -101,9 +102,9 @@ const CommunityMarker = memo(function CommunityMarker({
           strokeWidth={BASE_STROKE_PULSE}
           initial={{ scale: 1, opacity: 0.4 }}
           animate={
-            isFiltered
+            isFiltered && !reduceMotion
               ? { scale: [1, 2.2, 1], opacity: [0.4, 0, 0.4] }
-              : { scale: 1, opacity: 0 }
+              : { scale: 1, opacity: isFiltered ? 0.3 : 0 }
           }
           transition={{ duration: 2.4, repeat: Infinity, ease: "easeOut" }}
         />

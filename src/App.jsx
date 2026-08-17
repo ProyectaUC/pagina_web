@@ -33,9 +33,16 @@ function Layout() {
 
   return (
     <div className="min-h-screen bg-white dark:bg-proyecta-surface font-sans">
+      <a
+        href="#contenido"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:px-4 focus:py-2 focus:rounded-lg focus:bg-proyecta-cyan focus:text-proyecta-navy focus:font-bold focus:shadow-lg"
+      >
+        Saltar al contenido
+      </a>
+
       <Navbar />
 
-      <main>
+      <main id="contenido">
         <Suspense fallback={<RouteLoader />}>
           <Outlet />
         </Suspense>
