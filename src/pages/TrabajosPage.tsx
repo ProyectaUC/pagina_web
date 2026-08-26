@@ -1,9 +1,11 @@
 import { useState, useMemo } from "react";
 import InteractiveChileMap from "../components/map/InteractiveChileMap";
 import CommunityModal from "../components/map/CommunityModal";
-import { communities } from "../data/communities";
-import type { Community } from "../data/communities";
+import { communities, categoryColors, categoryLabels } from "../data/communities";
+import type { Community, Category } from "../data/communities";
 import { usePageMeta } from "../hooks/usePageMeta";
+
+const CATEGORIES: Category[] = ["Verano", "Otoño", "Invierno"];
 
 // ── Main Page ────────────────────────────────────────────────
 export default function TrabajosPage() {
@@ -39,6 +41,22 @@ export default function TrabajosPage() {
           <p className="mt-3 text-xs sm:text-sm font-semibold text-proyecta-cyan">
             {count} trabajos · {minYear}–{maxYear} · haz clic en un punto para ver el detalle
           </p>
+
+          {/* Leyenda de temporadas — solo informativa, no filtra */}
+          <div className="flex flex-wrap justify-center gap-x-5 gap-y-2 mt-4">
+            {CATEGORIES.map((cat) => (
+              <span
+                key={cat}
+                className="flex items-center gap-1.5 text-xs text-white/60"
+              >
+                <span
+                  className="w-2.5 h-2.5 rounded-full"
+                  style={{ backgroundColor: categoryColors[cat] }}
+                />
+                {categoryLabels[cat]}
+              </span>
+            ))}
+          </div>
         </div>
       </section>
 

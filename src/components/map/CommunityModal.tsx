@@ -8,6 +8,7 @@ import {
   Calendar,
   Hammer,
   Quote,
+  Users,
 } from "lucide-react";
 import type { Community } from "../../data/communities";
 import { categoryColors, categoryLabels } from "../../data/communities";
@@ -206,6 +207,14 @@ export default function CommunityModal({
                         {categoryLabels[community.category]}
                       </span>
                     </div>
+
+                    {/* Jefes generales (secundario, no compite con foto/lema) */}
+                    {community.jefesGenerales && community.jefesGenerales.length > 0 && (
+                      <div className="flex items-center gap-1.5 text-white/50 text-xs mt-2">
+                        <Users size={13} className="flex-shrink-0" />
+                        <span>{community.jefesGenerales.join(", ")}</span>
+                      </div>
+                    )}
                   </div>
 
                   {/* Lo que se construyó (Secundario) */}
