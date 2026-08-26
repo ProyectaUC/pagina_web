@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, type Variants } from "framer-motion";
 import {
   X,
   ChevronLeft,
@@ -18,13 +18,13 @@ interface CommunityModalProps {
 }
 
 // ── Animation variants ───────────────────────────────────────
-const backdrop = {
+const backdrop: Variants = {
   hidden: { opacity: 0 },
   visible: { opacity: 1, transition: { duration: 0.25 } },
   exit: { opacity: 0, transition: { duration: 0.2 } },
 };
 
-const panel = {
+const panel: Variants = {
   hidden: { opacity: 0, y: 40, scale: 0.97 },
   visible: {
     opacity: 1,
@@ -42,10 +42,13 @@ export default function CommunityModal({
 }: CommunityModalProps) {
   const [photoIndex, setPhotoIndex] = useState(0);
 
-  // Reset gallery on community change
-  useEffect(() => {
+  // Reset gallery on community change (ajuste de estado durante el render,
+  // en vez de un efecto, para evitar un segundo render en cascada)
+  const [lastCommunityId, setLastCommunityId] = useState(community?.id);
+  if (community?.id !== lastCommunityId) {
+    setLastCommunityId(community?.id);
     setPhotoIndex(0);
-  }, [community?.id]);
+  }
 
   // Close on Escape
   useEffect(() => {
@@ -135,6 +138,16 @@ export default function CommunityModal({
                 </AnimatePresence>
               )}
 
+              {/* Estado vacío: sin fotos registradas para esta comunidad */}
+              {(!community.photos || community.photos.length === 0) && (
+                <div className="flex flex-col items-center gap-3 text-white/40 px-6 text-center">
+                  <MapPin size={40} strokeWidth={1.5} />
+                  <p className="text-sm max-w-xs">
+                    Todavía no tenemos fotos registradas de este trabajo.
+                  </p>
+                </div>
+              )}
+
               {/* Controles de Navegación de Fotos */}
               {(community.photos?.length ?? 0) > 1 && (
                 <>
@@ -160,7 +173,7 @@ export default function CommunityModal({
                   <div className="flex items-center gap-2 mb-3 text-proyecta-cyan/90">
                     <Quote size={16} className="fill-current opacity-60" />
                     <span className="italic font-medium tracking-wide text-sm sm:text-base">
-                      "{community.lema}"
+                      &ldquo;{community.lema}&rdquo;
                     </span>
                   </div>
                 )}
@@ -214,7 +227,7 @@ export default function CommunityModal({
             {/* ── Cinta de Miniaturas (Thumbnails) ── */}
             {(community.photos?.length ?? 0) > 1 && (
               <div className="bg-[#0A0A0A] p-4 flex items-center justify-center border-t border-white/10">
-                <div className="flex gap-2 overflow-x-auto scrollbar-hide snap-x">
+                <div className="flex gap-2 overflow-x-auto thumbnail-scroll snap-x">
                   {community.photos!.map((photo, i) => (
                     <button
                       key={i}

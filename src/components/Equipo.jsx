@@ -1,352 +1,6 @@
 import React, { useState } from "react";
-import {
-  ChevronDown,
-  Star,
-  Megaphone,
-  Coins,
-  BookOpen,
-  Package,
-  Hammer,
-  TrendingUp,
-  Globe,
-  Palette,
-  GraduationCap,
-  HeartHandshake,
-} from "lucide-react";
-
-// Datos del equipo estructurados.
-// Reemplaza las URLs de Unsplash con las fotos reales de tu equipo.
-export const equiposData = [
-  {
-    id: "jefes",
-    title: "Jefes Generales",
-    icon: Star, // Recuerda que debes tener los iconos importados
-    color: "text-proyecta-orange dark:text-proyecta-yellow",
-    bgIcon: "bg-proyecta-yellow/10",
-    groupImage: `${import.meta.env.BASE_URL}assets/equipos/jefes/jefes.jpg`,
-    isVerticalGroupImage: true,
-    groupDescription:
-      "Los encargados de guiar la visión 2026, coordinar a todas las áreas y asegurar que el espíritu de Proyecta se mantenga vivo en cada decisión.",
-    members: [
-      {
-        name: "Marta",
-        carrera: "Medicina",
-        image: `${import.meta.env.BASE_URL}assets/equipos/jefes/marta.jpg`,
-      },
-      {
-        name: "Mimi",
-        carrera: "Veterinaria",
-        image: `${import.meta.env.BASE_URL}assets/equipos/jefes/mimi.jpg`,
-      },
-      {
-        name: "Pinky",
-        carrera: "Ingeniería y Física",
-        image: `${import.meta.env.BASE_URL}assets/equipos/jefes/pinky.jpg`,
-      },
-    ],
-  },
-  {
-    id: "difusion",
-    title: "Difusión",
-    icon: Megaphone,
-    color: "text-proyecta-teal dark:text-proyecta-cyan",
-    bgIcon: "bg-proyecta-cyan/10",
-    groupImage: `${import.meta.env.BASE_URL}assets/equipos/difusion/difu.jpg`,
-    isVerticalGroupImage: true,
-    groupDescription:
-      "La voz de Proyecta. Encargados de comunicar nuestro impacto, manejar las redes sociales y conectar con nuevos voluntarios y la comunidad.",
-    members: [
-      {
-        name: "Anto",
-        carrera: "Derecho",
-        image: `${import.meta.env.BASE_URL}assets/equipos/difusion/anto.jpg`,
-      },
-      {
-        name: "Bambi",
-        carrera: "Pedagogía",
-        image: `${import.meta.env.BASE_URL}assets/equipos/difusion/bambi.jpg`,
-      },
-      {
-        name: "Rebe",
-        carrera: "Ingeniería Civil",
-        image: `${import.meta.env.BASE_URL}assets/equipos/difusion/rebe.jpg`,
-      },
-    ],
-  },
-  {
-    id: "financiamiento",
-    title: "Financiamiento",
-    icon: Coins,
-    color: "text-proyecta-orange",
-    bgIcon: "bg-proyecta-orange/10",
-    groupImage: `${import.meta.env.BASE_URL}assets/equipos/financiamiento/finan.jpg`,
-    isVerticalGroupImage: true,
-    groupDescription:
-      "El motor económico. Buscan auspicios, organizan eventos de recaudación y gestionan los fondos para hacer posibles los proyectos.",
-    members: [
-      {
-        name: "Joao",
-        carrera: "Ingeniería Civil",
-        image: `${import.meta.env.BASE_URL}assets/equipos/financiamiento/joao.jpg`,
-      },
-      {
-        name: "Maca",
-        carrera: "Ingeniería Civil",
-        image: `${import.meta.env.BASE_URL}assets/equipos/financiamiento/maca.jpg`,
-      },
-      {
-        name: "Pipe",
-        carrera: "Ingeniería Civil",
-        image: `${import.meta.env.BASE_URL}assets/equipos/financiamiento/pipe.jpg`,
-      },
-      {
-        name: "Yoshi",
-        carrera: "Ingeniería Civil",
-        image: `${import.meta.env.BASE_URL}assets/equipos/financiamiento/yoshi.jpg`,
-      },
-    ],
-  },
-  {
-    id: "equipo",
-    title: "Equipo",
-    icon: BookOpen,
-    color: "text-proyecta-teal",
-    bgIcon: "bg-proyecta-teal/10",
-    groupImage: `${import.meta.env.BASE_URL}assets/equipos/equipo/equipo.jpg`,
-    groupDescription:
-      "Los que se encargan de que la cultura de Proyecta se mantenga viva.",
-    members: [
-      {
-        name: "Fer",
-        carrera: "Ingenieria Civil",
-        image: `${import.meta.env.BASE_URL}assets/equipos/equipo/fer.jpg`,
-      },
-      {
-        name: "Zazu",
-        carrera: "Pedagogía",
-        image: `${import.meta.env.BASE_URL}assets/equipos/equipo/zazu.jpg`,
-      },
-      {
-        name: "Pollo",
-        carrera: "Ingenieria Comercial",
-        image: `${import.meta.env.BASE_URL}assets/equipos/equipo/pollo.jpg`,
-      },
-    ],
-  },
-  {
-    id: "historia",
-    title: "Historia y Legado",
-    icon: BookOpen,
-    color: "text-proyecta-teal",
-    bgIcon: "bg-proyecta-teal/10",
-    groupDescription:
-      "Guardianes de nuestras raíces. Documentan el trabajo en terreno y aseguran que la cultura de Proyecta se transmita de generación en generación.",
-    members: [
-      {
-        name: "Max",
-        carrera: "Ciencia Política y Sociología",
-        image: `${import.meta.env.BASE_URL}assets/equipos/historia_y_legado/max.jpg`,
-      },
-    ],
-  },
-  {
-    id: "recursos",
-    title: "Recursos",
-    icon: Package,
-    color: "text-proyecta-orange dark:text-proyecta-yellow",
-    bgIcon: "bg-proyecta-yellow/10",
-    groupImage: `${import.meta.env.BASE_URL}assets/equipos/recursos/recursos.jpeg`,
-    isVerticalGroupImage: false,
-    groupDescription:
-      "Los adictos al fideo y al excel. Les mantenemos las watas llenas a los voluntarios en terreno. La comision mas importante de todas. Sin nosotros se mueren de hambre.",
-    members: [
-      {
-        name: "Pancito",
-        carrera: "LICD",
-        funFact: "El que programó esta página jeje.",
-        image: `${import.meta.env.BASE_URL}assets/equipos/recursos/pancito.jpeg`,
-      },
-      {
-        name: "Momo",
-        carrera: "Pedagogía",
-        image: `${import.meta.env.BASE_URL}assets/equipos/recursos/momo.jpeg`,
-      },
-      {
-        name: "Conyshi",
-        carrera: "Ingeniería en Recursos Naturales",
-        image: `${import.meta.env.BASE_URL}assets/equipos/recursos/conyshi.jpeg`,
-      },
-      {
-        name: "Carozzi",
-        carrera: "Ingeniería Comercial",
-        image: `${import.meta.env.BASE_URL}assets/equipos/recursos/carozzi.jpeg`,
-      },
-      {
-        name: "Naxo",
-        carrera: "Ingeniería Civil",
-        image: `${import.meta.env.BASE_URL}assets/equipos/recursos/naxo.jpeg`,
-        isMentor: true,
-      },
-    ],
-  },
-  {
-    id: "diseno",
-    title: "Diseño y Construcción",
-    icon: Hammer,
-    color: "text-proyecta-teal dark:text-proyecta-cyan",
-    bgIcon: "bg-proyecta-cyan/10",
-    groupImage: `${import.meta.env.BASE_URL}assets/equipos/diseño_y_construccion/dyc.jpg`,
-    isVerticalGroupImage: true,
-    groupDescription: "",
-    members: [
-      {
-        name: "Fefe",
-        carrera: "Construcción Civil",
-        image: `${import.meta.env.BASE_URL}assets/equipos/diseño_y_construccion/fefe.jpg`,
-      },
-      {
-        name: "Walala",
-        carrera: "Construcción Civil",
-        image: `${import.meta.env.BASE_URL}assets/equipos/diseño_y_construccion/walala.jpg`,
-      },
-    ],
-  },
-  {
-    id: "formacion",
-    title: "Formación",
-    icon: GraduationCap,
-    color: "text-proyecta-teal",
-    bgIcon: "bg-proyecta-teal/10",
-    groupImage: `${import.meta.env.BASE_URL}assets/equipos/formacion/formacion.jpg`,
-    isVerticalGroupImage: true,
-    groupDescription: "",
-    members: [
-      {
-        name: "Berni",
-        carrera: "Terapia Ocupacional",
-        image: `${import.meta.env.BASE_URL}assets/equipos/formacion/berni.jpg`,
-      },
-      {
-        name: "Maura",
-        carrera: "College para Derecho",
-        image: `${import.meta.env.BASE_URL}assets/equipos/formacion/maura.jpg`,
-      },
-      {
-        name: "Pitu",
-        carrera: "Psicología",
-        image: `${import.meta.env.BASE_URL}assets/equipos/formacion/pitu.jpg`,
-      },
-    ],
-  },
-  {
-    id: "redes",
-    title: "Redes y Contactos",
-    icon: Globe,
-    color: "text-proyecta-orange",
-    bgIcon: "bg-proyecta-orange/10",
-    groupImage: `${import.meta.env.BASE_URL}assets/equipos/redes_y_contactos/ryc.jpg`,
-    isVerticalGroupImage: true,
-    groupDescription: "",
-    members: [
-      {
-        name: "Camilu",
-        carrera: "Medicina",
-        image: `${import.meta.env.BASE_URL}assets/equipos/redes_y_contactos/camilu.jpg`,
-      },
-      {
-        name: "Sofi",
-        carrera: "Ingeniería en Recursos Naturales",
-        image: `${import.meta.env.BASE_URL}assets/equipos/redes_y_contactos/maruchan.jpg`,
-      },
-    ],
-  },
-  {
-    id: "resultados",
-    title: "Resultados e Impacto",
-    icon: TrendingUp,
-    color: "text-proyecta-orange dark:text-proyecta-yellow",
-    bgIcon: "bg-proyecta-yellow/10",
-    groupImage: `${import.meta.env.BASE_URL}assets/equipos/resultados_e_impacto/rei.jpg`,
-    isVerticalGroupImage: true,
-    groupDescription: "",
-    members: [
-      {
-        name: "Cami",
-        carrera: "Trabajo Social",
-        image: `${import.meta.env.BASE_URL}assets/equipos/resultados_e_impacto/cami.jpg`,
-      },
-      {
-        name: "Rorro",
-        carrera: "Ingeniería Civil",
-        image: `${import.meta.env.BASE_URL}assets/equipos/resultados_e_impacto/rorro.jpg`,
-      },
-      {
-        name: "Tomi",
-        carrera: "Ingeniería Civil",
-        image: `${import.meta.env.BASE_URL}assets/equipos/resultados_e_impacto/tomi.jpg`,
-      },
-    ],
-  },
-  {
-    id: "servicio",
-    title: "Servicio",
-    icon: HeartHandshake,
-    color: "text-proyecta-teal",
-    bgIcon: "bg-proyecta-teal/10",
-    groupImage: `${import.meta.env.BASE_URL}assets/equipos/servicio/servicio.jpg`,
-    isVerticalGroupImage: false,
-    groupDescription: "",
-    members: [
-      {
-        name: "Alex",
-        carrera: "Construcción Civil",
-        image: `${import.meta.env.BASE_URL}assets/equipos/servicio/alex.jpg`,
-      },
-      {
-        name: "Gabo",
-        carrera: "Física",
-        image: `${import.meta.env.BASE_URL}assets/equipos/servicio/gabo.jpg`,
-      },
-      {
-        name: "Danii",
-        carrera: "Enfermería",
-        image: `${import.meta.env.BASE_URL}assets/equipos/servicio/perdon.jpg`,
-      },
-      {
-        name: "Tata",
-        carrera: "College para Ingeniería",
-        image: `${import.meta.env.BASE_URL}assets/equipos/servicio/tata.jpg`,
-      },
-    ],
-  },
-  {
-    id: "talleres",
-    title: "Talleres",
-    icon: Palette,
-    color: "text-proyecta-teal dark:text-proyecta-cyan",
-    bgIcon: "bg-proyecta-cyan/10",
-    groupImage: `${import.meta.env.BASE_URL}assets/equipos/talleres/talleres.jpg`,
-    isVerticalGroupImage: true,
-    groupDescription: "",
-    members: [
-      {
-        name: "Eli",
-        carrera: "Ingeniería Comercial",
-        image: `${import.meta.env.BASE_URL}assets/equipos/talleres/eli.jpg`,
-      },
-      {
-        name: "Reni",
-        carrera: "Terapia Ocupacional",
-        image: `${import.meta.env.BASE_URL}assets/equipos/talleres/reni.jpg`,
-      },
-      {
-        name: "Sopita",
-        carrera: "College de Derecho",
-        image: `${import.meta.env.BASE_URL}assets/equipos/talleres/sopita.jpg`,
-      },
-    ],
-  },
-];
+import { ChevronDown } from "lucide-react";
+import { equiposData } from "../data/equipos";
 
 export default function Equipo() {
   // Estado para controlar qué acordeón está abierto
@@ -357,7 +11,7 @@ export default function Equipo() {
   };
 
   return (
-    <div className="bg-white dark:bg-[#0D1F2A] min-h-screen transition-colors duration-300">
+    <div className="bg-white dark:bg-proyecta-surface min-h-screen transition-colors duration-300">
       {/* HERO SECTION: Huge 2026 Team Image */}
       <section className="relative w-full h-[80vh] min-h-[600px] flex flex-col items-center justify-center overflow-hidden">
         {/* Background Image */}
@@ -371,10 +25,10 @@ export default function Equipo() {
             fetchpriority="high"
           />
           {/* Dark Overlay for Text Readability */}
-          <div className="absolute inset-0 bg-proyecta-navy/60 dark:bg-[#0D1F2A]/50 mix-blend-multiply"></div>
+          <div className="absolute inset-0 bg-proyecta-navy/60 dark:bg-proyecta-surface/50 mix-blend-multiply"></div>
 
           {/* Bottom Gradient for Smooth Fading into the Page */}
-          <div className="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-t from-white dark:from-[#0D1F2A] to-transparent"></div>
+          <div className="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-t from-white dark:from-proyecta-surface to-transparent"></div>
         </div>
 
         {/* Hero Content (Floating Title) */}
@@ -463,7 +117,7 @@ export default function Equipo() {
                             loading="lazy"
                             decoding="async"
                           />
-                          <div className="absolute inset-0 bg-gradient-to-t from-[#0D1F2A]/90 via-[#0D1F2A]/40 to-transparent"></div>
+                          <div className="absolute inset-0 bg-gradient-to-t from-proyecta-surface/90 via-proyecta-surface/40 to-transparent"></div>
                           <div className="absolute bottom-0 left-0 w-full p-8 sm:p-10">
                             <h3 className="text-3xl font-bold text-white mb-3">
                               El Equipo de {equipo.title}
@@ -504,7 +158,7 @@ export default function Equipo() {
                                   />
                                   {/* Floating Year/Field Badge */}
                                   <div className="absolute top-4 right-4 flex flex-col gap-2 items-end z-10">
-                                    <span className="px-3 py-1 bg-white/90 dark:bg-[#0D1F2A]/90 backdrop-blur-sm text-proyecta-navy dark:text-white text-xs font-bold uppercase tracking-wider rounded-full shadow-md">
+                                    <span className="px-3 py-1 bg-white/90 dark:bg-proyecta-surface/90 backdrop-blur-sm text-proyecta-navy dark:text-white text-xs font-bold uppercase tracking-wider rounded-full shadow-md">
                                       {member.year}
                                     </span>
                                     <span className="px-3 py-1 bg-proyecta-cyan text-proyecta-navy text-xs font-bold uppercase tracking-wider rounded-full shadow-md">
@@ -535,7 +189,7 @@ export default function Equipo() {
                                         Dato Curioso
                                       </p>
                                       <p className="text-proyecta-navy/80 dark:text-white/70 text-sm italic">
-                                        "{member.funFact}"
+                                        &ldquo;{member.funFact}&rdquo;
                                       </p>
                                     </div>
                                   )}

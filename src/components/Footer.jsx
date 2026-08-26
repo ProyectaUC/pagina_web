@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
-import { Instagram, Facebook, Twitter, Linkedin, Youtube } from "lucide-react";
-import { content, assets } from "../styles/theme/brand";
+import { Instagram, Linkedin } from "lucide-react";
+import { content } from "../styles/theme/brand";
+import Logo from "./ui/Logo";
 
 const socialLinks = [
   {
@@ -38,10 +39,10 @@ const socialLinks = [
 const navLinks = [
   { label: "Inicio", to: "/" },
   { label: "Quiénes Somos", to: "/quienes-somos" },
-  { label: "Impacto", to: "/impacto" },
-  { label: "Historia", to: "/historia" },
+  { label: "Trabajos", to: "/trabajos" },
+  { label: "Equipo", to: "/equipo" },
+  { label: "Únete", to: "/unete" },
   { label: "Apóyanos", to: "/apoyanos" },
-  { label: "Contacto", to: "/contacto" },
 ];
 
 export default function Footer() {
@@ -55,22 +56,10 @@ export default function Footer() {
       <div className="section-container">
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
           <div className="lg:col-span-2">
-             <img
-              src={assets.logo}
-              alt={content.org.name}
-              className="h-10 w-auto object-contain mb-4 group-hover:scale-105 transition-transform duration-300"
-              onError={(e) => {
-                e.target.style.display = "none";
-                e.target.nextSibling.style.display = "flex";
-              }}
+            <Logo
+              imgClassName="h-10 w-auto object-contain mb-4 group-hover:scale-105 transition-transform duration-300"
+              textClassName="text-proyecta-cyan mb-4"
             />
-            {/* Fallback text logo */}
-            <span
-              className="hidden items-center gap-2 text-proyecta-cyan font-display text-2xl"
-              style={{ fontFamily: "var(--font-display)" }}
-            >
-              {content.org.name}
-            </span>
             <p className="text-white/60 text-sm leading-relaxed max-w-sm">
               Voluntariado universitario con la visión de potenciar a las comunidades rurales de nuestro país mediante la acción comunitaria.
             </p>
@@ -84,7 +73,7 @@ export default function Footer() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={s.label}
-                    className={`p-2 rounded-lg bg-white/5 hover:bg-white/15 text-white/50 ${s.color} transition-all`}
+                    className={`min-w-11 min-h-11 flex items-center justify-center rounded-lg bg-white/5 hover:bg-white/15 text-white/50 ${s.color} transition-all`}
                   >
                     <Icon size={16} strokeWidth={1.5} />
                   </a>
@@ -94,15 +83,15 @@ export default function Footer() {
           </div>
 
           <div>
-            <h5 className="text-xs font-bold uppercase tracking-widest text-white/40 mb-4">
+            <h3 className="text-xs font-bold uppercase tracking-widest text-white/40 mb-4">
               Navegacion
-            </h5>
-            <ul className="space-y-2">
+            </h3>
+            <ul>
               {navLinks.map((item) => (
                 <li key={item.to}>
                   <Link
                     to={item.to}
-                    className="text-sm text-white/60 hover:text-proyecta-cyan transition-colors"
+                    className="block py-2 text-sm text-white/60 hover:text-proyecta-cyan transition-colors"
                   >
                     {item.label}
                   </Link>
@@ -112,9 +101,9 @@ export default function Footer() {
           </div>
 
           <div>
-            <h5 className="text-xs font-bold uppercase tracking-widest text-white/40 mb-4">
+            <h3 className="text-xs font-bold uppercase tracking-widest text-white/40 mb-4">
               Contacto
-            </h5>
+            </h3>
             <ul className="space-y-2 text-sm text-white/60">
               <li>{content.org.email}</li>
               <li>{content.org.phone}</li>
