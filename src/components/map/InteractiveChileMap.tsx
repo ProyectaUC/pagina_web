@@ -387,23 +387,31 @@ export default function InteractiveChileMap({
                   // Se usa la clave oficial única del objeto properties (ej: "CLAP", "CLRM")
                   key={geo.properties.id || geo.rsmKey}
                   geography={geo}
+                  // Relleno translúcido en vez de un color sólido: el fondo de
+                  // la sección es un gradiente (bg-gradient-hero) que pasa por
+                  // varios tonos de navy/teal, así que cualquier color sólido
+                  // fijo coincide con el fondo en algún punto del gradiente y
+                  // la región se vuelve invisible ahí (pasó con "#1B3A4B",
+                  // igual al 0% del gradiente, y con "#1B5E7A" en hover,
+                  // igual al 60%). Un blanco translúcido siempre contrasta,
+                  // sin importar qué color tenga el fondo debajo.
                   style={{
                     default: {
-                      fill: "#1B3A4B",
+                      fill: "rgba(255, 255, 255, 0.08)",
                       stroke: "#29B6D8",
                       strokeWidth: 0.6,
                       outline: "none",
                       vectorEffect: "non-scaling-stroke",
                     },
                     hover: {
-                      fill: "#1B5E7A",
+                      fill: "rgba(255, 255, 255, 0.16)",
                       stroke: "#40D0F0",
                       strokeWidth: 0.9,
                       outline: "none",
                       vectorEffect: "non-scaling-stroke",
                     },
                     pressed: {
-                      fill: "#1B5E7A",
+                      fill: "rgba(255, 255, 255, 0.22)",
                       outline: "none",
                       vectorEffect: "non-scaling-stroke",
                     },
