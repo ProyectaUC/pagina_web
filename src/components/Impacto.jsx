@@ -1,8 +1,7 @@
+import { Link } from "react-router-dom";
 import { useInView, useCountUp } from "../hooks/useAnimations";
 import { impactStats as stats } from "../styles/theme/brand";
 import { ArrowRight } from "lucide-react";
-import Button from "./ui/Button";
-import ChileMapPreview from "./ui/ChileMapPreview";
 
 function StatCard({ stat, index, isVisible }) {
   const count = useCountUp(stat.value, 2000, isVisible);
@@ -55,10 +54,19 @@ function StatCard({ stat, index, isVisible }) {
 export default function Impacto() {
   const [ref, isVisible] = useInView({ threshold: 0.1 });
 
+  // Ajusta estos valores cuando tengas los datos reales
+  const meta = 15000000;
+  const recaudado = 7500000;
+  const porcentaje = Math.round((recaudado / meta) * 100);
+
   return (
     <section
       id="impacto"
-      className="py-24 relative overflow-hidden bg-gradient-hero"
+      className="py-24 relative overflow-hidden"
+      style={{
+        background:
+          "linear-gradient(160deg, #1B3A4B 0%, #1B5E7A 60%, #1B9AB5 100%)",
+      }}
       ref={ref}
     >
       {/* Background decoration */}
@@ -131,31 +139,27 @@ export default function Impacto() {
           </p>
         </div>
 
-        {/* Stats + preview del mapa */}
-        <div className="grid lg:grid-cols-3 gap-5 mb-12">
-          <div className="lg:col-span-2 grid sm:grid-cols-2 gap-5">
-            {stats.map((stat, i) => (
-              <StatCard
-                key={stat.label}
-                stat={stat}
-                index={i}
-                isVisible={isVisible}
-              />
-            ))}
-          </div>
-
-          {/* Los números son abstractos; ver los puntos distribuidos en
-              Chile es más convincente. Preview estático (sin
-              react-simple-maps/framer-motion) que enlaza al mapa real. */}
-          <ChileMapPreview className="lg:col-span-1 h-64 sm:h-80 lg:h-[420px]" />
+        {/* Stats grid */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-5 mb-12">
+          {stats.map((stat, i) => (
+            <StatCard
+              key={stat.label}
+              stat={stat}
+              index={i}
+              isVisible={isVisible}
+            />
+          ))}
         </div>
         <div className="flex justify-end">
-          <Button to="/trabajos" size="lg" className="w-full sm:w-auto">
+          <Link
+            to="/trabajos"
+            className="btn-primary px-8 py-4 text-sm sm:text-base md:text-lg w-full sm:w-auto"
+          >
             Descubre nuestro impacto en Chile
             <ArrowRight size={20} />
-          </Button>
+          </Link>
         </div>
-
+        
       </div>
 
     </section>

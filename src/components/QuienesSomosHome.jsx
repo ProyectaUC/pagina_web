@@ -1,7 +1,7 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { ArrowRight, Target, Eye } from "lucide-react";
 import { useInView } from "../hooks/useAnimations";
-import Button from "./ui/Button";
 
 export default function QuienesSomosHome() {
   const [ref, isVisible] = useInView();
@@ -9,7 +9,7 @@ export default function QuienesSomosHome() {
   return (
     <section
       id="quienes-somos"
-      className="py-24 sm:py-32 relative overflow-hidden bg-white dark:bg-proyecta-surface transition-colors duration-300"
+      className="py-24 sm:py-32 relative overflow-hidden bg-white dark:bg-[#0D1F2A] transition-colors duration-300"
       ref={ref}
     >
       {/* Elementos decorativos de fondo para mantener la estética del Hero */}
@@ -39,7 +39,7 @@ export default function QuienesSomosHome() {
             </div>
 
             {/* Tarjeta Flotante (Año de Fundación) */}
-            <div className="absolute -bottom-6 -right-4 sm:-bottom-8 sm:-right-8 z-20 bg-white/90 dark:bg-proyecta-surface-2/90 backdrop-blur-md p-6 sm:p-8 rounded-3xl shadow-xl border border-proyecta-cyan/20 animate-float">
+            <div className="absolute -bottom-6 -right-4 sm:-bottom-8 sm:-right-8 z-20 bg-white/90 dark:bg-[#122530]/90 backdrop-blur-md p-6 sm:p-8 rounded-3xl shadow-xl border border-proyecta-cyan/20 animate-float">
               <p className="text-proyecta-teal dark:text-proyecta-cyan font-bold text-xs sm:text-sm uppercase tracking-widest mb-1">
                 Fundación
               </p>
@@ -86,9 +86,9 @@ export default function QuienesSomosHome() {
             <div className="grid sm:grid-cols-2 gap-6 mb-10 w-full">
               <div className="glass p-5 rounded-2xl border border-black/5 dark:border-white/10 bg-proyecta-cyan/5 dark:bg-proyecta-cyan/5">
                 <Target size={24} className="text-proyecta-teal dark:text-proyecta-cyan mb-3" />
-                <h3 className="text-proyecta-navy dark:text-white font-bold mb-1">
+                <h4 className="text-proyecta-navy dark:text-white font-bold mb-1">
                   Misión
-                </h3>
+                </h4>
                 <p className="text-sm text-proyecta-navy/70 dark:text-white/60 leading-relaxed">
                   Fortalecer la cohesión comunitaria y potenciar la
                   asociatividad en sectores rurales.
@@ -96,9 +96,9 @@ export default function QuienesSomosHome() {
               </div>
               <div className="glass p-5 rounded-2xl border border-black/5 dark:border-white/10 bg-proyecta-yellow/5 dark:bg-proyecta-yellow/5">
                 <Eye size={24} className="text-proyecta-orange dark:text-proyecta-yellow mb-3" />
-                <h3 className="text-proyecta-navy dark:text-white font-bold mb-1">
+                <h4 className="text-proyecta-navy dark:text-white font-bold mb-1">
                   Visión
-                </h3>
+                </h4>
                 <p className="text-sm text-proyecta-navy/70 dark:text-white/60 leading-relaxed">
                   Comunidades autónomas, protagonistas de su propio desarrollo y
                   bienestar.
@@ -107,14 +107,13 @@ export default function QuienesSomosHome() {
             </div>
 
             {/* Botón CTA (Call to Action) */}
-            <Button
+            <Link
               to="/quienes-somos"
-              size="lg"
-              className="w-full sm:w-auto"
+              className="px-8 py-4 bg-proyecta-cyan text-proyecta-navy text-base sm:text-lg font-bold rounded-full hover:bg-proyecta-teal hover:text-white hover:-translate-y-1 transition-all duration-300 flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(64,208,240,0.3)] hover:shadow-[0_0_25px_rgba(32,185,214,0.4)] w-full sm:w-auto"
             >
               Conoce más sobre nosotros
               <ArrowRight size={20} />
-            </Button>
+            </Link>
           </div>
           
         </div>

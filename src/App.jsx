@@ -1,28 +1,15 @@
-import { useEffect, lazy, Suspense } from "react";
-import { Routes, Route, Outlet, useLocation } from "react-router-dom";
+import { useEffect } from "react"; // <-- 1. Importa useEffect
+import { Routes, Route, Outlet, useLocation } from "react-router-dom"; // <-- 2. Añade useLocation
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import ErrorBoundary from "./components/ErrorBoundary";
 import HomePage from "./pages/HomePage";
-
-// El resto de las rutas se cargan bajo demanda: evita que /trabajos
-// (react-simple-maps + framer-motion) se descargue en la carga inicial
-// de la home, que es la página que recibe la mayoría de las visitas.
-const QuienesSomosPage = lazy(() => import("./pages/QuienesSomosPage"));
-const HistoriaPage = lazy(() => import("./pages/HistoriaPage"));
-const ApoyanosPage = lazy(() => import("./pages/ApoyanosPage"));
-const TrabajosPage = lazy(() => import("./pages/TrabajosPage"));
-const EquipoPage = lazy(() => import("./pages/EquipoPage"));
-const UnetePage = lazy(() => import("./pages/UnetePage"));
-const NotFoundPage = lazy(() => import("./pages/NotFoundPage"));
-
-function RouteLoader() {
-  return (
-    <div className="min-h-[60vh] flex items-center justify-center">
-      <div className="w-10 h-10 rounded-full border-4 border-proyecta-cyan/20 border-t-proyecta-cyan animate-spin" />
-    </div>
-  );
-}
+import QuienesSomosPage from "./pages/QuienesSomosPage";
+// import ImpactoPage from "./pages/ImpactoPage";
+import HistoriaPage from "./pages/HistoriaPage";
+import ApoyanosPage from "./pages/ApoyanosPage";
+// import ContactoPage from "./pages/ContactoPage";
+import TrabajosPage from "./pages/TrabajosPage";
+import EquipoPage from "./pages/EquipoPage";
 
 function Layout() {
   const { pathname } = useLocation(); // <-- 3. Obtenemos la ruta actual
@@ -33,22 +20,11 @@ function Layout() {
   }, [pathname]);
 
   return (
-    <div className="min-h-screen bg-white dark:bg-proyecta-surface font-sans">
-      <a
-        href="#contenido"
-        className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:px-4 focus:py-2 focus:rounded-lg focus:bg-proyecta-cyan focus:text-proyecta-navy focus:font-bold focus:shadow-lg"
-      >
-        Saltar al contenido
-      </a>
-
+    <div className="min-h-screen bg-white dark:bg-[#0D1F2A] font-sans">
       <Navbar />
 
-      <main id="contenido">
-        <ErrorBoundary key={pathname}>
-          <Suspense fallback={<RouteLoader />}>
-            <Outlet />
-          </Suspense>
-        </ErrorBoundary>
+      <main>
+        <Outlet />
       </main>
 
       <Footer />
@@ -65,9 +41,8 @@ export default function App() {
         <Route path="trabajos" element={<TrabajosPage />} />
         <Route path="historia" element={<HistoriaPage />} />
         <Route path="equipo" element={<EquipoPage />} />
-        <Route path="unete" element={<UnetePage />} />
         <Route path="apoyanos" element={<ApoyanosPage />} />
-        <Route path="*" element={<NotFoundPage />} />
+        {/* <Route path="contacto" element={<ContactoPage />} /> */}
       </Route>
     </Routes>
   );

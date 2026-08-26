@@ -23,8 +23,6 @@ export default {
           orange:     '#F57C00',   // Naranja acento
           white:      '#FFFFFF',
           'light-bg': '#F0FAFF',   // Fondo claro
-          surface:    '#0D1F2A',   // Fondo de superficie en modo oscuro
-          'surface-2':'#122530',   // Fondo de superficie secundario en modo oscuro
         }
       },
       // =========================================================
@@ -70,10 +68,6 @@ export default {
         'shimmer': {
           '0%':   { backgroundPosition: '-200% 0' },
           '100%': { backgroundPosition: '200% 0' },
-        },
-        'kenburns': {
-          '0%':   { transform: 'scale(1.05) translate(0, 0)' },
-          '100%': { transform: 'scale(1.15) translate(-1.5%, -1.5%)' },
         },
       },
       animation: {

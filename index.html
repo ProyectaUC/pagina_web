@@ -4,11 +4,10 @@
   <head>
     <meta charset="UTF-8" />
     <!-- ================================================== -->
-    <!-- 🖼 FAVICON                                         -->
-    <!-- Si en el futuro hay una versión SVG oficial del logo, -->
-    <!-- agregar aquí <link rel="icon" type="image/svg+xml" ...> -->
+    <!-- 🖼 FAVICON: Reemplaza con SVG oficial de Figma     -->
     <!-- ================================================== -->
-    <link rel="icon" type="image/png" href="/assets/logos/favicon.png" />
+    <link rel="icon" type="image/svg+xml" href="/assets/logos/favicon.svg" />
+    <link rel="alternate icon" href="/assets/logos/favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- ================================================== -->
@@ -40,7 +39,7 @@
     />
     <meta
       property="og:image"
-      content="https://proyecta.cai.cl/assets/logos/og-image.jpg"
+      content="https://proyecta.cai.cl/assets/logos/og-image.png"
     />
 
     <!-- Twitter -->
@@ -56,7 +55,7 @@
     />
     <meta
       property="twitter:image"
-      content="https://proyecta.cai.cl/assets/logos/og-image.jpg"
+      content="https://proyecta.cai.cl/assets/logos/og-image.png"
     />
 
     <!-- ================================================== -->
@@ -73,34 +72,10 @@
     <!-- Theme color for mobile browsers -->
     <!-- Te recomiendo cambiar este color al fondo oscuro de tu app para que la barra del celular combine -->
     <meta name="theme-color" content="#0D1F2A" />
-
-    <!-- Datos estructurados (Schema.org) -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "NGO",
-        "name": "Proyecta CAI",
-        "alternateName": "Proyecta",
-        "url": "https://proyecta.cai.cl",
-        "logo": "https://proyecta.cai.cl/assets/logos/logo.png",
-        "description": "Voluntariado comprometido con el fortalecimiento de comunidades rurales de Chile mediante la recuperación de espacios y talleres comunitarios.",
-        "email": "Redesycontactos@trabajosproyecta.cl",
-        "telephone": "+56 9 3395 6752",
-        "address": {
-          "@type": "PostalAddress",
-          "addressLocality": "Macul, Santiago",
-          "addressCountry": "CL"
-        },
-        "sameAs": [
-          "https://www.instagram.com/proyectauc/",
-          "https://www.linkedin.com/company/proyecta-uc/"
-        ]
-      }
-    </script>
   </head>
 
   <!-- 2. AQUÍ AGREGAMOS EL FONDO OSCURO PARA EVITAR PARPADEOS BLANCOS -->
-  <body class="bg-proyecta-surface text-white">
+  <body class="bg-[#0D1F2A] text-white">
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

@@ -1,8 +1,21 @@
+import { Link } from "react-router-dom";
 import { ChevronDown, Heart, ArrowRight } from "lucide-react";
 import { content } from "../styles/theme/brand";
-import Button from "./ui/Button";
 
 export default function Hero() {
+  const scrollToSection = (id) => {
+    document
+      .querySelector(id)
+      ?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
+  const scrollToQuienesSomos = () => {
+    const section = document.getElementById("quienes-somos");
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" }); // "smooth" hace que el deslizamiento sea suave
+    }
+  };
+
   return (
     <section
       id="inicio"
@@ -19,9 +32,9 @@ export default function Hero() {
           fetchpriority="high"
         />
         {/* Overlay oscuro para legibilidad */}
-        <div className="absolute inset-0 bg-proyecta-surface/30 mix-blend-multiply"></div>
+        <div className="absolute inset-0 bg-[#0D1F2A]/30 mix-blend-multiply"></div>
         {/* Degradado para transición suave hacia la ola */}
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-proyecta-surface/30 to-proyecta-surface/90"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0D1F2A]/30 to-[#0D1F2A]/90"></div>
       </div>
 
       {/* ─── CONTENIDO PRINCIPAL (Centrado) ─── */}
@@ -58,18 +71,19 @@ export default function Hero() {
           className="flex flex-col sm:flex-row gap-4 sm:gap-6 w-full sm:w-auto animate-fade-up"
           style={{ animationDelay: "300ms" }}
         >
-          <Button to="/unete" size="lg" className="w-full sm:w-auto">
-            Únete como voluntario <ArrowRight size={20} />
-          </Button>
-          <Button
-            variant="secondary"
+          <button
+            onClick={scrollToQuienesSomos}
+            className="btn-primary px-8 py-4 text-lg w-full sm:w-auto"
+          >
+            Conócenos <ArrowRight size={20} />
+          </button>
+          <Link
             to="/apoyanos"
-            size="lg"
-            className="bg-white/10 text-white border-white/20 hover:bg-white/20 hover:text-white w-full sm:w-auto"
+            className="btn-secondary px-8 py-4 text-lg bg-white/10 text-white border-white/20 hover:bg-white/20 hover:text-white w-full sm:w-auto"
           >
             <Heart size={20} className="text-proyecta-yellow" />
             Apóyanos
-          </Button>
+          </Link>
         </div>
       </div>
 
@@ -95,7 +109,7 @@ export default function Hero() {
           <path
             d="M0 80L60 69.3C120 58.7 240 37.3 360 37.3C480 37.3 600 58.7 720 64C840 69.3 960 58.7 1080 48C1200 37.3 1320 26.7 1380 21.3L1440 16V80H1380C1320 80 1200 80 1080 80C960 80 840 80 720 80C600 80 480 80 360 80C240 80 120 80 60 80H0Z"
             fill="white"
-            className="dark:fill-proyecta-surface"
+            className="dark:fill-[#0D1F2A]"
           />
         </svg>
       </div>
