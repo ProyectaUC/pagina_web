@@ -84,7 +84,7 @@ export default function Footer() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={s.label}
-                    className={`p-2 rounded-lg bg-white/5 hover:bg-white/15 text-white/50 ${s.color} transition-all`}
+                    className={`min-w-11 min-h-11 flex items-center justify-center rounded-lg bg-white/5 hover:bg-white/15 text-white/50 ${s.color} transition-all`}
                   >
                     <Icon size={16} strokeWidth={1.5} />
                   </a>
@@ -94,15 +94,15 @@ export default function Footer() {
           </div>
 
           <div>
-            <h5 className="text-xs font-bold uppercase tracking-widest text-white/40 mb-4">
+            <h3 className="text-xs font-bold uppercase tracking-widest text-white/40 mb-4">
               Navegacion
-            </h5>
-            <ul className="space-y-2">
+            </h3>
+            <ul>
               {navLinks.map((item) => (
                 <li key={item.to}>
                   <Link
                     to={item.to}
-                    className="text-sm text-white/60 hover:text-proyecta-cyan transition-colors"
+                    className="block py-2 text-sm text-white/60 hover:text-proyecta-cyan transition-colors"
                   >
                     {item.label}
                   </Link>
@@ -112,9 +112,9 @@ export default function Footer() {
           </div>
 
           <div>
-            <h5 className="text-xs font-bold uppercase tracking-widest text-white/40 mb-4">
+            <h3 className="text-xs font-bold uppercase tracking-widest text-white/40 mb-4">
               Contacto
-            </h5>
+            </h3>
             <ul className="space-y-2 text-sm text-white/60">
               <li>{content.org.email}</li>
               <li>{content.org.phone}</li>

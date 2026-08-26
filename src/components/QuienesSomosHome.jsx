@@ -86,9 +86,9 @@ export default function QuienesSomosHome() {
             <div className="grid sm:grid-cols-2 gap-6 mb-10 w-full">
               <div className="glass p-5 rounded-2xl border border-black/5 dark:border-white/10 bg-proyecta-cyan/5 dark:bg-proyecta-cyan/5">
                 <Target size={24} className="text-proyecta-teal dark:text-proyecta-cyan mb-3" />
-                <h4 className="text-proyecta-navy dark:text-white font-bold mb-1">
+                <h3 className="text-proyecta-navy dark:text-white font-bold mb-1">
                   Misión
-                </h4>
+                </h3>
                 <p className="text-sm text-proyecta-navy/70 dark:text-white/60 leading-relaxed">
                   Fortalecer la cohesión comunitaria y potenciar la
                   asociatividad en sectores rurales.
@@ -96,9 +96,9 @@ export default function QuienesSomosHome() {
               </div>
               <div className="glass p-5 rounded-2xl border border-black/5 dark:border-white/10 bg-proyecta-yellow/5 dark:bg-proyecta-yellow/5">
                 <Eye size={24} className="text-proyecta-orange dark:text-proyecta-yellow mb-3" />
-                <h4 className="text-proyecta-navy dark:text-white font-bold mb-1">
+                <h3 className="text-proyecta-navy dark:text-white font-bold mb-1">
                   Visión
-                </h4>
+                </h3>
                 <p className="text-sm text-proyecta-navy/70 dark:text-white/60 leading-relaxed">
                   Comunidades autónomas, protagonistas de su propio desarrollo y
                   bienestar.

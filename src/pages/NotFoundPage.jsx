@@ -1,7 +1,9 @@
 import { Compass, ArrowRight, Home } from "lucide-react";
 import Button from "../components/ui/Button";
+import { usePageMeta } from "../hooks/usePageMeta";
 
 export default function NotFoundPage() {
+  usePageMeta("Página no encontrada");
   return (
     <section className="min-h-[70vh] flex flex-col items-center justify-center bg-white dark:bg-proyecta-surface px-6 text-center transition-colors duration-300">
       <div className="p-6 bg-proyecta-cyan/10 rounded-full mb-8">
