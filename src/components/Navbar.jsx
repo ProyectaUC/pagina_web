@@ -1,18 +1,19 @@
 import { useState, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
-import { Menu, X, Sun, Moon, Map } from "lucide-react";
-import { assets, content } from "../styles/theme/brand";
+import { Menu, X, Sun, Moon } from "lucide-react";
 import { useDarkMode } from "../hooks/useAnimations";
+import Button from "./ui/Button";
+import Logo from "./ui/Logo";
 
 const navLinks = [
   { label: "Inicio", to: "/" },
   { label: "Quiénes Somos", to: "/quienes-somos" },
   { label: "Trabajos", to: "/trabajos" },
-  { label: "Historia", to: "/historia" },
   { label: "Equipo", to: "/equipo" },
   { label: "Apóyanos", to: "/apoyanos" },
-  // { label: "Contacto", to: "/contacto" },
 ];
+
+const PRIMARY_CTA = { label: "Únete", to: "/unete" };
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -27,6 +28,7 @@ export default function Navbar() {
 
   return (
     <>
+      <header>
       <nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 backdrop-blur-md ${
           scrolled
@@ -41,25 +43,10 @@ export default function Navbar() {
             onClick={() => setIsOpen(false)}
             className="flex items-center gap-3 group"
           >
-            {/* ================================================
-                🖼 LOGO: Reemplaza assets.logo con SVG de Figma
-                ================================================ */}
-            <img
-              src={assets.logo}
-              alt={content.org.name}
-              className="h-10 w-auto object-contain group-hover:scale-105 transition-transform duration-300"
-              onError={(e) => {
-                e.target.style.display = "none";
-                e.target.nextSibling.style.display = "flex";
-              }}
+            <Logo
+              imgClassName="h-10 w-auto object-contain group-hover:scale-105 transition-transform duration-300"
+              textClassName="text-proyecta-teal dark:text-proyecta-cyan"
             />
-            {/* Fallback text logo */}
-            <span
-              className="hidden items-center gap-2 text-proyecta-teal dark:text-proyecta-cyan font-display text-2xl"
-              style={{ fontFamily: "var(--font-display)" }}
-            >
-              {content.org.name}
-            </span>
           </Link>
 
           {/* Desktop links */}
@@ -87,7 +74,7 @@ export default function Navbar() {
             {/* Dark mode toggle */}
             <button
               onClick={() => setIsDark(!isDark)}
-              className="p-2 rounded-lg text-proyecta-navy/70 dark:text-white/70 hover:text-proyecta-teal dark:hover:text-proyecta-cyan hover:bg-proyecta-navy/5 dark:hover:bg-white/10
+              className="min-w-11 min-h-11 flex items-center justify-center rounded-lg text-proyecta-navy/70 dark:text-white/70 hover:text-proyecta-teal dark:hover:text-proyecta-cyan hover:bg-proyecta-navy/5 dark:hover:bg-white/10
                          transition-all duration-200"
               aria-label="Cambiar tema"
             >
@@ -95,23 +82,23 @@ export default function Navbar() {
             </button>
 
             {/* CTA button */}
-            <Link to="/apoyanos" className="btn-primary text-sm px-5 py-2.5">
-              Apóyanos
-            </Link>
+            <Button to={PRIMARY_CTA.to} size="sm">
+              {PRIMARY_CTA.label}
+            </Button>
           </div>
 
           {/* Mobile menu button */}
           <div className="flex lg:hidden items-center gap-2">
             <button
               onClick={() => setIsDark(!isDark)}
-              className="p-2 rounded-lg text-proyecta-navy/70 dark:text-white/70 hover:text-proyecta-teal dark:hover:text-proyecta-cyan"
+              className="min-w-11 min-h-11 flex items-center justify-center rounded-lg text-proyecta-navy/70 dark:text-white/70 hover:text-proyecta-teal dark:hover:text-proyecta-cyan"
               aria-label="Cambiar tema"
             >
               {isDark ? <Sun size={16} /> : <Moon size={16} />}
             </button>
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="p-2 rounded-lg text-proyecta-navy dark:text-white hover:bg-proyecta-navy/5 dark:hover:bg-white/10 transition-colors"
+              className="min-w-11 min-h-11 flex items-center justify-center rounded-lg text-proyecta-navy dark:text-white hover:bg-proyecta-navy/5 dark:hover:bg-white/10 transition-colors"
               aria-label="Menú"
             >
               {isOpen ? <X size={22} /> : <Menu size={22} />}
@@ -119,6 +106,7 @@ export default function Navbar() {
           </div>
         </div>
       </nav>
+      </header>
 
       {/* Mobile menu overlay */}
       <div
@@ -155,13 +143,13 @@ export default function Navbar() {
               {link.label}
             </NavLink>
           ))}
-          <Link
-            to="/apoyanos"
+          <Button
+            to={PRIMARY_CTA.to}
             onClick={() => setIsOpen(false)}
-            className="btn-primary mt-4 text-base px-8 py-3"
+            className="mt-4"
           >
-            Apóyanos
-          </Link>
+            {PRIMARY_CTA.label}
+          </Button>
         </div>
       </div>
     </>

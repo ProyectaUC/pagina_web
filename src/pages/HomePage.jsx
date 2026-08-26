@@ -4,8 +4,10 @@ import Hero from "../components/Hero";
 import QuienesSomosHome from "../components/QuienesSomosHome";
 import Impacto from "../components/Impacto";
 import MetaFinan from "../components/MetaFinan";
+import { usePageMeta } from "../hooks/usePageMeta";
 
 export default function HomePage() {
+  usePageMeta();
   const location = useLocation();
 
   useEffect(() => {
