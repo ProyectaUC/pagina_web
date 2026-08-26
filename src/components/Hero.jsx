@@ -3,14 +3,6 @@ import { content } from "../styles/theme/brand";
 import Button from "./ui/Button";
 
 export default function Hero() {
-
-  const scrollToQuienesSomos = () => {
-    const section = document.getElementById("quienes-somos");
-    if (section) {
-      section.scrollIntoView({ behavior: "smooth" }); // "smooth" hace que el deslizamiento sea suave
-    }
-  };
-
   return (
     <section
       id="inicio"
@@ -66,12 +58,8 @@ export default function Hero() {
           className="flex flex-col sm:flex-row gap-4 sm:gap-6 w-full sm:w-auto animate-fade-up"
           style={{ animationDelay: "300ms" }}
         >
-          <Button
-            onClick={scrollToQuienesSomos}
-            size="lg"
-            className="w-full sm:w-auto"
-          >
-            Conócenos <ArrowRight size={20} />
+          <Button to="/unete" size="lg" className="w-full sm:w-auto">
+            Únete como voluntario <ArrowRight size={20} />
           </Button>
           <Button
             variant="secondary"

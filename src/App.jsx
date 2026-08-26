@@ -1,14 +1,27 @@
-import { useEffect } from "react"; // <-- 1. Importa useEffect
-import { Routes, Route, Outlet, useLocation } from "react-router-dom"; // <-- 2. Añade useLocation
+import { useEffect, lazy, Suspense } from "react";
+import { Routes, Route, Outlet, useLocation } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import HomePage from "./pages/HomePage";
-import QuienesSomosPage from "./pages/QuienesSomosPage";
-import HistoriaPage from "./pages/HistoriaPage";
-import ApoyanosPage from "./pages/ApoyanosPage";
-import TrabajosPage from "./pages/TrabajosPage";
-import EquipoPage from "./pages/EquipoPage";
-import NotFoundPage from "./pages/NotFoundPage";
+
+// El resto de las rutas se cargan bajo demanda: evita que /trabajos
+// (react-simple-maps + framer-motion) se descargue en la carga inicial
+// de la home, que es la página que recibe la mayoría de las visitas.
+const QuienesSomosPage = lazy(() => import("./pages/QuienesSomosPage"));
+const HistoriaPage = lazy(() => import("./pages/HistoriaPage"));
+const ApoyanosPage = lazy(() => import("./pages/ApoyanosPage"));
+const TrabajosPage = lazy(() => import("./pages/TrabajosPage"));
+const EquipoPage = lazy(() => import("./pages/EquipoPage"));
+const UnetePage = lazy(() => import("./pages/UnetePage"));
+const NotFoundPage = lazy(() => import("./pages/NotFoundPage"));
+
+function RouteLoader() {
+  return (
+    <div className="min-h-[60vh] flex items-center justify-center">
+      <div className="w-10 h-10 rounded-full border-4 border-proyecta-cyan/20 border-t-proyecta-cyan animate-spin" />
+    </div>
+  );
+}
 
 function Layout() {
   const { pathname } = useLocation(); // <-- 3. Obtenemos la ruta actual
@@ -23,7 +36,9 @@ function Layout() {
       <Navbar />
 
       <main>
-        <Outlet />
+        <Suspense fallback={<RouteLoader />}>
+          <Outlet />
+        </Suspense>
       </main>
 
       <Footer />
@@ -40,6 +55,7 @@ export default function App() {
         <Route path="trabajos" element={<TrabajosPage />} />
         <Route path="historia" element={<HistoriaPage />} />
         <Route path="equipo" element={<EquipoPage />} />
+        <Route path="unete" element={<UnetePage />} />
         <Route path="apoyanos" element={<ApoyanosPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Route>

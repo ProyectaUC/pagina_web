@@ -9,11 +9,11 @@ const navLinks = [
   { label: "Inicio", to: "/" },
   { label: "Quiénes Somos", to: "/quienes-somos" },
   { label: "Trabajos", to: "/trabajos" },
-  { label: "Historia", to: "/historia" },
   { label: "Equipo", to: "/equipo" },
   { label: "Apóyanos", to: "/apoyanos" },
-  // { label: "Contacto", to: "/contacto" },
 ];
+
+const PRIMARY_CTA = { label: "Únete", to: "/unete" };
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -96,8 +96,8 @@ export default function Navbar() {
             </button>
 
             {/* CTA button */}
-            <Button to="/apoyanos" size="sm">
-              Apóyanos
+            <Button to={PRIMARY_CTA.to} size="sm">
+              {PRIMARY_CTA.label}
             </Button>
           </div>
 
@@ -157,11 +157,11 @@ export default function Navbar() {
             </NavLink>
           ))}
           <Button
-            to="/apoyanos"
+            to={PRIMARY_CTA.to}
             onClick={() => setIsOpen(false)}
             className="mt-4"
           >
-            Apóyanos
+            {PRIMARY_CTA.label}
           </Button>
         </div>
       </div>
