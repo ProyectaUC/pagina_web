@@ -387,31 +387,34 @@ export default function InteractiveChileMap({
                   // Se usa la clave oficial única del objeto properties (ej: "CLAP", "CLRM")
                   key={geo.properties.id || geo.rsmKey}
                   geography={geo}
-                  // Relleno translúcido en vez de un color sólido: el fondo de
-                  // la sección es un gradiente (bg-gradient-hero) que pasa por
-                  // varios tonos de navy/teal, así que cualquier color sólido
-                  // fijo coincide con el fondo en algún punto del gradiente y
-                  // la región se vuelve invisible ahí (pasó con "#1B3A4B",
-                  // igual al 0% del gradiente, y con "#1B5E7A" en hover,
-                  // igual al 60%). Un blanco translúcido siempre contrasta,
-                  // sin importar qué color tenga el fondo debajo.
+                  // El fondo de la sección es un gradiente (bg-gradient-hero)
+                  // que pasa por varios tonos de navy/teal ("#1B3A4B" 0%,
+                  // "#1B5E7A" 60%, "#1B9AB5" 100%), así que un relleno sólido
+                  // dentro de esa misma rampa de color coincide con el fondo
+                  // en algún punto y la región se vuelve invisible ahí (pasó
+                  // antes con esos mismos dos hex). Se usa en cambio el navy
+                  // más oscuro de la marca (proyecta-surface / -surface-2,
+                  // el mismo de las superficies en modo oscuro), que queda
+                  // siempre más oscuro que cualquier punto del gradiente y
+                  // nunca puede calzar con él, manteniendo el look solido
+                  // original en vez de un relleno translúcido "lavado".
                   style={{
                     default: {
-                      fill: "rgba(255, 255, 255, 0.08)",
+                      fill: "#0D1F2A",
                       stroke: "#29B6D8",
                       strokeWidth: 0.6,
                       outline: "none",
                       vectorEffect: "non-scaling-stroke",
                     },
                     hover: {
-                      fill: "rgba(255, 255, 255, 0.16)",
+                      fill: "#122530",
                       stroke: "#40D0F0",
                       strokeWidth: 0.9,
                       outline: "none",
                       vectorEffect: "non-scaling-stroke",
                     },
                     pressed: {
-                      fill: "rgba(255, 255, 255, 0.22)",
+                      fill: "#16303F",
                       outline: "none",
                       vectorEffect: "non-scaling-stroke",
                     },
