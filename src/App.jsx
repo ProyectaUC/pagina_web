@@ -4,10 +4,8 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import HomePage from "./pages/HomePage";
 import QuienesSomosPage from "./pages/QuienesSomosPage";
-// import ImpactoPage from "./pages/ImpactoPage";
 import HistoriaPage from "./pages/HistoriaPage";
 import ApoyanosPage from "./pages/ApoyanosPage";
-// import ContactoPage from "./pages/ContactoPage";
 import TrabajosPage from "./pages/TrabajosPage";
 import EquipoPage from "./pages/EquipoPage";
 import NotFoundPage from "./pages/NotFoundPage";
@@ -21,7 +19,7 @@ function Layout() {
   }, [pathname]);
 
   return (
-    <div className="min-h-screen bg-white dark:bg-[#0D1F2A] font-sans">
+    <div className="min-h-screen bg-white dark:bg-proyecta-surface font-sans">
       <Navbar />
 
       <main>
@@ -43,7 +41,6 @@ export default function App() {
         <Route path="historia" element={<HistoriaPage />} />
         <Route path="equipo" element={<EquipoPage />} />
         <Route path="apoyanos" element={<ApoyanosPage />} />
-        {/* <Route path="contacto" element={<ContactoPage />} /> */}
         <Route path="*" element={<NotFoundPage />} />
       </Route>
     </Routes>

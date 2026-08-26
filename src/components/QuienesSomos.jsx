@@ -14,6 +14,8 @@ import {
   Smile,
 } from "lucide-react";
 import { useInView } from "../hooks/useAnimations";
+import AnimateOnScroll from "./ui/AnimateOnScroll";
+import SectionHeader from "./ui/SectionHeader";
 
 // SECCIÓN IMAGEN 4 REESTRUCTURADA: Los 3 Verdaderos Pilares de Proyecta con imágenes de background
 const pilaresAccion = [
@@ -86,28 +88,18 @@ const principiosValores = [
 ];
 
 export default function QuienesSomos() {
-  // Asignamos hooks independientes a cada sección para que carguen progresivamente
-  const [ref1, isVisible1] = useInView();
+  // Misión y Visión comparten un solo trigger de scroll para que ambas
+  // tarjetas aparezcan en conjunto (la segunda con un pequeño delay).
   const [ref2, isVisible2] = useInView();
-  const [ref3, isVisible3] = useInView();
-  const [ref4, isVisible4] = useInView();
-  const [ref5, isVisible5] = useInView();
 
   return (
     <section
       id="quienes-somos"
-      className="pt-32 pb-24 bg-white dark:bg-[#0D1F2A] overflow-hidden transition-colors duration-300"
+      className="pt-32 pb-24 bg-white dark:bg-proyecta-surface overflow-hidden transition-colors duration-300"
     >
       <div className="section-container">
         {/* 1. SECCIÓN: ¿QUÉ ES PROYECTA? */}
-        <div
-          ref={ref1}
-          className={`flex flex-col lg:flex-row items-center gap-12 lg:gap-20 mb-32 transition-all duration-1000 ${
-            isVisible1
-              ? "opacity-100 translate-y-0"
-              : "opacity-0 translate-y-12"
-          }`}
-        >
+        <AnimateOnScroll className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20 mb-32">
           {/* Imagen de Esencia */}
           <div className="lg:w-1/2 relative w-full">
             <div className="relative w-full h-[400px] lg:h-[500px] rounded-[2.5rem] overflow-hidden shadow-card hover:shadow-card-hover transition-shadow duration-500">
@@ -120,7 +112,7 @@ export default function QuienesSomos() {
               />
               <div className="absolute inset-0 bg-proyecta-navy/20 mix-blend-multiply"></div>
             </div>
-            <div className="absolute -bottom-8 -right-4 sm:-right-8 bg-white dark:bg-[#122530] p-6 rounded-3xl shadow-xl border border-proyecta-cyan/20">
+            <div className="absolute -bottom-8 -right-4 sm:-right-8 bg-white dark:bg-proyecta-surface-2 p-6 rounded-3xl shadow-xl border border-proyecta-cyan/20">
               <p className="text-proyecta-teal font-bold text-sm uppercase tracking-widest mb-1">
                 Fundación
               </p>
@@ -156,7 +148,7 @@ export default function QuienesSomos() {
               </p>
             </div>
           </div>
-        </div>
+        </AnimateOnScroll>
 
         {/* 2. SECCIÓN: MISIÓN Y VISIÓN */}
         <div className="space-y-24 mb-32" ref={ref2}>
@@ -246,26 +238,20 @@ export default function QuienesSomos() {
         </div>
 
         {/* 3. SECCIÓN: OBJETIVOS EN DOS FRENTES */}
-        <div
-          ref={ref3}
-          className={`mb-32 transition-all duration-1000 ${
-            isVisible3
-              ? "opacity-100 translate-y-0"
-              : "opacity-0 translate-y-12"
-          }`}
-        >
-          <div className="text-center mb-16">
-            <span className="section-tag mb-4">Nuestro Propósito</span>
-            <h2 className="section-title mt-4">
-              Objetivos Globales en{" "}
-              <span className="text-proyecta-teal dark:text-proyecta-cyan">Dos Frentes</span>
-            </h2>
-            <span className="decorative-line mx-auto" />
-            <p className="max-w-2xl mx-auto text-lg text-proyecta-navy/70 dark:text-white/70 mt-4">
-              Impulsamos oportunidades y expectativas de crecimiento operando de
-              forma simultánea en la comunidad y en nuestro equipo humano.
-            </p>
-          </div>
+        <AnimateOnScroll className="mb-32">
+          <SectionHeader
+            tag="Nuestro Propósito"
+            title={
+              <>
+                Objetivos Globales en{" "}
+                <span className="text-proyecta-teal dark:text-proyecta-cyan">
+                  Dos Frentes
+                </span>
+              </>
+            }
+            description="Impulsamos oportunidades y expectativas de crecimiento operando de forma simultánea en la comunidad y en nuestro equipo humano."
+            className="mb-16"
+          />
 
           <div className="grid md:grid-cols-2 gap-8">
             {/* Frente Comunidades */}
@@ -338,26 +324,16 @@ export default function QuienesSomos() {
               </ul>
             </div>
           </div>
-        </div>
+        </AnimateOnScroll>
 
         {/* 4. SECCIÓN: LOS 3 PILARES OPERACIONALES */}
-        <div
-          ref={ref4}
-          className={`mb-32 transition-all duration-1000 ${
-            isVisible4
-              ? "opacity-100 translate-y-0"
-              : "opacity-0 translate-y-12"
-          }`}
-        >
-          <div className="text-center mb-16">
-            <span className="section-tag mb-4">Metodología de Trabajo</span>
-            <h2 className="section-title mt-4">Nuestros Pilares de Acción</h2>
-            <span className="decorative-line mx-auto" />
-            <p className="max-w-2xl mx-auto text-lg text-proyecta-navy/70 dark:text-white/70 mt-4">
-              Conectamos el trabajo de los voluntarios con las metas de la
-              comunidad mediante tres ejes prácticos y formativos.
-            </p>
-          </div>
+        <AnimateOnScroll className="mb-32">
+          <SectionHeader
+            tag="Metodología de Trabajo"
+            title="Nuestros Pilares de Acción"
+            description="Conectamos el trabajo de los voluntarios con las metas de la comunidad mediante tres ejes prácticos y formativos."
+            className="mb-16"
+          />
 
           <div className="grid md:grid-cols-3 gap-8 lg:gap-10">
             {pilaresAccion.map((pilar, index) => {
@@ -393,27 +369,16 @@ export default function QuienesSomos() {
               );
             })}
           </div>
-        </div>
+        </AnimateOnScroll>
 
         {/* 5. SECCIÓN: PRINCIPIOS FUNDACIONALES */}
-        <div
-          ref={ref5}
-          className={`transition-all duration-1000 ${
-            isVisible5
-              ? "opacity-100 translate-y-0"
-              : "opacity-0 translate-y-12"
-          }`}
-        >
-          <div className="text-center mb-16">
-            <span className="section-tag mb-4">Marco Estatutario</span>
-            <h2 className="section-title mt-4">Principios Fundacionales</h2>
-            <span className="decorative-line mx-auto" />
-            <p className="max-w-2xl mx-auto text-lg text-proyecta-navy/70 dark:text-white/70 mt-4">
-              Cinco directrices sustentadas en nuestros estatutos oficiales que
-              guían de manera íntegra cada intervención social y humana de
-              Proyecta.
-            </p>
-          </div>
+        <AnimateOnScroll>
+          <SectionHeader
+            tag="Marco Estatutario"
+            title="Principios Fundacionales"
+            description="Cinco directrices sustentadas en nuestros estatutos oficiales que guían de manera íntegra cada intervención social y humana de Proyecta."
+            className="mb-16"
+          />
 
           <div className="flex flex-wrap justify-center gap-6 sm:gap-8">
             {principiosValores.map((p) => {
@@ -421,7 +386,7 @@ export default function QuienesSomos() {
               return (
                 <div
                   key={p.label}
-                  className="w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.5rem)] card flex flex-col rounded-[2.5rem] overflow-hidden group hover:-translate-y-2 transition-all duration-500 shadow-card border border-proyecta-navy/5 dark:border-white/5 bg-white dark:bg-[#122530]"
+                  className="w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.5rem)] card flex flex-col rounded-[2.5rem] overflow-hidden group hover:-translate-y-2 transition-all duration-500 shadow-card border border-proyecta-navy/5 dark:border-white/5 bg-white dark:bg-proyecta-surface-2"
                 >
                   <div className="relative h-48 overflow-hidden w-full">
                     <img
@@ -435,7 +400,7 @@ export default function QuienesSomos() {
                   </div>
 
                   <div className="relative -mt-8 ml-6 z-20">
-                    <div className="inline-flex p-3 rounded-2xl bg-white dark:bg-[#0D1F2A] shadow-md border border-proyecta-navy/5 dark:border-white/10">
+                    <div className="inline-flex p-3 rounded-2xl bg-white dark:bg-proyecta-surface shadow-md border border-proyecta-navy/5 dark:border-white/10">
                       <Icon size={24} className={p.color} strokeWidth={2.5} />
                     </div>
                   </div>
@@ -459,7 +424,7 @@ export default function QuienesSomos() {
               2026
             </p>
           </div>
-        </div>
+        </AnimateOnScroll>
       </div>
     </section>
   );
