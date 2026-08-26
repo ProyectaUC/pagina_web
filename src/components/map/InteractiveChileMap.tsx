@@ -387,34 +387,32 @@ export default function InteractiveChileMap({
                   // Se usa la clave oficial única del objeto properties (ej: "CLAP", "CLRM")
                   key={geo.properties.id || geo.rsmKey}
                   geography={geo}
-                  // El fondo de la sección es un gradiente (bg-gradient-hero)
-                  // que pasa por varios tonos de navy/teal ("#1B3A4B" 0%,
-                  // "#1B5E7A" 60%, "#1B9AB5" 100%), así que un relleno sólido
-                  // dentro de esa misma rampa de color coincide con el fondo
-                  // en algún punto y la región se vuelve invisible ahí (pasó
-                  // antes con esos mismos dos hex). Se usa en cambio el navy
-                  // más oscuro de la marca (proyecta-surface / -surface-2,
-                  // el mismo de las superficies en modo oscuro), que queda
-                  // siempre más oscuro que cualquier punto del gradiente y
-                  // nunca puede calzar con él, manteniendo el look solido
-                  // original en vez de un relleno translúcido "lavado".
+                  // Colores originales de producción (bg-gradient-hero de la
+                  // sección pasa por "#1B3A4B" 0%, "#1B5E7A" 60%, "#1B9AB5"
+                  // 100%). El fill coincide con el fondo en el punto exacto
+                  // del degradado que le toca a cada región según su
+                  // posición vertical — en algunas zonas del mapa contrasta
+                  // bien (como en producción, donde se ve correcto) y en
+                  // otras casi no se nota. Se mantiene igual a producción a
+                  // pedido explícito: no reintroducir un color propio aquí
+                  // sin antes acordar el tradeoff de contraste con el equipo.
                   style={{
                     default: {
-                      fill: "#0D1F2A",
+                      fill: "#1B3A4B",
                       stroke: "#29B6D8",
                       strokeWidth: 0.6,
                       outline: "none",
                       vectorEffect: "non-scaling-stroke",
                     },
                     hover: {
-                      fill: "#122530",
+                      fill: "#1B5E7A",
                       stroke: "#40D0F0",
                       strokeWidth: 0.9,
                       outline: "none",
                       vectorEffect: "non-scaling-stroke",
                     },
                     pressed: {
-                      fill: "#16303F",
+                      fill: "#1B5E7A",
                       outline: "none",
                       vectorEffect: "non-scaling-stroke",
                     },
