@@ -387,6 +387,15 @@ export default function InteractiveChileMap({
                   // Se usa la clave oficial única del objeto properties (ej: "CLAP", "CLRM")
                   key={geo.properties.id || geo.rsmKey}
                   geography={geo}
+                  // Colores originales de producción (bg-gradient-hero de la
+                  // sección pasa por "#1B3A4B" 0%, "#1B5E7A" 60%, "#1B9AB5"
+                  // 100%). El fill coincide con el fondo en el punto exacto
+                  // del degradado que le toca a cada región según su
+                  // posición vertical — en algunas zonas del mapa contrasta
+                  // bien (como en producción, donde se ve correcto) y en
+                  // otras casi no se nota. Se mantiene igual a producción a
+                  // pedido explícito: no reintroducir un color propio aquí
+                  // sin antes acordar el tradeoff de contraste con el equipo.
                   style={{
                     default: {
                       fill: "#1B3A4B",
