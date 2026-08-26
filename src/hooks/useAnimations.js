@@ -1,10 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 
 // Hook para detectar cuando un elemento entra al viewport
-export function useInView({
-  threshold = 0.15,
-  rootMargin = '0px 0px -50px 0px',
-} = {}) {
+export function useInView(options = {}) {
   const ref = useRef(null)
   const [isVisible, setIsVisible] = useState(false)
 
@@ -17,13 +14,17 @@ export function useInView({
           if (ref.current) observer.unobserve(ref.current)
         }
       },
-      { threshold, rootMargin }
+      {
+        threshold: options.threshold || 0.15,
+        rootMargin: options.rootMargin || '0px 0px -50px 0px',
+        ...options,
+      }
     )
 
     if (ref.current) observer.observe(ref.current)
 
     return () => observer.disconnect()
-  }, [threshold, rootMargin])
+  }, [])
 
   return [ref, isVisible]
 }
@@ -61,13 +62,14 @@ export function useCountUp(end, duration = 2000, shouldStart = false) {
     if (!shouldStart) return
 
     let startTime = null
+    const startValue = 0
 
     const animate = (currentTime) => {
       if (!startTime) startTime = currentTime
       const progress = Math.min((currentTime - startTime) / duration, 1)
       // Easing: ease-out
       const eased = 1 - Math.pow(1 - progress, 3)
-      setCount(Math.floor(eased * end))
+      setCount(Math.floor(eased * (end - startValue) + startValue))
 
       if (progress < 1) {
         requestAnimationFrame(animate)

@@ -6,19 +6,13 @@ import {
   Marker,
   ZoomableGroup,
 } from "react-simple-maps";
-import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Plus, Minus, Maximize2, Hand } from "lucide-react";
 import type { Community, Category } from "../../data/communities";
 import { categoryColors } from "../../data/communities";
-// Importado (no en public/) para que Vite le agregue un hash al nombre del
-// archivo en cada build, igual que a los .js/.css. Antes vivía en public/
-// con el mismo nombre siempre ("cl.json"), así que un cache viejo (del
-// navegador, del ISP, o de un nodo de CDN que no se haya actualizado)
-// podía seguir sirviendo una copia vieja indefinidamente sin que ningún
-// deploy nuevo lo notara — un usuario veía los puntos (vienen del JS,
-// sin fetch) pero no las regiones (dependen de este archivo). Con hash,
-// cada versión tiene su propia URL única y ese problema desaparece solo.
-import CHILE_GEO_URL from "../../assets/geo/cl.json?url";
+
+// ── Local GeoJSON for Chile regions (WGS84 SimpleMaps structure) ──
+const CHILE_GEO_URL = `${import.meta.env.BASE_URL}assets/geo/cl.json`;
 
 // ── Chile projection config ──────────────────────────────────
 const PROJECTION_CONFIG = {
@@ -83,7 +77,6 @@ const CommunityMarker = memo(function CommunityMarker({
   onHoverEnd: () => void;
 }) {
   const color = categoryColors[community.category];
-  const reduceMotion = useReducedMotion();
 
   // Usamos scaleDivisor (con piso) en vez de dividir directo por zoom:
   // así el punto se va achicando de forma natural a medida que entras,
@@ -108,9 +101,9 @@ const CommunityMarker = memo(function CommunityMarker({
           strokeWidth={BASE_STROKE_PULSE}
           initial={{ scale: 1, opacity: 0.4 }}
           animate={
-            isFiltered && !reduceMotion
+            isFiltered
               ? { scale: [1, 2.2, 1], opacity: [0.4, 0, 0.4] }
-              : { scale: 1, opacity: isFiltered ? 0.3 : 0 }
+              : { scale: 1, opacity: 0 }
           }
           transition={{ duration: 2.4, repeat: Infinity, ease: "easeOut" }}
         />
@@ -181,12 +174,7 @@ export default function InteractiveChileMap({
 
   const handleHoverStart = useCallback(
     (community: Community, e: React.MouseEvent) => {
-      const bounds = containerRef.current?.getBoundingClientRect();
-      setTooltip({
-        community,
-        x: e.clientX - (bounds?.left ?? 0),
-        y: e.clientY - (bounds?.top ?? 0),
-      });
+      setTooltip({ community, x: e.clientX, y: e.clientY });
     },
     [],
   );
@@ -374,9 +362,11 @@ export default function InteractiveChileMap({
           // lo manejamos manualmente arriba para poder distinguir
           // scroll normal de página vs. zoom intencional (Ctrl/Cmd).
           filterZoomEvent={(event) => {
-            const wheelEvent = event as unknown as WheelEvent;
-            if (wheelEvent.type === "wheel") {
-              return wheelEvent.ctrlKey || wheelEvent.metaKey;
+            if (event.type === "wheel") {
+              return (
+                (event as unknown as WheelEvent).ctrlKey ||
+                (event as unknown as WheelEvent).metaKey
+              );
             }
             return true;
           }}
@@ -393,15 +383,6 @@ export default function InteractiveChileMap({
                   // Se usa la clave oficial única del objeto properties (ej: "CLAP", "CLRM")
                   key={geo.properties.id || geo.rsmKey}
                   geography={geo}
-                  // Colores originales de producción (bg-gradient-hero de la
-                  // sección pasa por "#1B3A4B" 0%, "#1B5E7A" 60%, "#1B9AB5"
-                  // 100%). El fill coincide con el fondo en el punto exacto
-                  // del degradado que le toca a cada región según su
-                  // posición vertical — en algunas zonas del mapa contrasta
-                  // bien (como en producción, donde se ve correcto) y en
-                  // otras casi no se nota. Se mantiene igual a producción a
-                  // pedido explícito: no reintroducir un color propio aquí
-                  // sin antes acordar el tradeoff de contraste con el equipo.
                   style={{
                     default: {
                       fill: "#1B3A4B",
@@ -442,28 +423,6 @@ export default function InteractiveChileMap({
           ))}
         </ZoomableGroup>
       </ComposableMap>
-
-      {/* ── Tooltip flotante al pasar el mouse por un marcador ── */}
-      <AnimatePresence>
-        {tooltip && (
-          <motion.div
-            key="map-tooltip"
-            initial={{ opacity: 0, y: 4 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.15 }}
-            className="pointer-events-none absolute z-40 -translate-x-1/2 -translate-y-full whitespace-nowrap rounded-lg px-3 py-1.5 text-xs font-semibold text-white shadow-lg"
-            style={{
-              left: tooltip.x,
-              top: tooltip.y - 12,
-              background: "rgba(15, 30, 45, 0.92)",
-              backdropFilter: "blur(8px)",
-            }}
-          >
-            {tooltip.community.name}
-          </motion.div>
-        )}
-      </AnimatePresence>
     </div>
   );
 }
