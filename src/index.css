@@ -204,6 +204,7 @@
    ============================================================ */
 ::-webkit-scrollbar {
   width: 8px;
+  height: 8px;
 }
 
 ::-webkit-scrollbar-track {
@@ -223,17 +224,30 @@
   background: var(--color-cyan);
 }
 
-/* ============================================================
-   📱 SMOOTH TRANSITIONS GLOBALES
-   Por defecto ningún elemento transiciona (evita flashes al
-   cambiar de tema); solo la lista de abajo lo hace.
-   ============================================================ */
-*, *::before, *::after {
-  transition: none;
+/* Cinta de miniaturas del modal del mapa: fondo negro, así que el
+   scrollbar claro de arriba desentona. Una versión delgada y
+   translúcida en vez de ocultarla del todo (mejor para quien navega
+   con mouse/trackpad, sigue siendo obvio que hay más fotos). */
+.thumbnail-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.25) transparent;
 }
 
-.btn-primary, .btn-secondary, .card, a, button {
-  transition: all 0.3s ease;
+.thumbnail-scroll::-webkit-scrollbar {
+  height: 5px;
+}
+
+.thumbnail-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.thumbnail-scroll::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 9999px;
+}
+
+.thumbnail-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.45);
 }
 
 /* ============================================================

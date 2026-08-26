@@ -227,7 +227,7 @@ export default function CommunityModal({
             {/* ── Cinta de Miniaturas (Thumbnails) ── */}
             {(community.photos?.length ?? 0) > 1 && (
               <div className="bg-[#0A0A0A] p-4 flex items-center justify-center border-t border-white/10">
-                <div className="flex gap-2 overflow-x-auto scrollbar-hide snap-x">
+                <div className="flex gap-2 overflow-x-auto thumbnail-scroll snap-x">
                   {community.photos!.map((photo, i) => (
                     <button
                       key={i}
