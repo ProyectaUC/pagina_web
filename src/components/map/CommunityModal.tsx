@@ -8,6 +8,7 @@ import {
   Calendar,
   Hammer,
   Quote,
+  Users,
 } from "lucide-react";
 import type { Community } from "../../data/communities";
 import { categoryColors, categoryLabels } from "../../data/communities";
@@ -193,6 +194,15 @@ export default function CommunityModal({
                         {categoryLabels[community.category]}
                       </span>
                     </div>
+
+                    {/* Jefes Generales (Opcional) */}
+                    {community.jefesGenerales &&
+                      community.jefesGenerales.length > 0 && (
+                        <div className="flex items-center gap-1.5 mt-2 text-white/60 text-sm">
+                          <Users size={15} className="text-proyecta-cyan flex-shrink-0" />
+                          <span>{community.jefesGenerales.join(", ")}</span>
+                        </div>
+                      )}
                   </div>
 
                   {/* Lo que se construyó (Secundario) */}
@@ -214,7 +224,7 @@ export default function CommunityModal({
             {/* ── Cinta de Miniaturas (Thumbnails) ── */}
             {(community.photos?.length ?? 0) > 1 && (
               <div className="bg-[#0A0A0A] p-4 flex items-center justify-center border-t border-white/10">
-                <div className="flex gap-2 overflow-x-auto scrollbar-hide snap-x">
+                <div className="flex gap-2 overflow-x-auto thumbnail-scroll snap-x">
                   {community.photos!.map((photo, i) => (
                     <button
                       key={i}

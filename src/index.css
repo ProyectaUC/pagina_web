@@ -204,6 +204,7 @@
    ============================================================ */
 ::-webkit-scrollbar {
   width: 8px;
+  height: 8px;
 }
 
 ::-webkit-scrollbar-track {
@@ -224,16 +225,31 @@
 }
 
 /* ============================================================
-   📱 SMOOTH TRANSITIONS GLOBALES
-   Por defecto ningún elemento transiciona (evita flashes al
-   cambiar de tema); solo la lista de abajo lo hace.
+   🖼 THUMBNAIL SCROLLBAR (modal de galería)
+   Scrollbar fina y translúcida para la cinta de miniaturas sobre
+   fondo oscuro — la scrollbar por defecto del navegador se veía
+   demasiado grande y contrastante ahí.
    ============================================================ */
-*, *::before, *::after {
-  transition: none;
+.thumbnail-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.25) transparent;
 }
 
-.btn-primary, .btn-secondary, .card, a, button {
-  transition: all 0.3s ease;
+.thumbnail-scroll::-webkit-scrollbar {
+  height: 5px;
+}
+
+.thumbnail-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.thumbnail-scroll::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 4px;
+}
+
+.thumbnail-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.4);
 }
 
 /* ============================================================
