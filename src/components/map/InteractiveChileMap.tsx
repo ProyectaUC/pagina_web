@@ -10,9 +10,15 @@ import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { Plus, Minus, Maximize2, Hand } from "lucide-react";
 import type { Community, Category } from "../../data/communities";
 import { categoryColors } from "../../data/communities";
-
-// ── Local GeoJSON for Chile regions (WGS84 SimpleMaps structure) ──
-const CHILE_GEO_URL = `${import.meta.env.BASE_URL}assets/geo/cl.json`;
+// Importado (no en public/) para que Vite le agregue un hash al nombre del
+// archivo en cada build, igual que a los .js/.css. Antes vivía en public/
+// con el mismo nombre siempre ("cl.json"), así que un cache viejo (del
+// navegador, del ISP, o de un nodo de CDN que no se haya actualizado)
+// podía seguir sirviendo una copia vieja indefinidamente sin que ningún
+// deploy nuevo lo notara — un usuario veía los puntos (vienen del JS,
+// sin fetch) pero no las regiones (dependen de este archivo). Con hash,
+// cada versión tiene su propia URL única y ese problema desaparece solo.
+import CHILE_GEO_URL from "../../assets/geo/cl.json?url";
 
 // ── Chile projection config ──────────────────────────────────
 const PROJECTION_CONFIG = {
