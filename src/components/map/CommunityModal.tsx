@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, type Variants } from "framer-motion";
 import {
   X,
   ChevronLeft,
@@ -25,7 +25,7 @@ const backdrop = {
   exit: { opacity: 0, transition: { duration: 0.2 } },
 };
 
-const panel = {
+const panel: Variants = {
   hidden: { opacity: 0, y: 40, scale: 0.97 },
   visible: {
     opacity: 1,
