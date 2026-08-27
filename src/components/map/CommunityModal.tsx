@@ -9,6 +9,7 @@ import {
   Hammer,
   Quote,
   Users,
+  ImageOff,
 } from "lucide-react";
 import type { Community } from "../../data/communities";
 import { categoryColors, categoryLabels } from "../../data/communities";
@@ -138,6 +139,16 @@ export default function CommunityModal({
                     className="absolute inset-0 w-full h-full object-cover"
                   />
                 </AnimatePresence>
+              )}
+
+              {/* Estado vacío: sin fotos registradas para este trabajo */}
+              {(!community.photos || community.photos.length === 0) && (
+                <div className="flex flex-col items-center gap-3 text-white/25 select-none px-6 text-center">
+                  <ImageOff size={40} strokeWidth={1.5} />
+                  <p className="text-sm font-medium tracking-wide">
+                    Aún no tenemos fotos de este trabajo
+                  </p>
+                </div>
               )}
 
               {/* Controles de Navegación de Fotos */}

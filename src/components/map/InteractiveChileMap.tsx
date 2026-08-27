@@ -114,10 +114,10 @@ const CommunityMarker = memo(function CommunityMarker({
           fill={color}
           stroke="white"
           strokeWidth={BASE_STROKE_MAIN}
+          opacity={isFiltered ? 1 : 0.25}
           style={{
             cursor: "pointer",
             filter: `drop-shadow(0px 2px 8px ${color}88)`,
-            opacity: isFiltered ? 1 : 0.25,
           }}
           whileHover={
             isFiltered
