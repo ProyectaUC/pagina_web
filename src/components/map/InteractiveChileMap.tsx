@@ -56,10 +56,13 @@ interface Props {
 // reinicia cuando el usuario hace zoom, y el cambio de tamaño se anima
 // suavemente en vez de saltar de golpe.
 const BASE_MAIN_RADIUS = 3;
-const BASE_PULSE_RADIUS = 5;
+const BASE_HALO_RADIUS = 6;
 const BASE_INNER_RADIUS = 1;
 const BASE_STROKE_MAIN = 1;
-const BASE_STROKE_PULSE = 1;
+// Radio del área invisible que capta el mouse/touch: bastante más grande
+// que el punto visible (BASE_MAIN_RADIUS) para no obligar al usuario a
+// apuntar con precisión a un círculo de pocos píxeles.
+const BASE_HIT_RADIUS = 9;
 
 const CommunityMarker = memo(function CommunityMarker({
   community,
@@ -76,6 +79,7 @@ const CommunityMarker = memo(function CommunityMarker({
   onHoverStart: (c: Community, e: React.MouseEvent) => void;
   onHoverEnd: () => void;
 }) {
+  const [isHovered, setIsHovered] = useState(false);
   const color = categoryColors[community.category];
 
   // Usamos scaleDivisor (con piso) en vez de dividir directo por zoom:
@@ -88,50 +92,45 @@ const CommunityMarker = memo(function CommunityMarker({
     <Marker coordinates={community.coordinates}>
       {/* Wrapper que absorbe el escalado por zoom. Anima suavemente cada
           vez que `groupScale` cambia (botones +/-, pinch, etc.), sin
-          afectar las animaciones internas (pulso, hover). */}
+          afectar las animaciones internas (halo, hover). */}
       <motion.g
         animate={{ scale: groupScale }}
         transition={{ type: "tween", duration: 0.25, ease: "easeOut" }}
       >
-        {/* Pulse ring — radios fijos; el <g> externo ya escala todo */}
-        <motion.circle
-          r={BASE_PULSE_RADIUS}
+        {/* Halo de hover — antes pulsaba todo el tiempo; ahora solo
+            aparece al pasar el mouse, como feedback de que el punto
+            responde, sin distraer cuando nadie lo está mirando.
+            Usa transición CSS (no framer-motion `animate`): los props
+            `animate`/`style` de framer-motion no siempre reaccionan a
+            cambios de opacidad en <motion.circle> dentro de este mapa
+            (ver el mismo fix aplicado más abajo al punto principal). */}
+        <circle
+          r={BASE_HALO_RADIUS}
           fill="transparent"
           stroke={color}
-          strokeWidth={BASE_STROKE_PULSE}
-          initial={{ scale: 1, opacity: 0.4 }}
-          animate={
-            isFiltered
-              ? { scale: [1, 2.2, 1], opacity: [0.4, 0, 0.4] }
-              : { scale: 1, opacity: 0 }
-          }
-          transition={{ duration: 2.4, repeat: Infinity, ease: "easeOut" }}
+          strokeWidth={1}
+          opacity={isFiltered && isHovered ? 0.35 : 0}
+          style={{
+            pointerEvents: "none",
+            transform: isFiltered && isHovered ? "scale(1)" : "scale(0.5)",
+            transition: "transform 0.25s ease-out, opacity 0.25s ease-out",
+          }}
         />
 
-        {/* Main dot */}
-        <motion.circle
+        {/* Main dot — puramente visual, sin eventos propios: el área de
+            interacción real es el círculo invisible más grande de abajo. */}
+        <circle
           r={BASE_MAIN_RADIUS}
           fill={color}
           stroke="white"
           strokeWidth={BASE_STROKE_MAIN}
           opacity={isFiltered ? 1 : 0.25}
           style={{
-            cursor: "pointer",
+            pointerEvents: "none",
             filter: `drop-shadow(0px 2px 8px ${color}88)`,
+            transform: isFiltered && isHovered ? "scale(1.4)" : "scale(1)",
+            transition: "transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1)",
           }}
-          whileHover={
-            isFiltered
-              ? { scale: 1.4, filter: `drop-shadow(0px 4px 12px ${color}cc)` }
-              : {}
-          }
-          whileTap={isFiltered ? { scale: 0.9 } : {}}
-          transition={{ type: "spring", stiffness: 400, damping: 20 }}
-          onClick={() => isFiltered && onSelect(community)}
-          onMouseEnter={(e) =>
-            isFiltered &&
-            onHoverStart(community, e as unknown as React.MouseEvent)
-          }
-          onMouseLeave={onHoverEnd}
         />
 
         {/* Inner highlight */}
@@ -146,6 +145,26 @@ const CommunityMarker = memo(function CommunityMarker({
             transition={{ delay: 0.1 }}
           />
         )}
+
+        {/* Área de interacción: invisible, más grande que el punto visible. */}
+        <circle
+          r={BASE_HIT_RADIUS}
+          fill="transparent"
+          style={{
+            pointerEvents: "all",
+            cursor: isFiltered ? "pointer" : "default",
+          }}
+          onClick={() => isFiltered && onSelect(community)}
+          onMouseEnter={(e) => {
+            if (!isFiltered) return;
+            setIsHovered(true);
+            onHoverStart(community, e as unknown as React.MouseEvent);
+          }}
+          onMouseLeave={() => {
+            setIsHovered(false);
+            onHoverEnd();
+          }}
+        />
       </motion.g>
     </Marker>
   );
@@ -157,7 +176,7 @@ export default function InteractiveChileMap({
   activeCategory,
   onSelectCommunity,
 }: Props) {
-  const [, setTooltip] = useState<TooltipState | null>(null);
+  const [tooltip, setTooltip] = useState<TooltipState | null>(null);
   const [position, setPosition] = useState<{
     coordinates: [number, number];
     zoom: number;
@@ -291,6 +310,34 @@ export default function InteractiveChileMap({
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* ── Tooltip con el nombre de la comunidad al pasar el mouse ──
+          Render condicional simple con transición CSS, sin framer-motion:
+          el resto de este archivo mostró varios casos donde `animate`/
+          `AnimatePresence` no reaccionaban de forma confiable a cambios
+          de estado en <motion.circle>/<motion.div> (ver comentarios en
+          CommunityMarker más arriba) — se prioriza que el tooltip
+          aparezca siempre, por sobre el detalle de la animación. ── */}
+      {tooltip && (
+        <div
+          className="pointer-events-none fixed z-40"
+          style={{
+            left: tooltip.x,
+            top: tooltip.y,
+            transform: "translate(-50%, calc(-100% - 10px))",
+          }}
+        >
+          <div
+            className="px-3 py-1.5 rounded-lg text-xs font-semibold text-white whitespace-nowrap shadow-lg"
+            style={{
+              background: "rgba(15, 30, 45, 0.92)",
+              backdropFilter: "blur(8px)",
+            }}
+          >
+            {tooltip.community.name}
+          </div>
+        </div>
+      )}
 
       {/* ── Controles de zoom visibles (desktop y mobile) ── */}
       <div className="absolute bottom-4 right-4 z-30 flex flex-col gap-2">
