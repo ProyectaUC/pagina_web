@@ -157,7 +157,7 @@ export default function InteractiveChileMap({
   activeCategory,
   onSelectCommunity,
 }: Props) {
-  const [tooltip, setTooltip] = useState<TooltipState | null>(null);
+  const [, setTooltip] = useState<TooltipState | null>(null);
   const [position, setPosition] = useState<{
     coordinates: [number, number];
     zoom: number;
@@ -362,7 +362,7 @@ export default function InteractiveChileMap({
           // lo manejamos manualmente arriba para poder distinguir
           // scroll normal de página vs. zoom intencional (Ctrl/Cmd).
           filterZoomEvent={(event) => {
-            if (event.type === "wheel") {
+            if ((event as unknown as Event).type === "wheel") {
               return (
                 (event as unknown as WheelEvent).ctrlKey ||
                 (event as unknown as WheelEvent).metaKey
