@@ -1,10 +1,10 @@
 import { useState } from "react";
 import InteractiveChileMap from "../components/map/InteractiveChileMap";
 import CommunityModal from "../components/map/CommunityModal";
-import { communities } from "../data/communities";
-// import { categoryColors, categoryLabels } from "../data/communities";
-import type { Community } from "../data/communities";
-// import type { Category } from "../data/communities";
+import { communities, categoryColors, categoryLabels } from "../data/communities";
+import type { Community, Category } from "../data/communities";
+
+const CATEGORY_ORDER: Category[] = ["Verano", "Otoño", "Invierno"];
 
 // ── Main Page ────────────────────────────────────────────────
 export default function TrabajosPage() {
@@ -29,6 +29,22 @@ export default function TrabajosPage() {
           <p className="text-sm sm:text-base text-white/70 max-w-2xl mx-auto">
             Historia de intervencion territorial en comunidades de Chile.
           </p>
+
+          {/* ── Leyenda de temporadas ── */}
+          <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 mt-5">
+            {CATEGORY_ORDER.map((cat) => (
+              <span
+                key={cat}
+                className="flex items-center gap-2 text-xs sm:text-sm text-white/70"
+              >
+                <span
+                  className="w-2.5 h-2.5 rounded-full flex-shrink-0"
+                  style={{ backgroundColor: categoryColors[cat] }}
+                />
+                {categoryLabels[cat]}
+              </span>
+            ))}
+          </div>
         </div>
       </section>
 

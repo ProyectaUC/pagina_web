@@ -2,7 +2,9 @@ import { useState } from "react";
 import {
   Building2,
   Heart,
-  CreditCard,
+  Landmark,
+  Copy,
+  Check,
   CheckCircle,
   ArrowRight,
   Mail,
@@ -10,7 +12,7 @@ import {
 } from "lucide-react";
 import { useInView } from "../hooks/useAnimations";
 import { content } from "../styles/theme/brand";
-import { donationAmounts, MP_LINK_GENERICO } from "../data/donaciones";
+import { donationAmounts, bankTransfer } from "../data/donaciones";
 import { sponsors } from "../data/sponsors";
 import Button from "./ui/Button";
 
@@ -148,23 +150,47 @@ function SponsorsTab() {
   );
 }
 
-function DonacionesTab() {
-  const amounts = donationAmounts;
+function TransferRow({ label, value }) {
+  const [copied, setCopied] = useState(false);
 
-  const [selected, setSelected] = useState(amounts[1].value);
-  const [custom, setCustom] = useState("");
-
-  // 2. Buscamos el link que corresponde al botón seleccionado
-  const handleMercadoPago = () => {
-    if (custom) {
-      // Si escribió un monto personalizado, lo mandamos al link abierto
-      window.location.href = MP_LINK_GENERICO;
-    } else {
-      // Si seleccionó un botón, buscamos su link específico
-      const opcion = amounts.find((a) => a.value === selected);
-      window.location.href = opcion ? opcion.mpLink : MP_LINK_GENERICO;
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(value);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1500);
+    } catch {
+      // Clipboard no disponible (ej. contexto no seguro); no hacemos nada.
     }
   };
+
+  return (
+    <div className="flex items-center justify-between gap-3 py-2.5 border-b border-gray-100 dark:border-proyecta-teal/10 last:border-b-0">
+      <div>
+        <div className="text-[11px] uppercase tracking-wider text-gray-400 dark:text-white/40 font-bold">
+          {label}
+        </div>
+        <div className="text-sm font-semibold text-proyecta-navy dark:text-white break-all">
+          {value}
+        </div>
+      </div>
+      <button
+        type="button"
+        onClick={handleCopy}
+        aria-label={`Copiar ${label}`}
+        className="flex-shrink-0 p-2 rounded-lg text-gray-400 hover:text-proyecta-teal dark:text-white/40 dark:hover:text-proyecta-cyan hover:bg-gray-50 dark:hover:bg-white/5 transition-colors"
+      >
+        {copied ? (
+          <Check size={16} className="text-proyecta-teal dark:text-proyecta-cyan" />
+        ) : (
+          <Copy size={16} />
+        )}
+      </button>
+    </div>
+  );
+}
+
+function DonacionesTab() {
+  const amounts = donationAmounts;
 
   return (
     <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -198,62 +224,25 @@ function DonacionesTab() {
       </div>
 
       <div className="card dark:bg-proyecta-navy/60 dark:border-proyecta-teal/20 p-8 rounded-[2rem] shadow-xl bg-white border border-gray-100">
-        <h4 className="font-black text-proyecta-navy dark:text-white mb-5 text-lg">
-          Elige qué quieres aportar (CLP)
-        </h4>
-
-        {/* Amount buttons */}
-        <div className="grid grid-cols-2 gap-3 mb-4">
-          {amounts.map((a) => (
-            <button
-              key={a.value}
-              onClick={() => {
-                setSelected(a.value);
-                setCustom("");
-              }}
-              className={`py-3 px-2 rounded-xl text-center border-2 transition-all ${
-                selected === a.value && !custom
-                  ? "bg-proyecta-cyan border-proyecta-cyan text-proyecta-navy font-bold shadow-md"
-                  : "border-gray-200 dark:border-proyecta-teal/30 text-gray-600 dark:text-white/70 hover:border-proyecta-cyan"
-              }`}
-            >
-              <div className="text-sm font-bold">
-                ${a.value.toLocaleString("es-CL")}
-              </div>
-              <div className="text-[11px] opacity-80">{a.label}</div>
-            </button>
-          ))}
+        <div className="flex items-center gap-2 mb-5">
+          <Landmark size={20} className="text-proyecta-teal dark:text-proyecta-cyan" />
+          <h4 className="font-black text-proyecta-navy dark:text-white text-lg">
+            Transferencia bancaria
+          </h4>
         </div>
 
-        {/* Custom amount */}
-        <input
-          type="number"
-          placeholder="Monto personalizado..."
-          value={custom}
-          onChange={(e) => {
-            setCustom(e.target.value);
-            setSelected(null);
-          }}
-          className="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-proyecta-teal/30
-                     bg-white dark:bg-proyecta-navy text-gray-900 dark:text-white
-                     focus:outline-none focus:ring-2 focus:ring-proyecta-cyan mb-5 text-sm"
-        />
-
-        {/* 💳 PAYMENT BUTTONS */}
-        <div className="space-y-3">
-          <button
-            className="w-full flex items-center justify-center gap-3 py-3.5 rounded-xl
-                       text-white font-bold text-sm transition-all hover:opacity-90 hover:-translate-y-0.5 shadow-lg"
-            style={{ background: "linear-gradient(135deg, #009EE3, #00B1EA)" }}
-            onClick={handleMercadoPago}
-          >
-            <CreditCard size={18} />
-            Pagar con Mercado Pago
-          </button>
+        <div className="mb-2">
+          <TransferRow label="Nombre" value={bankTransfer.accountHolder} />
+          <TransferRow label="RUT" value={bankTransfer.rut} />
+          <TransferRow label="Banco" value={bankTransfer.bank} />
+          <TransferRow label="Tipo de cuenta" value={bankTransfer.accountType} />
+          <TransferRow label="Número de cuenta" value={bankTransfer.accountNumber} />
+          <TransferRow label="Correo" value={bankTransfer.email} />
         </div>
 
-        <p className="text-xs text-gray-400 dark:text-white/40 text-center mt-3">
-          🔒 Pagos seguros — Certificado SSL
+        <p className="text-xs text-gray-400 dark:text-white/40 text-center mt-4">
+          Puedes aportar el monto que prefieras — usa los datos de arriba para
+          transferir directamente.
         </p>
       </div>
     </div>
