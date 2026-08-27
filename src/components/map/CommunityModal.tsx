@@ -43,10 +43,14 @@ export default function CommunityModal({
 }: CommunityModalProps) {
   const [photoIndex, setPhotoIndex] = useState(0);
 
-  // Reset gallery on community change
-  useEffect(() => {
+  // Reset gallery on community change. Ajustado durante el render (en vez
+  // de en un useEffect) siguiendo el patrón recomendado por React para
+  // resetear estado derivado de un prop, sin el render extra de un efecto.
+  const [lastCommunityId, setLastCommunityId] = useState(community?.id);
+  if (community?.id !== lastCommunityId) {
+    setLastCommunityId(community?.id);
     setPhotoIndex(0);
-  }, [community?.id]);
+  }
 
   // Close on Escape
   useEffect(() => {
@@ -161,7 +165,7 @@ export default function CommunityModal({
                   <div className="flex items-center gap-2 mb-3 text-proyecta-cyan/90">
                     <Quote size={16} className="fill-current opacity-60" />
                     <span className="italic font-medium tracking-wide text-sm sm:text-base">
-                      "{community.lema}"
+                      &ldquo;{community.lema}&rdquo;
                     </span>
                   </div>
                 )}
