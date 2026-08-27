@@ -189,8 +189,29 @@ function TransferRow({ label, value }) {
   );
 }
 
+const transferFields = [
+  { label: "Nombre", value: bankTransfer.accountHolder },
+  { label: "RUT", value: bankTransfer.rut },
+  { label: "Banco", value: bankTransfer.bank },
+  { label: "Tipo de cuenta", value: bankTransfer.accountType },
+  { label: "Número de cuenta", value: bankTransfer.accountNumber },
+  { label: "Correo", value: bankTransfer.email },
+];
+
 function DonacionesTab() {
   const amounts = donationAmounts;
+  const [copiedAll, setCopiedAll] = useState(false);
+
+  const handleCopyAll = async () => {
+    try {
+      const text = transferFields.map((f) => `${f.label}: ${f.value}`).join("\n");
+      await navigator.clipboard.writeText(text);
+      setCopiedAll(true);
+      setTimeout(() => setCopiedAll(false), 1500);
+    } catch {
+      // Clipboard no disponible (ej. contexto no seguro); no hacemos nada.
+    }
+  };
 
   return (
     <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -224,20 +245,40 @@ function DonacionesTab() {
       </div>
 
       <div className="card dark:bg-proyecta-navy/60 dark:border-proyecta-teal/20 p-8 rounded-[2rem] shadow-xl bg-white border border-gray-100">
-        <div className="flex items-center gap-2 mb-5">
-          <Landmark size={20} className="text-proyecta-teal dark:text-proyecta-cyan" />
-          <h4 className="font-black text-proyecta-navy dark:text-white text-lg">
-            Transferencia bancaria
-          </h4>
+        <div className="flex items-center justify-between gap-2 mb-5">
+          <div className="flex items-center gap-2">
+            <Landmark size={20} className="text-proyecta-teal dark:text-proyecta-cyan" />
+            <h4 className="font-black text-proyecta-navy dark:text-white text-lg">
+              Transferencia bancaria
+            </h4>
+          </div>
+          <button
+            type="button"
+            onClick={handleCopyAll}
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-colors ${
+              copiedAll
+                ? "bg-proyecta-teal/10 text-proyecta-teal dark:bg-proyecta-cyan/10 dark:text-proyecta-cyan"
+                : "bg-gray-50 text-gray-500 hover:text-proyecta-teal dark:bg-white/5 dark:text-white/50 dark:hover:text-proyecta-cyan"
+            }`}
+          >
+            {copiedAll ? (
+              <>
+                <Check size={14} />
+                Copiado
+              </>
+            ) : (
+              <>
+                <Copy size={14} />
+                Copiar todo
+              </>
+            )}
+          </button>
         </div>
 
         <div className="mb-2">
-          <TransferRow label="Nombre" value={bankTransfer.accountHolder} />
-          <TransferRow label="RUT" value={bankTransfer.rut} />
-          <TransferRow label="Banco" value={bankTransfer.bank} />
-          <TransferRow label="Tipo de cuenta" value={bankTransfer.accountType} />
-          <TransferRow label="Número de cuenta" value={bankTransfer.accountNumber} />
-          <TransferRow label="Correo" value={bankTransfer.email} />
+          {transferFields.map((f) => (
+            <TransferRow key={f.label} label={f.label} value={f.value} />
+          ))}
         </div>
 
         <p className="text-xs text-gray-400 dark:text-white/40 text-center mt-4">
