@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, type Variants } from "framer-motion";
 import {
   X,
   ChevronLeft,
@@ -8,6 +8,8 @@ import {
   Calendar,
   Hammer,
   Quote,
+  Users,
+  ImageOff,
 } from "lucide-react";
 import type { Community } from "../../data/communities";
 import { categoryColors, categoryLabels } from "../../data/communities";
@@ -24,7 +26,7 @@ const backdrop = {
   exit: { opacity: 0, transition: { duration: 0.2 } },
 };
 
-const panel = {
+const panel: Variants = {
   hidden: { opacity: 0, y: 40, scale: 0.97 },
   visible: {
     opacity: 1,
@@ -42,10 +44,14 @@ export default function CommunityModal({
 }: CommunityModalProps) {
   const [photoIndex, setPhotoIndex] = useState(0);
 
-  // Reset gallery on community change
-  useEffect(() => {
+  // Reset gallery on community change. Ajustado durante el render (en vez
+  // de en un useEffect) siguiendo el patrón recomendado por React para
+  // resetear estado derivado de un prop, sin el render extra de un efecto.
+  const [lastCommunityId, setLastCommunityId] = useState(community?.id);
+  if (community?.id !== lastCommunityId) {
+    setLastCommunityId(community?.id);
     setPhotoIndex(0);
-  }, [community?.id]);
+  }
 
   // Close on Escape
   useEffect(() => {
@@ -135,6 +141,16 @@ export default function CommunityModal({
                 </AnimatePresence>
               )}
 
+              {/* Estado vacío: sin fotos registradas para este trabajo */}
+              {(!community.photos || community.photos.length === 0) && (
+                <div className="flex flex-col items-center gap-3 text-white/25 select-none px-6 text-center">
+                  <ImageOff size={40} strokeWidth={1.5} />
+                  <p className="text-sm font-medium tracking-wide">
+                    Aún no tenemos fotos de este trabajo
+                  </p>
+                </div>
+              )}
+
               {/* Controles de Navegación de Fotos */}
               {(community.photos?.length ?? 0) > 1 && (
                 <>
@@ -160,7 +176,7 @@ export default function CommunityModal({
                   <div className="flex items-center gap-2 mb-3 text-proyecta-cyan/90">
                     <Quote size={16} className="fill-current opacity-60" />
                     <span className="italic font-medium tracking-wide text-sm sm:text-base">
-                      "{community.lema}"
+                      &ldquo;{community.lema}&rdquo;
                     </span>
                   </div>
                 )}
@@ -193,6 +209,15 @@ export default function CommunityModal({
                         {categoryLabels[community.category]}
                       </span>
                     </div>
+
+                    {/* Jefes Generales (Opcional) */}
+                    {community.jefesGenerales &&
+                      community.jefesGenerales.length > 0 && (
+                        <div className="flex items-center gap-1.5 mt-2 text-white/60 text-sm">
+                          <Users size={15} className="text-proyecta-cyan flex-shrink-0" />
+                          <span>{community.jefesGenerales.join(", ")}</span>
+                        </div>
+                      )}
                   </div>
 
                   {/* Lo que se construyó (Secundario) */}
@@ -214,7 +239,7 @@ export default function CommunityModal({
             {/* ── Cinta de Miniaturas (Thumbnails) ── */}
             {(community.photos?.length ?? 0) > 1 && (
               <div className="bg-[#0A0A0A] p-4 flex items-center justify-center border-t border-white/10">
-                <div className="flex gap-2 overflow-x-auto scrollbar-hide snap-x">
+                <div className="flex gap-2 overflow-x-auto thumbnail-scroll snap-x">
                   {community.photos!.map((photo, i) => (
                     <button
                       key={i}
